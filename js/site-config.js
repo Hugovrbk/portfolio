@@ -4,7 +4,7 @@
    (nom, e-mail, liens). Laissez une valeur vide ("") pour masquer le lien.
    ========================================================================== */
 window.SITE = {
-  name:     "Verbeek Hugo",
+  name:     "Hugo Verbeek",
   role:     "développeur web",
   email:    "hugolepigeon@exemple.be",
   github:   "https://github.com/hugovrbk",
