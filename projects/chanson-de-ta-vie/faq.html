@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Chanson de Vie</title>
+  <meta name="description" content="Toutes vos questions sur la création de chanson personnalisée, les délais, les formats et la livraison.">
+  <meta property="og:title"       content="FAQ — Chanson de Vie">
+  <meta property="og:description" content="Toutes vos questions sur la création de chanson personnalisée, les délais, les formats et la livraison.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">Questions fréquentes</span>
+    <h1>Tout Ce Qu'il Faut Savoir</h1>
+    <p>Vous avez une question ? Elle est probablement ici. Sinon, écrivez-nous !</p>
+  </div>
+</div>
+
+<section class="faq-section" style="padding-top:2rem">
+  <div class="container container--narrow">
+    <div class="faq-list">
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Comment fonctionne le service exactement ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Vous remplissez un formulaire avec le prénom de la personne, l'occasion, 3 souvenirs importants et le style musical souhaité. Vous payez en ligne. Sous 48 heures, nous vous envoyons un fichier audio de la chanson par email pour que vous la validiez. Une fois validée, nous faisons graver le CD ou vinyle et livrons à votre porte (ou vous envoyons le MP3 directement).</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Combien de temps faut-il pour recevoir ma chanson ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Le fichier audio vous est envoyé par email sous <strong>48 heures</strong> après votre commande. Pour les formats physiques : un <strong>CD</strong> est livré sous 7 à 10 jours ouvrables après validation. Un <strong>vinyle</strong> prend 3 à 4 semaines car la fabrication est plus longue. Ces délais sont indiqués clairement avant de commander.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Puis-je demander des modifications à la chanson ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui ! Chaque commande inclut <strong>1 révision offerte</strong>. Si la chanson ne correspond pas à vos attentes (style, ton, paroles…), revenez vers nous par email et nous l'ajustons. Des révisions supplémentaires sont possibles à 5 € pièce.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>La chanson sera-t-elle vraiment unique ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Absolument. Chaque chanson est générée à partir de <em>vos</em> souvenirs spécifiques. Deux commandes ne donnent jamais le même résultat. La chanson de Mamie Jeanne ne ressemblera à aucune autre. C'est ce qui fait la magie du cadeau.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Quel style musical choisir si je ne suis pas sûr(e) ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Dans le champ "Message personnel" du formulaire, indiquez les artistes que la personne écoute ou aimait dans sa jeunesse. Par exemple "Elle adorait Brel et Brassens" ou "Il était fan de Johnny Hallyday". Nous choisirons le style le plus approprié. Vous pouvez aussi consulter notre <a href="styles.html">page des styles</a> pour écouter des exemples.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Livrez-vous en dehors de la Belgique ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui ! Nous livrons en <strong>Belgique</strong> et en <strong>France</strong>. Les délais et frais de port peuvent légèrement varier. Le fichier MP3 est envoyé par email donc disponible partout dans le monde sans frais supplémentaires.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Est-ce que je peux offrir ça comme cadeau de groupe ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">C'est même l'utilisation la plus courante ! Famille, collègues, amis — tout le monde se cotise et offre ensemble. Vous passez une seule commande et nous envoyons la chanson à l'email que vous indiquez. Pratique pour organiser un cadeau collectif.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Mes données personnelles sont-elles protégées ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui, conformément au RGPD. Vos données (nom, email, souvenirs) sont utilisées uniquement pour créer et livrer votre chanson. Nous ne les revendons jamais. Vous pouvez demander leur suppression à tout moment par email. Plus d'infos dans nos <a href="mentions-legales.html">mentions légales</a>.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Les paiements sont-ils sécurisés ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui. Nous utilisons Mollie, un prestataire de paiement certifié PCI-DSS. Vos données bancaires ne passent jamais par notre site — vous êtes redirigé(e) directement sur la plateforme sécurisée de Mollie. Nous acceptons Bancontact, Visa, Mastercard et PayPal.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Que se passe-t-il si je ne suis pas satisfait(e) ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Votre satisfaction est notre priorité. Si après la révision offerte vous n'êtes toujours pas satisfait(e), contactez-nous. Nous étudions chaque cas au mérite. Pour les commandes CD et vinyle, le remboursement est possible avant la mise en production physique. Consultez nos <a href="cgv.html">CGV</a> pour les détails.</div>
+          </div>
+        </div>
+              <div class="faq-item">
+          <div class="faq-question">
+            <span>Comment vous contacter ?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Par email à <a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a>. Nous répondons généralement dans les 24 heures, 7 jours sur 7. Pour les urgences (cadeaux de dernière minute), précisez "URGENT" dans l'objet.</div>
+          </div>
+        </div>
+          </div>
+
+    <div style="text-align:center;margin-top:4rem;padding:3rem;background:var(--noir-2);border:1px solid rgba(201,168,76,.12);border-radius:var(--radius)">
+      <span class="section-label">Une autre question ?</span>
+      <h3 style="margin-bottom:.5rem">Contactez-nous</h3>
+      <p class="muted" style="margin-bottom:1.5rem">Nous répondons sous 24 h, 7 jours sur 7.</p>
+      <a href="mailto:contact@lachansondetavie.be" class="btn btn--or">
+        ✉ contact@lachansondetavie.be
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" style="padding:5rem 0;margin-top:4rem">
+  <div class="container" style="text-align:center">
+    <h2 style="font-size:2rem;margin-bottom:1rem">Prêt(e) à vous lancer ?</h2>
+    <a href="commander.html" class="btn btn--or">Commander ma chanson — dès 19 €</a>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+<script src="assets/js/scroll.js"></script>
+

@@ -1,0 +1,154 @@
+/* ===================================================================
+   theme-deluxe.css - Showcase Gastronomique (gamme DELUXE)
+   Identite : minimalisme editorial, beaucoup de blanc, typographie fine
+   et espacee, aucun angle arrondi, photos en niveaux de gris qui
+   reprennent leurs couleurs au survol.
+   =================================================================== */
+
+body.theme-deluxe {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Jost', -apple-system, sans-serif;
+    --radius: 0px;
+    --c-bg: #ffffff;
+    --c-bg-alt: #f7f5f1;
+    background: #ffffff;
+}
+
+body.theme-deluxe h1, body.theme-deluxe h2, body.theme-deluxe h3, body.theme-deluxe h4 {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+body.theme-deluxe h1 { font-weight: 400; }
+body.theme-deluxe p { font-weight: 300; line-height: 1.8; }
+
+/* ---------- Header : trait fin, capitales espacees, tres minimal ---------- */
+body.theme-deluxe .site-header {
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #111;
+    backdrop-filter: none;
+}
+body.theme-deluxe .brand-name {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+}
+body.theme-deluxe .brand img { border-radius: 0; }
+body.theme-deluxe .main-nav a {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+}
+body.theme-deluxe .main-nav a:hover { color: var(--c-accent); }
+body.theme-deluxe .lang-switch summary { border-radius: 0; border-color: #111; }
+body.theme-deluxe .lang-menu { border-radius: 0; }
+
+/* ---------- Boutons : pas de remplissage, simple soulignement ---------- */
+body.theme-deluxe .btn {
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 14px 28px;
+}
+body.theme-deluxe .btn-primary {
+    background: transparent;
+    color: var(--c-secondary);
+    border: 1px solid var(--c-secondary);
+}
+body.theme-deluxe .btn-primary:hover { background: var(--c-secondary); color: #fff; }
+body.theme-deluxe .btn-outline { border-radius: 0; border: 1px solid currentColor; }
+body.theme-deluxe .btn-light { border-radius: 0; }
+
+/* ---------- Hero : sobre, texte espace, pas de degrade colore ---------- */
+body.theme-deluxe .hero::before {
+    background: linear-gradient(180deg, rgba(10,10,10,0.15), rgba(10,10,10,0.55));
+}
+body.theme-deluxe .hero h1 {
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+body.theme-deluxe .hero p.lead { font-weight: 300; }
+
+/* ---------- Cartes : pas de bordure/ombre, juste un filet fin ---------- */
+body.theme-deluxe .dish-card,
+body.theme-deluxe .review-card,
+body.theme-deluxe .event-card,
+body.theme-deluxe .team-card,
+body.theme-deluxe .form-card {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    box-shadow: none;
+}
+body.theme-deluxe .dish-card img,
+body.theme-deluxe .gallery-grid img,
+body.theme-deluxe .event-card img,
+body.theme-deluxe .team-card img {
+    border-radius: 0;
+    filter: grayscale(65%);
+    transition: filter 0.35s ease;
+}
+body.theme-deluxe .dish-card:hover img,
+body.theme-deluxe .gallery-grid figure:hover img,
+body.theme-deluxe .event-card:hover img,
+body.theme-deluxe .team-card:hover img {
+    filter: grayscale(0%);
+}
+body.theme-deluxe .team-card img { border-radius: 0; }
+body.theme-deluxe .dish-price {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--c-ink);
+}
+body.theme-deluxe .chip {
+    border-radius: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: transparent;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+}
+body.theme-deluxe .chip-allergen { border-color: #a3261d; color: #a3261d; background: transparent; }
+
+body.theme-deluxe .menu-category h2 {
+    border-bottom: 1px solid var(--c-accent);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+}
+body.theme-deluxe .card-tabs a { border-radius: 0; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.08em; }
+body.theme-deluxe .card-tabs a.active { background: var(--c-secondary); border-color: var(--c-secondary); }
+body.theme-deluxe .gallery-filters a { border-radius: 0; }
+body.theme-deluxe .gallery-grid figure, body.theme-deluxe .map-embed, body.theme-deluxe .promo-popup {
+    border-radius: 0;
+}
+
+body.theme-deluxe .site-footer { background: #0a0a0a; }
+body.theme-deluxe .footer-social a { border-radius: 0; }
+body.theme-deluxe .review-stars { letter-spacing: 3px; }
+
+/* correctif portfolio : bouton secondaire lisible sur le hero sombre */
+/* correctif portfolio : en-tête compact sur petit écran (le bouton FR recouvrait le nom du restaurant) */
+@media (max-width:560px){
+  body.theme-deluxe .site-header .container{gap:8px}
+  body.theme-deluxe .brand{min-width:0;gap:8px}
+  body.theme-deluxe .brand img{height:34px}
+  body.theme-deluxe .brand-name{font-size:1.02rem}
+  body.theme-deluxe .brand-status{font-size:.64rem}
+  body.theme-deluxe .nav-cta{gap:6px;flex-shrink:0}
+  body.theme-deluxe .nav-cta .btn{padding:9px 10px;font-size:.62rem;letter-spacing:.05em;white-space:nowrap}
+  body.theme-deluxe .lang-switch summary{padding:5px 8px;font-size:.8rem}
+}
+@media (max-width:400px){ body.theme-deluxe .brand img{display:none} }
+@media (max-width:340px){ body.theme-deluxe .nav-cta .btn{white-space:normal;max-width:5.6rem;text-align:center;line-height:1.25;padding:7px 8px} }
+/* les animations d'entrée font glisser les cartes depuis le côté : ne jamais élargir la page sur téléphone */
+html,body{overflow-x:clip}
+/* hero vidéo : lecture muette en boucle, voile sombre pour garder le texte lisible */
+.hero.has-video{overflow:hidden;background-color:#14120f}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+body.theme-deluxe .hero.has-video::before{z-index:1;background:linear-gradient(180deg,rgba(20,18,15,.52),rgba(20,18,15,.80))}
+.hero.has-video .hero-content{z-index:2}
+@media (prefers-reduced-motion:reduce){.hero-video{display:none}}
+body.theme-deluxe .hero .btn-outline,body.theme-deluxe .hero .btn-primary{color:#fff;border-color:#fff}
+body.theme-deluxe .hero .btn-outline:hover,body.theme-deluxe .hero .btn-primary:hover{background:#fff;color:#111}

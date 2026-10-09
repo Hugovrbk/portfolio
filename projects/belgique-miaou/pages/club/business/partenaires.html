@@ -1,0 +1,456 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partenaires — RFC Liège</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@400;600;700;900&display=swap"></noscript>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/page.css?v=4">
+    <link rel="stylesheet" href="../../../css/animations.css">
+</head>
+<body class="inner-page">
+
+<!-- HEADER -->
+<header class="header">
+    <a href="../../../index.html" class="logo-wrap">
+        <div class="logo-img">
+            <img src="../../../multimedia/img/logo/rfcl-logo.png" alt="RFC Liège" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div style="display:none;width:48px;height:48px;background:var(--rouge);border-radius:50%;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#fff;font-weight:900;">RFCL</div>
+        </div>
+        <div class="logo-text">
+            <span class="club-name">RFC Liège</span>
+            <span class="club-sub">Matricule 4 · 1892</span>
+        </div>
+    </a>
+    ﻿<!-- Appliquer le thème immédiatement (avant le rendu) pour éviter le flash -->
+<script>
+(function(){
+    var t = localStorage.getItem('rfcl-theme') ||
+            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+})();
+</script>
+<!-- NAV CSS (injecté une seule fois) -->
+<style>
+/* ── Navigation ─────────────────────────────────────────────── */
+.nav-desktop { display: flex; align-items: stretch; gap: 0; height: 64px; }
+.nav-item { position: relative; display: flex; align-items: stretch; }
+
+.nav-btn {
+    display: flex; align-items: center; gap: 5px;
+    padding: 0 13px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.80rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.46);
+    text-decoration: none; border-radius: 0;
+    transition: color 0.18s, border-color 0.18s;
+    white-space: nowrap; cursor: pointer;
+    background: none; border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+}
+.nav-btn:hover { color: rgba(255,255,255,0.88); border-bottom-color: rgba(255,255,255,0.25); }
+.nav-btn.active { color: #fff; border-bottom-color: #C8102E; }
+
+/* Flèche */
+.nav-arrow { font-size: 0.48rem; opacity: 0.5; transition: transform 0.2s; display: inline-block; }
+.nav-item:hover .nav-arrow,
+.nav-item.open   .nav-arrow { transform: rotate(180deg); opacity: 0.9; }
+
+/* Dropdown */
+.nav-dropdown {
+    position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    min-width: 210px;
+    background: #08101e;
+    border: 1px solid rgba(200,16,46,0.25);
+    border-top: 2px solid #C8102E;
+    border-radius: 0;
+    box-shadow: 0 20px 48px rgba(0,0,0,0.7);
+    padding: 6px 0;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 999;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item.open   .nav-dropdown {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown a {
+    display: block; padding: 9px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.84rem; font-weight: 600; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.60);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.14s, padding-left 0.14s, background 0.14s;
+    border-left: 2px solid transparent;
+}
+.nav-dropdown a:hover {
+    color: #fff; background: rgba(200,16,46,0.10);
+    padding-left: 26px; border-left-color: #C8102E;
+}
+
+/* Mobile dropdown */
+.nav-mobile .nav-item { width: 100%; display: block; }
+.nav-mobile .nav-btn  {
+    width: 100%; justify-content: space-between;
+    padding: 12px 6%; height: auto; margin-bottom: 0;
+    border-bottom: none; border-left: 2px solid transparent;
+}
+.nav-mobile .nav-btn:hover,
+.nav-mobile .nav-btn.active {
+    color: #fff; border-bottom: none; border-left-color: #C8102E;
+    background: rgba(200,16,46,0.07);
+}
+.nav-mobile .nav-dropdown {
+    position: static; transform: none; opacity: 1;
+    visibility: hidden; max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, visibility 0.3s;
+    border: none; border-left: 2px solid #C8102E;
+    border-radius: 0; box-shadow: none;
+    background: rgba(0,0,0,0.25); margin-left: 16px; padding: 0;
+}
+.nav-mobile .nav-item.open .nav-dropdown { visibility: visible; max-height: 600px; }
+.nav-mobile .nav-dropdown a { padding: 9px 18px; font-size: 0.82rem; }
+</style>
+
+<!-- DESKTOP NAV -->
+<nav class="nav-desktop">
+    <div class="nav-item">
+        <a href="../../../pages/club/actu/dames.html"
+           class="nav-btn">
+            ACTU            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/actu/dames.html">
+                Dames            </a>
+                        <a href="../../../pages/club/actu/evenements.html">
+                Évènements            </a>
+                        <a href="../../../pages/club/actu/jeunes.html">
+                Jeunes            </a>
+                        <a href="../../../pages/club/actu/sportive.html">
+                Sportive            </a>
+                        <a href="../../../pages/club/actu/supporters.html">
+                Supporters            </a>
+                        <a href="../../../pages/club/actu/newsletter.html">
+                Newsletter            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/club/comite.html"
+           class="nav-btn">
+            CLUB            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/club/comite.html">
+                Comité de vigilance            </a>
+                        <a href="../../../pages/club/club/histoire.html">
+                Histoire            </a>
+                        <a href="../../../pages/club/club/organigramme.html">
+                Organigramme            </a>
+                        <a href="../../../pages/club/club/sangmarine.html">
+                Sang &amp; Marine            </a>
+                        <a href="../../../pages/club/club/stade.html">
+                Stade de Rocourt            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/d1b/calendrier.html"
+           class="nav-btn">
+            D1B            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/d1b/calendrier.html">
+                Calendrier            </a>
+                        <a href="../../../pages/club/d1b/classement.html">
+                Classement            </a>
+                        <a href="../../../pages/club/d1b/joueurs.html">
+                Joueurs            </a>
+                        <a href="../../../pages/club/d1b/staff.html">
+                Staff            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/dames/equipe-d1.html"
+           class="nav-btn">
+            DAMES            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/dames/equipe-d1.html">
+                Équipe D1            </a>
+                        <a href="../../../pages/club/dames/equipe-ip.html">
+                Équipe IP            </a>
+                        <a href="../../../pages/club/dames/ladies-younited.html">
+                Ladies Younited            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/edj/cotisations.html"
+           class="nav-btn">
+            EDJ            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/edj/cotisations.html">
+                Cotisations            </a>
+                        <a href="../../../pages/club/edj/entrainements.html">
+                Entraînements            </a>
+                        <a href="../../../pages/club/edj/equipe-u21.html">
+                Équipe U21            </a>
+                        <a href="../../../pages/club/edj/parents-fairplay.html">
+                Parents Fair-play            </a>
+                        <a href="../../../pages/club/edj/recrutement.html">
+                Recrutement            </a>
+                        <a href="../../../pages/club/edj/reglement.html">
+                Règlement            </a>
+                        <a href="../../../pages/club/edj/secretariat.html">
+                Secrétariat            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/fans/abos.html"
+           class="nav-btn">
+            FANS            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/fans/abos.html">
+                Abos 25/26            </a>
+                        <a href="../../../pages/club/fans/billetterie.html">
+                Billetterie 25/26            </a>
+                        <a href="../../../pages/club/fans/cashless.html">
+                Cashless au stade            </a>
+                        <a href="../../../pages/club/fans/clubs-supporters.html">
+                Clubs de supporters            </a>
+                        <a href="../../../pages/club/fans/fanshop.html">
+                Fanshop            </a>
+                        <a href="../../../pages/club/fans/pmr.html">
+                PMR au stade            </a>
+                        <a href="../../../pages/club/fans/reglement-oi.html">
+                Règlement OI            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/medias/accreditation.html"
+           class="nav-btn">
+            MÉDIAS            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/medias/accreditation.html">
+                Accréditation            </a>
+                        <a href="../../../pages/club/medias/newsletter.html">
+                Newsletter            </a>
+                        <a href="../../../pages/club/medias/magazine.html">
+                Magazine            </a>
+                        <a href="../../../pages/club/medias/reseaux.html">
+                Réseaux sociaux            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/business/business-club.html"
+           class="nav-btn active">
+            BUSINESS            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/business/business-club.html">
+                Business Club 1892            </a>
+                        <a href="../../../pages/club/business/partenaires.html">
+                Partenaires            </a>
+                        <a href="../../../pages/club/business/repas-vip.html">
+                Repas VIP            </a>
+                    </div>
+            </div>
+    <div class="nav-item">
+        <a href="../../../pages/club/tickets/tickets.html"
+           class="nav-btn">
+            TICKETS            <span class="nav-arrow">▾</span>        </a>
+                <div class="nav-dropdown">
+                        <a href="../../../pages/club/tickets/tickets.html">
+                Billetterie            </a>
+                    </div>
+            </div>
+</nav>
+
+<!-- Bouton Thème Clair/Sombre -->
+<button class="theme-toggle" id="theme-toggle-btn" aria-label="Basculer le thème" title="Mode clair/sombre">🌙</button>
+
+<!-- MOBILE NAV (injecté dans nav#navMobile via JS) -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+(function(){
+    var mobileNav = document.getElementById('navMobile');
+    if (!mobileNav) return;
+    // Vider et reconstruire
+    mobileNav.innerHTML = '<a href="../../../index.html" class="nav-btn">Accueil</a>';
+
+    var items = [{"cat":"ACTU","folder":"actu","pages":[{"label":"Dames","folder":"actu","slug":"dames"},{"label":"\u00c9v\u00e8nements","folder":"actu","slug":"evenements"},{"label":"Jeunes","folder":"actu","slug":"jeunes"},{"label":"Sportive","folder":"actu","slug":"sportive"},{"label":"Supporters","folder":"actu","slug":"supporters"},{"label":"Newsletter","folder":"actu","slug":"newsletter"}]},{"cat":"CLUB","folder":"club","pages":[{"label":"Comit\u00e9 de vigilance","folder":"club","slug":"comite"},{"label":"Histoire","folder":"club","slug":"histoire"},{"label":"Organigramme","folder":"club","slug":"organigramme"},{"label":"Sang & Marine","folder":"club","slug":"sangmarine"},{"label":"Stade de Rocourt","folder":"club","slug":"stade"}]},{"cat":"D1B","folder":"d1b","pages":[{"label":"Calendrier","folder":"d1b","slug":"calendrier"},{"label":"Classement","folder":"d1b","slug":"classement"},{"label":"Joueurs","folder":"d1b","slug":"joueurs"},{"label":"Staff","folder":"d1b","slug":"staff"}]},{"cat":"DAMES","folder":"dames","pages":[{"label":"\u00c9quipe D1","folder":"dames","slug":"equipe-d1"},{"label":"\u00c9quipe IP","folder":"dames","slug":"equipe-ip"},{"label":"Ladies Younited","folder":"dames","slug":"ladies-younited"}]},{"cat":"EDJ","folder":"edj","pages":[{"label":"Cotisations","folder":"edj","slug":"cotisations"},{"label":"Entra\u00eenements","folder":"edj","slug":"entrainements"},{"label":"\u00c9quipe U21","folder":"edj","slug":"equipe-u21"},{"label":"Parents Fair-play","folder":"edj","slug":"parents-fairplay"},{"label":"Recrutement","folder":"edj","slug":"recrutement"},{"label":"R\u00e8glement","folder":"edj","slug":"reglement"},{"label":"Secr\u00e9tariat","folder":"edj","slug":"secretariat"}]},{"cat":"FANS","folder":"fans","pages":[{"label":"Abos 25\/26","folder":"fans","slug":"abos"},{"label":"Billetterie 25\/26","folder":"fans","slug":"billetterie"},{"label":"Cashless au stade","folder":"fans","slug":"cashless"},{"label":"Clubs de supporters","folder":"fans","slug":"clubs-supporters"},{"label":"Fanshop","folder":"fans","slug":"fanshop"},{"label":"PMR au stade","folder":"fans","slug":"pmr"},{"label":"R\u00e8glement OI","folder":"fans","slug":"reglement-oi"}]},{"cat":"M\u00c9DIAS","folder":"medias","pages":[{"label":"Accr\u00e9ditation","folder":"medias","slug":"accreditation"},{"label":"Newsletter","folder":"medias","slug":"newsletter"},{"label":"Magazine","folder":"medias","slug":"magazine"},{"label":"R\u00e9seaux sociaux","folder":"medias","slug":"reseaux"}]},{"cat":"BUSINESS","folder":"business","pages":[{"label":"Business Club 1892","folder":"business","slug":"business-club"},{"label":"Partenaires","folder":"business","slug":"partenaires"},{"label":"Repas VIP","folder":"business","slug":"repas-vip"}]},{"cat":"TICKETS","folder":"tickets","pages":[{"label":"Billetterie","folder":"tickets","slug":"tickets"}]}];
+
+    items.forEach(function(item){
+        var wrap = document.createElement('div');
+        wrap.className = 'nav-item';
+
+        var btn = document.createElement('button');
+        btn.className = 'nav-btn';
+        btn.innerHTML = item.cat + (item.pages.length ? ' <span class="nav-arrow">▾</span>' : '');
+        btn.addEventListener('click', function(){
+            wrap.classList.toggle('open');
+        });
+        wrap.appendChild(btn);
+
+        if (item.pages.length) {
+            var dd = document.createElement('div');
+            dd.className = 'nav-dropdown';
+            item.pages.forEach(function(p){
+                var a = document.createElement('a');
+                a.href = '../../../pages/club/' + p.folder + '/' + p.slug + '.html';
+                a.textContent = p.label;
+                dd.appendChild(a);
+            });
+            wrap.appendChild(dd);
+        }
+        mobileNav.appendChild(wrap);
+    });
+    
+})();
+});
+</script>
+
+<!-- Thème Clair / Sombre -->
+<script>
+(function() {
+    var themeBtn = document.getElementById('theme-toggle-btn');
+    if (!themeBtn) return;
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeBtn.textContent = '☀️';
+            themeBtn.title = 'Passer en mode sombre';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeBtn.textContent = '🌙';
+            themeBtn.title = 'Passer en mode clair';
+        }
+    }
+
+    var currentTheme = localStorage.getItem('rfcl-theme') ||
+        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(currentTheme);
+
+    themeBtn.addEventListener('click', function() {
+        var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        localStorage.setItem('rfcl-theme', next);
+        applyTheme(next);
+    });
+})();
+</script>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+                <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<nav class="nav-mobile" id="navMobile"></nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+    <img src="../../../multimedia/img/hero/herobg.jpg" alt="" class="page-banner-img" aria-hidden="true">
+    <div class="page-banner-overlay"></div>
+    <div class="page-banner-content">
+        <div class="page-breadcrumb">
+            <a href="../../../index.html">Accueil</a>
+            <span class="breadcrumb-sep">›</span>
+            <a href="./business-club.html">BUSINESS</a>
+            <span class="breadcrumb-sep">›</span>
+            <span>Partenaires</span>
+        </div>
+        <h1 class="page-h1">Partenaires</h1>
+        <p class="page-desc">Nos partenaires officiels — devenez sponsor du RFC Liège.</p>
+    </div>
+</section>
+
+<!-- CONTENT -->
+<main class="page-main"><div class="page-main-inner cms-content"><section class="content-section"><h2 class="content-h2">Nos partenaires officiels</h2><div class="content-text"><p>Le RFC Liège remercie chaleureusement tous ses partenaires officiels pour leur soutien essentiel au développement du club. Leur engagement permet au club de viser les objectifs sportifs les plus ambitieux.</p></div></section><section class="content-section"><h2 class="content-h2">Sponsors principaux</h2><div class="content-text"><div class="sponsor-item reveal visible" style="transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><img src="../../../multimedia/img/sponsor/10_dieci.png" alt="Dieci" onerror="this.style.display='none'"></div>
+                <div class="sponsor-item reveal visible" style="transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><img src="../../../multimedia/img/sponsor/acerbis.png" alt="Acerbis" onerror="this.style.display='none'"></div>
+                <div class="sponsor-item reveal visible" style="transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><img src="../../../multimedia/img/sponsor/club_dei_100.png" alt="Club dei 100" onerror="this.style.display='none'"></div>
+                <div class="sponsor-item reveal visible" style="transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><img src="../../../multimedia/img/sponsor/Goal_service.png" alt="Goal Service" onerror="this.style.display='none'"></div></div></section><section class="content-section"><h2 class="content-h2">Devenir partenaire</h2><div class="content-text"><div class="content-card reveal visible" style="padding: 24px; border-top: 4px solid rgb(240, 192, 64); transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><h3>Gold Partner</h3><div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--rouge);margin:8px 0;" bis_skin_checked="1">5 000 €/an</div><p style="font-size:0.86rem;color:#666;">Logo maillot · Site web · Magazine · Loge VIP · 4 abonnements</p></div>
+                <div class="content-card reveal visible" style="padding: 24px; border-top: 4px solid rgb(170, 170, 170); transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><h3>Silver Partner</h3><div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--rouge);margin:8px 0;" bis_skin_checked="1">2 500 €/an</div><p style="font-size:0.86rem;color:#666;">Logo site web · Magazine · 2 abonnements · Événements business</p></div>
+                <div class="content-card reveal visible" style="padding: 24px; border-top: 4px solid rgb(205, 127, 50); transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><h3>Bronze Partner</h3><div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--rouge);margin:8px 0;" bis_skin_checked="1">1 000 €/an</div><p style="font-size:0.86rem;color:#666;">Logo site web · 1 abonnement · Mention dans le magazine</p></div>
+                <div class="content-card reveal visible" style="padding: 24px; border-top: 4px solid rgb(107, 142, 255); transition: transform 0.3s, box-shadow 0.3s;" bis_skin_checked="1"><h3>Partenaire académie</h3><div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--rouge);margin:8px 0;" bis_skin_checked="1">500 €/an</div><p style="font-size:0.86rem;color:#666;">Soutien à l'académie · Logo sur les équipements jeunes</p></div></div></section><section class="content-section"><h2 class="content-h2">Contact</h2><div class="content-text"><p>Pour devenir partenaire du RFC Liège : <strong>business@rfcliege.be</strong> · +32 (0)4 XXX XX XX</p></div></section></div></main>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="club-name">RFC Liège</div>
+            <p>Fondé en 1892, le Royal Football Club de Liège (Matricule 4) est le doyen du football belge. Sang et Marine depuis toujours.</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com" class="social-btn" aria-label="Instagram">IG</a>
+                <a href="https://www.facebook.com" class="social-btn" aria-label="Facebook">f</a>
+                <a href="https://www.tiktok.com" class="social-btn" aria-label="TikTok">🎵</a>
+                <a href="https://x.com" class="social-btn" aria-label="Twitter">𝕏</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Club</h4>
+            <ul>
+                <li><a href="../club/histoire.html">Histoire</a></li>
+                <li><a href="../club/organigramme.html">Organigramme</a></li>
+                <li><a href="../club/stade.html">Stade de Rocourt</a></li>
+                <li><a href="../business/partenaires.html">Partenaires</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Équipe</h4>
+            <ul>
+                <li><a href="../d1b/joueurs.html">Joueurs</a></li>
+                <li><a href="../d1b/classement.html">Classement D1B</a></li>
+                <li><a href="../dames/equipe-d1.html">Section Dames</a></li>
+                <li><a href="../edj/equipe-u21.html">Académie</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Supporters</h4>
+            <ul>
+                <li><a href="../fans/fanshop.html">Fanshop</a></li>
+                <li><a href="../fans/billetterie.html">Billetterie</a></li>
+                <li><a href="../medias/reseaux.html">Réseaux sociaux</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 RFC Liège — Tous droits réservés</p>
+        <div style="display:flex;gap:20px;">
+            <a href="#">Mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+        </div>
+    </div>
+</footer>
+
+<script src="../../../js/main.js?v=3"></script>
+<script src="../../../js/animations.js"></script>
+<script src="../../../js/static-patch.js"></script>
+</body>
+</html>
+
+

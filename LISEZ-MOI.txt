@@ -1,0 +1,21 @@
+OUVRIR LE PORTFOLIO SUR VOTRE ORDINATEUR
+=========================================
+
+1. EXTRAIRE le ZIP d'abord (ne pas ouvrir les fichiers depuis le ZIP) :
+   - Windows : clic droit sur portfolio.zip > "Extraire tout..." > Extraire.
+   - Mac     : double-clic sur portfolio.zip (un dossier "portfolio" apparait).
+
+2. Ouvrir le dossier extrait, puis DOUBLE-CLIQUER sur  index.html
+   (il s'ouvre dans votre navigateur : Chrome, Edge ou Firefox).
+
+Si index.html s'ouvre dans un editeur de texte au lieu du navigateur :
+   clic droit sur index.html > Ouvrir avec > Chrome (ou Edge / Firefox).
+
+A SAVOIR EN OUVERTURE LOCALE (hors ligne ou sans serveur) :
+ - Internet est necessaire pour : les fonds de carte (Tout droit), les polices
+   des projets, les photos du restaurant et les clips Twitch.
+ - Les lecteurs de clips Twitch refusent de se lancer depuis un fichier local :
+   ils fonctionnent une fois le site publie sur GitHub Pages.
+
+PUBLIER EN LIGNE : voir README.md (GitHub Pages).
+PERSONNALISER : modifier js/site-config.js (nom, e-mail, liens).

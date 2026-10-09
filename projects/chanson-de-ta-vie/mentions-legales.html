@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions Légales &amp; Politique de Confidentialité — Chanson de Vie</title>
+  <meta name="description" content="Mentions légales, politique de confidentialité et données personnelles de Chanson de Vie.">
+  <meta property="og:title"       content="Mentions Légales &amp; Politique de Confidentialité — Chanson de Vie">
+  <meta property="og:description" content="Mentions légales, politique de confidentialité et données personnelles de Chanson de Vie.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<section class="legal-section">
+  <div class="container container--narrow">
+    <span class="section-label">Informations légales</span>
+    <h1>Mentions Légales</h1>
+    <p class="last-update">Dernière mise à jour : 30/09/2026</p>
+
+    <h2>1. Informations sur l'éditeur</h2>
+    <p>
+      Le site <strong>lachansondetavie.be</strong> est édité par :<br><br>
+      <strong>Chanson de Vie</strong><br>
+      Belgique<br>
+      Email : <a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a>
+    </p>
+    <p><em>⚠️ À compléter avec vos informations personnelles ou celles de vos parents / de la coopérative jeunes que vous aurez choisie.</em></p>
+
+    <h2>2. Hébergement</h2>
+    <p>
+      Ce site est hébergé par :<br>
+      <strong>LWS — Les Web Services</strong><br>
+      2, Rue Jules Ferry – Bâtiment B<br>
+      88190 Golbey – France<br>
+      <a href="https://www.lws.fr" target="_blank" rel="noopener">www.lws.fr</a>
+    </p>
+
+    <h2>3. Propriété intellectuelle</h2>
+    <p>
+      L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, structure) sont protégés
+      par le droit d'auteur et appartiennent à Chanson de Vie, sauf mention contraire.
+      Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.
+    </p>
+    <p>
+      Les chansons générées pour les clients sont la propriété exclusive de ces derniers une fois la commande payée.
+      Chanson de Vie conserve le droit de mentionner l'existence de la commande à des fins statistiques,
+      sans divulguer de données personnelles.
+    </p>
+
+    <h2>4. Politique de confidentialité (RGPD)</h2>
+
+    <h3>4.1 Données collectées</h3>
+    <p>Dans le cadre de votre commande, nous collectons les données suivantes :</p>
+    <ul>
+      <li>Nom et prénom du client</li>
+      <li>Adresse email</li>
+      <li>Adresse postale (pour les commandes CD et vinyle)</li>
+      <li>Prénom de la personne célébrée et souvenirs fournis</li>
+      <li>Style musical choisi, occasion, message personnel</li>
+    </ul>
+    <p>Nous ne collectons pas de données bancaires — celles-ci sont traitées directement par notre prestataire de paiement (Mollie) et ne transitent jamais par nos serveurs.</p>
+
+    <h3>4.2 Finalité du traitement</h3>
+    <p>Ces données sont utilisées exclusivement pour :</p>
+    <ul>
+      <li>Créer votre chanson personnalisée</li>
+      <li>Vous envoyer le fichier audio pour validation</li>
+      <li>Livrer votre commande physique (CD/vinyle)</li>
+      <li>Vous contacter en cas de question sur votre commande</li>
+    </ul>
+    <p>Vos données ne sont <strong>jamais</strong> revendues, louées ou cédées à des tiers.</p>
+
+    <h3>4.3 Durée de conservation</h3>
+    <p>
+      Vos données de commande sont conservées pendant <strong>5 ans</strong> à des fins comptables et légales,
+      conformément à la législation belge. Les souvenirs et détails personnels sont supprimés de nos systèmes
+      dans les 30 jours suivant la livraison de votre commande.
+    </p>
+
+    <h3>4.4 Vos droits</h3>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679), vous disposez des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+      <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+      <li><strong>Droit d'opposition</strong> : vous opposer à certains traitements</li>
+      <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+    </ul>
+    <p>
+      Pour exercer ces droits, contactez-nous par email à
+      <a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a>.
+      Nous répondons dans les 30 jours.
+    </p>
+
+    <h3>4.5 Cookies</h3>
+    <p>
+      Ce site utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site (session, panier).
+      Aucun cookie de tracking ou de publicité n'est utilisé. Aucun consentement n'est requis pour ces cookies.
+    </p>
+
+    <h3>4.6 Prestataire de paiement</h3>
+    <p>
+      Les paiements sont traités par <strong>Mollie B.V.</strong>, dont la politique de confidentialité
+      est disponible sur <a href="https://www.mollie.com/fr/privacy" target="_blank" rel="noopener">www.mollie.com/fr/privacy</a>.
+    </p>
+
+    <h2>5. Responsabilité</h2>
+    <p>
+      Chanson de Vie met tout en œuvre pour maintenir le site accessible et les informations exactes.
+      Cependant, nous ne pouvons être tenus responsables de toute interruption de service, inexactitude ou
+      omission. Les liens vers des sites tiers sont fournis à titre informatif ; nous n'avons aucun contrôle
+      sur leur contenu.
+    </p>
+
+    <h2>6. Droit applicable</h2>
+    <p>
+      Les présentes mentions légales sont soumises au droit belge.
+      Tout litige sera soumis à la compétence exclusive des tribunaux de Belgique.
+    </p>
+
+    <div class="groove-divider" style="margin:3rem 0"><div class="groove-divider-dot"></div></div>
+    <p style="font-size:.85rem;color:var(--gris)">
+      <a href="cgv.html">→ Consulter nos Conditions Générales de Vente</a>
+    </p>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+

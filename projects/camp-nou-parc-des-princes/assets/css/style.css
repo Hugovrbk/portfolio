@@ -1,0 +1,1562 @@
+/* ============================================================
+   TOUT DROIT — Camp Nou → Parc des Princes à vélo
+   Direction : télémétrie de course nocturne.
+   Noir profond, vert signal, typographie condensée athlétique.
+   ============================================================ */
+
+:root {
+  --void:       #06080b;
+  --void-2:     #0b1016;
+  --panel:      rgba(9, 13, 18, .84);
+  --panel-brd:  rgba(0, 230, 118, .22);
+
+  --signal:     #00e676;
+  --signal-hot: #7cffb2;
+  --signal-dim: rgba(0, 230, 118, .35);
+  --off:        #93a5b3;   /* journées en retrait — gris volontairement clair,
+                              distinct du gris de la carte */
+  --gold:       #ffc300;
+
+  --ink:        #e9f2ec;
+  --dim:        #6d8394;
+
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-ui:      'Barlow Condensed', 'Arial Narrow', sans-serif;
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* ---------- Carte ---------- */
+
+#map {
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 0;
+}
+
+/* Les tuiles OpenStreetMap France sont claires : on les inverse pour
+   obtenir le rendu "nuit" tout en gardant les noms en français.
+   Le filtre ne touche que les tuiles, pas le tracé (autre calque). */
+/* Fond « sombre » : noir et gris façon Waze la nuit. */
+.map-sombre .leaflet-tile-pane {
+  filter: grayscale(.9) brightness(1.55) contrast(.94);
+}
+
+/* Fond « clair » : plan coloré facon Google Maps + ombrage du terrain.
+   Aucun filtre de désaturation ici, sinon on perd le vert et le bleu. */
+.map-clair .leaflet-tile-pane {
+  filter: saturate(1.08) brightness(1.02);
+}
+
+/* Fond « satellite » : images aériennes, très légèrement assombries pour
+   que le tracé et les panneaux restent lisibles par-dessus. */
+.map-satellite .leaflet-tile-pane {
+  filter: brightness(.88) saturate(.95);
+}
+
+/* Sur le fond clair, surtout PAS de voile général : il ternirait les
+   couleurs. On garde juste un dégradé en haut, et un halo localisé
+   derrière le titre (plus bas) pour la lisibilité du texte. */
+.map-clair .vignette,
+.map-satellite .vignette {
+  background: linear-gradient(to bottom,
+    rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .16) 13%, transparent 24%);
+}
+
+/* Le grain ternit un fond clair : on l'efface presque. */
+.map-clair .grain,
+.map-satellite .grain { opacity: .08; }
+
+/* Halo sombre derrière le titre, qui déborde sous le dégradé du haut. */
+.title-block { position: relative; }
+
+.map-clair .title-block::before,
+.map-satellite .title-block::before {
+  content: '';
+  position: absolute;
+  inset: -40px -70px -26px -50px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 28% 48%,
+    rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .5) 46%, transparent 76%);
+}
+
+/* L'ombrage se fond dans le plan au lieu de le masquer. */
+.hillshade-tiles { mix-blend-mode: multiply; }
+
+/* Les noms sur le satellite : le calque est déjà clair sur fond sombre. */
+.label-tiles { mix-blend-mode: screen; }
+
+.leaflet-container {
+  background: var(--void);
+  font-family: var(--font-ui);
+  outline: none;
+}
+
+.leaflet-control-zoom a {
+  background: var(--panel) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--panel-brd) !important;
+  backdrop-filter: blur(8px);
+  font-weight: 600;
+}
+.leaflet-control-zoom a:hover { color: var(--signal) !important; }
+.leaflet-control-attribution {
+  background: rgba(6, 8, 11, .7) !important;
+  color: #4a5a68 !important;
+  font-size: 10px;
+}
+.leaflet-control-attribution a { color: #5d7286 !important; }
+
+/* ---------- Atmosphère ---------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  opacity: .32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 401;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 42%, rgba(0,0,0,.55) 100%),
+    linear-gradient(to right, rgba(0,0,0,.62) 0%, transparent 34%),
+    linear-gradient(to bottom, rgba(0,0,0,.5) 0%, transparent 22%);
+}
+
+/* ---------- Panneaux HUD ---------- */
+
+.hud {
+  position: fixed;
+  z-index: 1000;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise .9s var(--ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+/* Bandeau supérieur : titre · bulles des jours · statut */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  gap: 26px;
+  padding: 30px 36px;
+  pointer-events: none;
+}
+.topbar > * { pointer-events: auto; }
+
+.title-block { flex: 0 0 auto; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7.2vw, 104px);
+  line-height: .82;
+  letter-spacing: .005em;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 46px rgba(0, 230, 118, .28), 0 6px 30px rgba(0,0,0,.85);
+}
+
+.rule {
+  width: 74px;
+  height: 3px;
+  background: var(--signal);
+  margin: 18px 0 14px;
+  box-shadow: 0 0 16px var(--signal-dim);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.32;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 500;
+}
+.subtitle .arrow { color: var(--signal); }
+.subtitle em {
+  font-style: normal;
+  color: var(--ink);
+  letter-spacing: .18em;
+}
+
+/* Les bulles des journées */
+
+.day-bar {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  /* « safe » évite que les bulles soient rognées quand la barre déborde :
+     centré s'il y a la place, aligné à gauche et défilable sinon. */
+  justify-content: safe center;
+  gap: 9px;
+  padding: 4px 2px 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--signal-dim) transparent;
+}
+.day-bar::-webkit-scrollbar        { height: 5px; }
+.day-bar::-webkit-scrollbar-thumb  { background: var(--signal-dim); border-radius: 3px; }
+.day-bar::-webkit-scrollbar-track  { background: transparent; }
+
+.day-bubble {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 16px;
+  background: rgba(8, 12, 17, .88);
+  border: 1.5px solid var(--signal-dim);
+  border-radius: 999px;
+  color: var(--signal);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all .25s var(--ease);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .6);
+}
+
+.day-bubble .b-day {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.day-bubble .b-city {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  line-height: 1;
+  transition: color .25s var(--ease);
+  max-width: 108px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.day-bubble .b-clips {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  min-width: 18px;
+  padding: 1px 5px;
+  background: var(--signal);
+  border-radius: 999px;
+  color: #04120a;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+.day-bubble { position: relative; }
+
+.day-bubble:hover,
+.day-bubble:focus-visible {
+  background: var(--signal);
+  border-color: var(--signal-hot);
+  color: #04120a;
+  transform: translateY(3px);
+  outline: none;
+  box-shadow: 0 0 28px rgba(0, 230, 118, .55), 0 6px 20px rgba(0, 0, 0, .7);
+}
+.day-bubble:hover .b-city,
+.day-bubble:focus-visible .b-city { color: rgba(4, 18, 10, .75); }
+.day-bubble:hover .b-clips,
+.day-bubble:focus-visible .b-clips { background: #04120a; color: var(--signal); }
+
+.day-bubble.is-current {
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, .16), 0 4px 18px rgba(0, 0, 0, .6);
+}
+
+/* Quand une journée est survolée, les autres bulles passent en gris */
+.day-bar:hover .day-bubble:not(:hover) {
+  border-color: rgba(147, 165, 179, .3);
+  color: var(--off);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .5);
+}
+.day-bar:hover .day-bubble:not(:hover) .b-city  { color: rgba(147, 165, 179, .62); }
+.day-bar:hover .day-bubble:not(:hover) .b-clips { background: var(--off); color: #0d1117; }
+
+/* Aperçu vidéo au survol d'une bulle « Jour N » (day-preview.js) */
+
+.day-preview {
+  position: fixed;
+  z-index: 1200;
+  width: 300px;
+  background: rgba(7, 11, 15, .96);
+  border: 1.5px solid var(--signal);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .7), 0 0 26px rgba(0, 230, 118, .18);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .18s var(--ease), transform .18s var(--ease);
+}
+.day-preview.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.day-preview-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.day-preview-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.day-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.day-preview-count {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+.day-preview-skip {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--panel-brd);
+  color: var(--signal);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+}
+.day-preview-skip:hover { background: var(--signal); border-color: var(--signal); color: #04120a; }
+
+/* Sur petit écran, le survol n'existe pas vraiment (tactile) : on masque
+   le panneau plutôt que de le laisser coller mal place a l'ecran. */
+@media (max-width: 900px) {
+  .day-preview { display: none; }
+}
+
+/* Statut live */
+
+.hud-status {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 20px;
+  background: var(--panel);
+  border: 1px solid var(--panel-brd);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 12px var(--signal);
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .25; }
+}
+
+.live-label { color: var(--dim); }
+.live-sep   { color: var(--signal-dim); }
+.live-city  { color: var(--ink); }
+
+/* Compteur */
+
+.hud-stats {
+  bottom: 34px;
+  left: 40px;
+  display: flex;
+  align-items: flex-end;
+  gap: 26px;
+  padding: 20px 28px;
+  background: var(--panel);
+  border: 1px solid var(--panel-brd);
+  border-left: 3px solid var(--signal);
+  backdrop-filter: blur(10px);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: .9;
+  color: #fff;
+  letter-spacing: .01em;
+}
+
+.stat-unit {
+  margin-top: 7px;
+  font-size: 11px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+.stat-div {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, transparent, var(--panel-brd), transparent);
+}
+
+/* Légende */
+
+.hud-legend {
+  bottom: 34px;
+  right: 40px;
+  padding: 16px 20px;
+  background: var(--panel);
+  border: 1px solid var(--panel-brd);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 500;
+}
+
+.lg { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+
+.lg-line {
+  width: 22px; height: 3px;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal-dim);
+}
+.lg-pulse {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 3px rgba(0,230,118,.2), 0 0 12px var(--signal);
+}
+.lg-goal {
+  width: 11px; height: 11px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px rgba(255,195,0,.6);
+}
+.lg-progress {
+  width: 22px; height: 0;
+  border-top: 3px dashed var(--off);
+}
+
+.lg-hint {
+  margin-top: 13px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: #56697a;
+  text-transform: none;
+}
+
+.lg-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 9px 12px;
+  background: transparent;
+  border: 1px solid var(--panel-brd);
+  color: var(--signal);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+.lg-btn:hover { background: var(--signal); color: #04120a; border-color: var(--signal); }
+
+/* Sélecteur de plan : sombre / clair / satellite */
+
+.map-modes {
+  display: flex;
+  margin-top: 9px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  overflow: hidden;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 9px 6px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, .1);
+  color: var(--dim);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+}
+.mode-btn:last-child { border-right: none; }
+.mode-btn:hover      { color: var(--ink); background: rgba(255, 255, 255, .06); }
+.mode-btn.is-on      { background: var(--signal); color: #04120a; }
+
+/* ---------- Marqueurs de carte ---------- */
+
+.leaflet-div-icon { background: none; border: none; }
+
+.bubble-icon { overflow: visible !important; }
+
+/* Point à l'endroit où ils ont dormi, avec le nom de la ville */
+
+.sleep-point {
+  position: absolute;
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.sleep-point i {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--signal);
+  border: 3px solid #04120a;
+  box-shadow: 0 0 0 2px var(--signal-dim), 0 0 16px rgba(0, 230, 118, .55);
+  transition: all .25s var(--ease);
+}
+
+/* Pastille foncée derrière le nom : lisible sur le fond clair comme
+   sur le fond sombre. */
+.sleep-point span {
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: rgba(6, 12, 9, .82);
+  border: 1px solid rgba(0, 230, 118, .3);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color .25s var(--ease), background .25s var(--ease);
+}
+
+/* Dézoomé, les noms se chevauchent : on ne garde que les points. */
+.zoom-far .sleep-point span,
+.zoom-far .start-marker span { display: none; }
+
+/* Mis en avant quand on survole la bulle du jour correspondante */
+.sleep-point.is-hot i {
+  width: 24px;
+  height: 24px;
+  background: var(--signal-hot);
+  box-shadow: 0 0 0 4px rgba(0, 230, 118, .3), 0 0 30px var(--signal);
+}
+.sleep-point.is-hot span {
+  color: var(--signal-hot);
+  font-size: 14px;
+}
+
+/* Journées en retrait pendant qu'une autre est survolée */
+.sleep-point.is-off i {
+  background: var(--off);
+  box-shadow: 0 0 0 2px rgba(147, 165, 179, .28);
+}
+.sleep-point.is-off span { color: var(--off); }
+
+/* La boule clignotante s'efface aussi tant qu'une journée est mise en avant */
+.is-focusing .pulse-dot { opacity: .28; transition: opacity .25s var(--ease); }
+
+/* Départ (Camp Nou) */
+
+.start-marker {
+  position: absolute;
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.start-marker i {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  background: var(--void);
+  flex: none;
+}
+.start-marker span {
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: rgba(6, 12, 9, .82);
+  border: 1px solid rgba(255, 255, 255, .28);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Position actuelle : grosse boule verte qui clignote */
+
+.pulse-icon { overflow: visible !important; }
+
+.pulse-dot {
+  position: absolute;
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  width: 22px; height: 22px;
+}
+.pulse-dot i {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 24px var(--signal), 0 0 60px rgba(0,230,118,.5);
+  animation: corePulse 1.8s ease-in-out infinite;
+}
+.pulse-dot span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--signal);
+  animation: ring 2.4s var(--ease) infinite;
+}
+.pulse-dot span:nth-child(2) { animation-delay: 1.2s; }
+
+@keyframes corePulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%      { transform: scale(.74);  opacity: .65; }
+}
+
+@keyframes ring {
+  0%   { transform: scale(1);   opacity: .9; }
+  100% { transform: scale(4.2); opacity: 0; }
+}
+
+/* Objectif : Parc des Princes */
+
+.goal-marker {
+  position: absolute;
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.goal-marker i {
+  width: 15px; height: 15px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 20px rgba(255,195,0,.75);
+  flex: none;
+  animation: goalGlow 3s ease-in-out infinite;
+}
+.goal-marker span {
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: rgba(6, 12, 9, .82);
+  border: 1px solid rgba(255, 195, 0, .45);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* Acces admin cache : un simple point, sans texte, qui se fond dans la
+   carte — pas de glow, pas d'animation, rien qui attire l'oeil. */
+.admin-marker {
+  position: absolute;
+  left: 0; top: 0;
+  width: 6px; height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .3);
+  cursor: pointer;
+}
+.admin-marker:hover { background: rgba(255, 255, 255, .6); }
+
+@keyframes goalGlow {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .55; }
+}
+
+/* Étape en cours : pointillé « fourmis en marche » — suggère un
+   déplacement, sans prétendre montrer le vrai trajet (inconnu). */
+.progress-line {
+  animation: progressMarch 1s linear infinite;
+}
+@keyframes progressMarch {
+  to { stroke-dashoffset: -24; }
+}
+
+/* ============================================================
+   Pages intérieures (jour.php, admin)
+   ============================================================ */
+
+.page-doc {
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(0,230,118,.09), transparent 55%),
+    var(--void);
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 44px 28px 90px;
+  position: relative;
+  z-index: 2;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color .25s var(--ease), gap .25s var(--ease);
+}
+.back-link:hover { color: var(--signal); gap: 14px; }
+
+.day-head {
+  margin: 30px 0 14px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.day-num {
+  font-family: var(--font-display);
+  font-size: clamp(58px, 10vw, 118px);
+  line-height: .85;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 44px rgba(0,230,118,.24);
+}
+.day-num small {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .42em;
+  color: var(--signal);
+  margin-bottom: 12px;
+}
+
+.day-city {
+  margin: 16px 0 0;
+  font-size: clamp(22px, 3.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.day-meta {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 6px 14px;
+  border: 1px solid var(--panel-brd);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--signal);
+  font-weight: 600;
+}
+.chip.muted { color: var(--dim); border-color: rgba(255,255,255,.12); }
+
+.section-label {
+  margin: 44px 0 20px;
+  font-size: 12px;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,.12), transparent);
+}
+
+/* Grille de clips */
+
+.clips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 26px;
+}
+
+/* Disposition choisie via le selecteur « Affichage » (1 ou 2 par ligne). */
+.clips-grid.cols-1 { grid-template-columns: 1fr; }
+.clips-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+.clip-card {
+  background: var(--void-2);
+  border: 1px solid rgba(255,255,255,.08);
+  overflow: hidden;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.clip-card:hover {
+  border-color: var(--signal-dim);
+  transform: translateY(-3px);
+}
+
+.clip-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.clip-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.clip-meta { padding: 13px 16px; }
+
+.clip-day {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-decoration: none;
+}
+.clip-day:hover { color: var(--signal-hot); }
+
+.clip-title {
+  font-size: 14px;
+  letter-spacing: .06em;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.clip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.clip-views { color: var(--ink); }
+.clip-by    { color: var(--dim); text-transform: none; letter-spacing: .04em; }
+
+/* ---------- Barre de tri + disposition ---------- */
+
+/* Regroupe la barre de tri et le selecteur d'affichage sur une meme ligne,
+   qui passe sur deux lignes si la place manque. */
+.clips-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin: -6px 0 22px;
+}
+
+.sort-bar,
+.layout-toggle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sort-label {
+  margin-right: 4px;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+.sort-btn {
+  padding: 8px 15px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  background: transparent;
+  color: var(--dim);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+.sort-btn:hover { border-color: var(--signal); color: var(--signal); }
+.sort-btn.is-on { background: var(--signal); border-color: var(--signal); color: #04120a; }
+
+/* Double bouton : deux options d'un meme reglage (sens du tri, nombre de
+   colonnes), collees l'une a l'autre comme un seul bloc segmente. */
+.sort-pair { display: flex; }
+.sort-pair .sort-btn-pair { border-radius: 0; }
+.sort-pair .sort-btn-pair:not(:last-child) { border-right: none; }
+.sort-pair .sort-btn-pair:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.sort-pair .sort-btn-pair:last-child  { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+
+/* ---------- Proposer un clip ---------- */
+
+.submit-box {
+  margin: 26px 0 8px;
+  background: var(--void-2);
+  border: 1px solid rgba(255, 255, 255, .09);
+}
+
+.submit-toggle {
+  padding: 15px 20px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--signal);
+  transition: background .25s var(--ease);
+}
+.submit-toggle::-webkit-details-marker { display: none; }
+.submit-toggle:hover { background: rgba(0, 230, 118, .07); }
+
+.submit-plus {
+  display: inline-block;
+  width: 18px; height: 18px;
+  margin-right: 8px;
+  border: 1px solid var(--signal);
+  border-radius: 50%;
+  line-height: 16px;
+  text-align: center;
+  font-size: 13px;
+}
+.submit-box[open] .submit-plus { transform: rotate(45deg); }
+
+.submit-form { padding: 4px 20px 22px; }
+
+.submit-intro {
+  margin: 0 0 18px;
+  font-size: 14px;
+  letter-spacing: .03em;
+  color: var(--dim);
+}
+
+.submit-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 18px; }
+.submit-col { flex: 1 1 170px; }
+.submit-col-wide { flex: 2 1 280px; }
+
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%),
+                    linear-gradient(135deg, var(--dim) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+}
+
+/* Piege a robots : hors de l'ecran, jamais rempli par un humain. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Le bouton « Tous les clips » de la carte est un lien. */
+.lg-btn-link { text-align: center; text-decoration: none; }
+
+/* Bouton Bestof : accent distinct (rouge YouTube), pour le reperer d'un
+   coup d'oeil parmi les autres boutons de la legende. */
+.lg-btn-bestof { border-color: rgba(255, 60, 60, .4); color: #ff6b6b; }
+.lg-btn-bestof:hover { background: #ff3c3c; border-color: #ff3c3c; color: #fff; }
+
+/* ---------- Modération des clips proposés (admin) ---------- */
+
+.pending-badge {
+  padding: 4px 11px;
+  background: var(--gold);
+  color: #1a1400;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  font-weight: 700;
+}
+
+.pending-list { display: flex; flex-direction: column; gap: 9px; }
+
+.pending-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--void-2);
+  border: 1px solid rgba(255, 195, 0, .3);
+  border-left: 3px solid var(--gold);
+}
+
+.pending-info { flex: 1 1 240px; min-width: 0; }
+
+.pending-slug {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.pending-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+.views-form { display: flex; align-items: center; gap: 7px; }
+.field-views { width: 84px; padding: 7px 9px; text-align: right; font-size: 14px; }
+
+/* Marche à suivre pour créer l'application Twitch */
+
+.steps {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  color: var(--dim);
+  font-size: 14px;
+  line-height: 1.75;
+  letter-spacing: .02em;
+}
+.steps li { margin-bottom: 5px; }
+.steps strong { color: var(--ink); }
+.steps a { color: var(--signal); }
+
+.steps code,
+.hint code {
+  padding: 2px 6px;
+  background: rgba(0, 230, 118, .1);
+  border: 1px solid rgba(0, 230, 118, .22);
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  color: var(--signal-hot);
+}
+
+.empty {
+  padding: 54px 30px;
+  text-align: center;
+  border: 1px dashed rgba(255,255,255,.14);
+  color: var(--dim);
+  font-size: 15px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.nav-days {
+  margin-top: 52px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.nav-days a {
+  padding: 9px 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  transition: all .25s var(--ease);
+}
+.nav-days a:hover { border-color: var(--signal); color: var(--signal); }
+.nav-days a.on { background: var(--signal); border-color: var(--signal); color: #04120a; }
+
+/* ============================================================
+   Administration
+   ============================================================ */
+
+.wrap-admin { max-width: 1000px; }
+
+.admin-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Connexion */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.login-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 34px;
+  background: var(--panel);
+  border: 1px solid var(--panel-brd);
+  backdrop-filter: blur(10px);
+}
+
+.login-title {
+  font-family: var(--font-display);
+  font-size: 54px;
+  line-height: .84;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(0,230,118,.25);
+}
+
+.login-back { margin-top: 24px; display: inline-flex; }
+
+/* Champs */
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+.field-label .opt { color: #4c5d6b; letter-spacing: .1em; text-transform: none; }
+
+.field {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(255,255,255,.13);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  letter-spacing: .04em;
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(0,230,118,.14);
+}
+.field::placeholder { color: #475764; }
+
+.field-area { resize: vertical; line-height: 1.5; font-size: 14px; }
+
+/* Boutons */
+
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: #04120a;
+}
+.btn-primary:hover {
+  background: var(--signal-hot);
+  border-color: var(--signal-hot);
+  box-shadow: 0 0 26px rgba(0,230,118,.4);
+}
+
+.btn-ghost {
+  border-color: rgba(255,255,255,.16);
+  color: var(--dim);
+  padding: 9px 15px;
+}
+.btn-ghost:hover { border-color: var(--signal); color: var(--signal); }
+
+.btn-danger {
+  border-color: rgba(255,90,90,.3);
+  color: #ff7a7a;
+  padding: 9px 14px;
+}
+.btn-danger:hover { background: rgba(255,90,90,.14); border-color: #ff7a7a; }
+
+.btn-block { width: 100%; margin-top: 18px; }
+.btn-xs { padding: 5px 9px; font-size: 11px; letter-spacing: .08em; }
+
+/* Alertes */
+
+.alert {
+  margin: 22px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid;
+  font-size: 15px;
+  letter-spacing: .04em;
+  background: rgba(255,255,255,.04);
+}
+.alert-ok   { border-color: var(--signal); color: var(--signal-hot); }
+.alert-err  { border-color: #ff7a7a;       color: #ff9d9d; }
+.alert-warn { border-color: var(--gold);   color: #ffd766; }
+
+/* Carte de formulaire */
+
+.card {
+  padding: 24px 26px;
+  background: var(--void-2);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.row { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-end; }
+.col { flex: 1 1 200px; }
+.col-btn { flex: 0 0 auto; }
+
+.hint {
+  margin: 16px 0 0;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: #5d7080;
+}
+
+.hint-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  font-weight: 600;
+}
+.hint-link:hover { color: var(--signal); }
+
+/* Liste des étapes */
+
+.stops { display: flex; flex-direction: column; gap: 10px; }
+
+.stop-card {
+  background: var(--void-2);
+  border: 1px solid rgba(255,255,255,.08);
+  transition: border-color .25s var(--ease);
+}
+.stop-card.is-open { border-color: var(--signal-dim); }
+
+.stop-card.is-pending {
+  border-style: dashed;
+  border-color: rgba(255, 195, 0, .35);
+  background: rgba(255, 195, 0, .03);
+}
+
+.stop-name-pending {
+  flex: 1 1 190px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pending-date {
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 195, 0, .35);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: none;
+  color: var(--dim);
+}
+
+.stop-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+}
+
+.stop-day {
+  flex: 0 0 82px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--signal);
+  letter-spacing: .02em;
+}
+
+.stop-name {
+  flex: 1 1 190px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tag-live {
+  padding: 3px 10px;
+  border: 1px solid var(--signal);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--signal);
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+/* Ville connue mais pas encore atteinte : meme badge, teinte grise, sans
+   clignoter (on ne veut pas signaler une arrivee qui n'a pas eu lieu). */
+.tag-progress {
+  border-color: var(--off);
+  color: var(--off);
+  animation: none;
+}
+
+.km-form { display: flex; align-items: center; gap: 8px; }
+.field-km { width: 82px; padding: 8px 10px; text-align: right; font-size: 15px; }
+.km-unit  { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+
+.stop-actions { display: flex; align-items: center; gap: 10px; }
+
+.clip-count {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+.clip-count.muted { color: #45545f; }
+
+/* Panneau clips */
+
+.stop-clips {
+  padding: 22px 20px 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.28);
+}
+
+.clip-add .btn { margin-top: 12px; }
+
+.clip-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.clip-list li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+/* flex-basis généreuse + min-width:0 : sans ça la colonne se réduit à une
+   lettre de large et le nom du clip s'écrit verticalement. */
+.clip-slug {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: 14px;
+  letter-spacing: .03em;
+  color: var(--ink);
+  word-break: break-all;
+}
+.clip-src {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #4c5d6b;
+  font-weight: 700;
+}
+.clip-open {
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  font-weight: 600;
+}
+.clip-open:hover { color: var(--signal); }
+
+/* ---------- Responsive ---------- */
+
+/* Dès que la place manque entre le titre et le statut, la barre des
+   journées prend sa propre ligne : les bulles ne sont jamais rognées. */
+@media (max-width: 1250px) {
+  .topbar  { flex-wrap: wrap; }
+  .day-bar { flex: 1 1 100%; order: 3; }
+}
+
+@media (max-width: 900px) {
+  /* Le bandeau passe sur deux lignes : titre + statut, puis les jours */
+  .topbar {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+  .title-block { flex: 1 1 auto; }
+  .title       { font-size: 40px; }
+  .eyebrow     { font-size: 10px; margin-bottom: 7px; }
+  .rule        { width: 54px; height: 2px; margin: 11px 0 9px; }
+  /* Le jour en cours est déjà signalé dans la barre et par la boule
+     clignotante : le bandeau de statut ferait doublon sur petit écran. */
+  .hud-status  { display: none; }
+  .day-bar     { flex: 1 1 100%; justify-content: flex-start; padding-bottom: 8px; }
+  .day-bubble  { padding: 8px 13px; }
+  .day-bubble .b-day  { font-size: 12px; }
+  .day-bubble .b-city { font-size: 9px; max-width: 82px; }
+  .hud-stats  { left: 22px; right: 22px; bottom: 22px; padding: 15px 20px; gap: 18px; justify-content: center; }
+  .stat-value { font-size: 34px; }
+
+  /* Sur mobile la légende se réduit aux deux boutons, en colonne à droite */
+  .hud-legend {
+    left: auto; right: 20px; bottom: 122px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+  }
+  .hud-legend .lg,
+  .hud-legend .lg-hint { display: none; }
+  .lg-btn, .lg-btn-alt {
+    width: auto;
+    margin-top: 0;
+    padding: 10px 14px;
+    font-size: 10px;
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Les contrôles de zoom passent au-dessus des panneaux du bas */
+  .leaflet-bottom.leaflet-right { bottom: 214px; }
+  .subtitle   { font-size: 13px; }
+  .wrap       { padding: 28px 18px 70px; }
+  /* Sur mobile, une seule colonne quel que soit le choix fait sur desktop
+     (2 colonnes reduiraient chaque lecteur a une largeur inutilisable). */
+  .clips-grid,
+  .clips-grid.cols-1,
+  .clips-grid.cols-2 { grid-template-columns: 1fr; }
+
+  .clips-controls { gap: 14px; }
+}
+
+/* version statique : respecter l'attribut hidden (bouton Bestof sans lien) */
+[hidden]{display:none!important}
+@media (max-width:480px){.day-num{font-size:clamp(2.4rem,13vw,4.5rem)}}

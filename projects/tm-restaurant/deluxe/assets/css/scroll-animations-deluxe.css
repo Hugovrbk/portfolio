@@ -1,0 +1,49 @@
+/* ===================================================================
+   scroll-animations-deluxe.css - Gamme DELUXE
+   Contre-parallaxe reservee aux IMAGES (galerie, apercu carte, photos
+   de contenu). Les plats du menu restent statiques/lisibles.
+   =================================================================== */
+@supports (animation-timeline: view()) {
+    /* Hero : parallaxe inverse (l'image descend pendant que la page monte) */
+    .hero-media img, .hero > img:first-child, .hero-image img {
+        animation: sa-parallax-rev linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 100%;
+    }
+    @keyframes sa-parallax-rev { from { transform: translateY(-10%) scale(1.1); } to { transform: translateY(12%) scale(1.1); } }
+
+    /* Texte du hero : monte plus vite (profondeur inverse) + apparition */
+    .hero-content > * {
+        animation: sa-rise var(--sa-ease, cubic-bezier(0.16,1,0.3,1)) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+    }
+    .hero-content > *:nth-child(2) { animation-range: entry 8% cover 45%; }
+    .hero-content > *:nth-child(3) { animation-range: entry 16% cover 50%; }
+
+    /* Drift IMAGES uniquement (PAS les plats du menu : lisibilite) */
+    .gallery-grid > *, .menu-preview-grid figure, .menu-image-grid img, .info-grid img {
+        animation: sa-drift-down linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+    }
+    .gallery-grid > *:nth-child(even), .menu-preview-grid figure:nth-child(even) { animation-name: sa-drift-up; }
+    @keyframes sa-drift-down { from { transform: translateY(-70px); } to { transform: translateY(70px); } }
+    @keyframes sa-drift-up { from { transform: translateY(70px); } to { transform: translateY(-70px); } }
+
+    /* Titres : ligne d'accent qui se devoile (de droite, style CK) */
+    .section-head h1::after, .section-head h2::after {
+        content: ""; display: block; height: 3px; width: 64px;
+        margin: 12px auto 0; border-radius: 3px;
+        background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+        transform: scaleX(0); transform-origin: 100% 50%;
+        animation: sa-line var(--sa-ease, cubic-bezier(0.16,1,0.3,1)) both;
+        animation-timeline: view();
+        animation-range: entry 20% entry 80%;
+    }
+    @keyframes sa-line { to { transform: scaleX(1); } }
+
+    /* Cartes (avis/evenements) : derive laterale alternee douce */
+    .card:nth-child(odd), .review-card:nth-child(odd), .event-card:nth-child(odd) { animation-name: sa-from-l; }
+    .card:nth-child(even), .review-card:nth-child(even), .event-card:nth-child(even) { animation-name: sa-from-r; }
+}

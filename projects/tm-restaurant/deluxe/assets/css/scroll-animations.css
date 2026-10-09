@@ -1,0 +1,80 @@
+/* ===================================================================
+   scroll-animations.css - Gamme MIEUX+ - style "Ciao Kombucha"
+   (Awwwards HM 2025 : reveals doux type "unmask", easing expo,
+   stagger ludique, fallback IntersectionObserver, reduced-motion)
+   =================================================================== */
+:root { --sa-ease: cubic-bezier(0.16, 1, 0.3, 1); --sa-dur: 1s; }
+
+.sa-reveal, .sa-left, .sa-right, .sa-zoom, .sa-blur, .sa-mask {
+    opacity: 0;
+    transition: opacity var(--sa-dur) var(--sa-ease),
+                transform var(--sa-dur) var(--sa-ease),
+                filter var(--sa-dur) var(--sa-ease),
+                clip-path var(--sa-dur) var(--sa-ease);
+    transition-delay: calc(var(--sa-i, 0) * 100ms);
+    will-change: opacity, transform, clip-path;
+}
+.sa-reveal { transform: translateY(46px); }
+.sa-left   { transform: translateX(-52px); }
+.sa-right  { transform: translateX(52px); }
+.sa-zoom   { transform: scale(.92); }
+.sa-blur   { filter: blur(12px); transform: translateY(26px); }
+/* Unmask a la Ciao Kombucha : le bloc se devoile de bas en haut */
+.sa-mask   { clip-path: inset(0 0 100% 0); transform: translateY(28px); }
+.sa-in     { opacity: 1; transform: none; filter: none; clip-path: inset(0 0 0% 0); }
+
+.sa-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+    background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+    transform-origin: 0 50%; transform: scaleX(0);
+    z-index: 999; pointer-events: none;
+}
+body.sa-scrolled .site-header { box-shadow: 0 6px 24px rgba(0,0,0,.10); }
+
+@media (prefers-reduced-motion: reduce) {
+    .sa-reveal, .sa-left, .sa-right, .sa-zoom, .sa-blur, .sa-mask {
+        opacity: 1 !important; transform: none !important; filter: none !important;
+        clip-path: none !important; transition: none !important;
+    }
+}
+
+/* --- Drift : reserve aux IMAGES, mouvement continu lie au scroll --- */
+.sa-drift { opacity: 0; transform: translateY(-50px); transition: opacity .9s var(--sa-ease), transform .9s var(--sa-ease); transition-delay: calc(var(--sa-i, 0) * 60ms); }
+.sa-drift.sa-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .sa-drift { opacity: 1 !important; transform: none !important; } }
+
+/* ------- Scroll-Driven Animations natives (Chrome/Edge 115+) ------- */
+@supports (animation-timeline: view()) {
+    .sa-reveal, .sa-left, .sa-right, .sa-zoom, .sa-blur, .sa-mask, .sa-drift {
+        opacity: 1; transform: none; filter: none; clip-path: none; transition: none;
+    }
+    @keyframes sa-rise   { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+    @keyframes sa-from-l { from { opacity: 0; transform: translateX(-52px); } to { opacity: 1; transform: none; } }
+    @keyframes sa-from-r { from { opacity: 0; transform: translateX(52px); } to { opacity: 1; transform: none; } }
+    @keyframes sa-pop    { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+    @keyframes sa-unblur { from { opacity: 0; filter: blur(12px); } to { opacity: 1; filter: blur(0); } }
+    @keyframes sa-unmask { from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(28px); } to { opacity: 1; clip-path: inset(0 0 0% 0); transform: none; } }
+
+    .sa-reveal { animation: sa-rise linear both;   animation-timeline: view(); animation-range: entry 5% entry 55%; }
+    .sa-left   { animation: sa-from-l linear both; animation-timeline: view(); animation-range: entry 5% entry 60%; }
+    .sa-right  { animation: sa-from-r linear both; animation-timeline: view(); animation-range: entry 5% entry 60%; }
+    .sa-zoom   { animation: sa-pop linear both;    animation-timeline: view(); animation-range: entry 5% entry 65%; }
+    .sa-blur   { animation: sa-unblur linear both; animation-timeline: view(); animation-range: entry 5% entry 65%; }
+    .sa-mask   { animation: sa-unmask var(--sa-ease) both; animation-timeline: view(); animation-range: entry 5% entry 70%; }
+
+    /* Drift : uniquement les visuels, glissement continu dans l'autre sens */
+    .sa-drift { animation: sa-drift-down linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+    .sa-drift:nth-child(even) { animation-name: sa-drift-up; }
+    @keyframes sa-drift-down { from { transform: translateY(-90px); } to { transform: translateY(90px); } }
+    @keyframes sa-drift-up { from { transform: translateY(90px); } to { transform: translateY(-90px); } }
+
+    .sa-progress { animation: sa-grow linear both; animation-timeline: scroll(root); }
+    @keyframes sa-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    body:not(.sa-scrolled) .site-header {
+        animation: sa-header linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 120px;
+    }
+    @keyframes sa-header { to { box-shadow: 0 6px 24px rgba(0,0,0,.10); } }
+}
