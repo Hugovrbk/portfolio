@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dracaufeu · Liggster Shop</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/account.css">
+    <link rel="stylesheet" href="assets/css/product.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="theme-color" content="#08080a">
+  <link rel="stylesheet" href="assets/css/theme.css">
+<link rel="icon" href="assets/img/favicon.png"><script src="assets/js/static-data.js"></script></head>
+<body class="page-shop page-product">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<header class="navbar" id="navbar"><div class="container navbar__inner">
+  <a class="navbar__logo" href="index.html"><img class="navbar__logo-mark" src="assets/img/logo.png" alt="" width="26" height="26">Liggster Shop</a>
+  <nav class="navbar__links" id="nav-links" aria-label="Navigation principale">
+    <a class="navbar__link" href="index.html">Accueil</a>
+    <a class="navbar__link" href="boutique.html">Boutique</a>
+    <a class="navbar__link" href="boutique.html?cat=gradees">Cartes gradées</a>
+    <a class="navbar__link" href="boutique.html?cat=non-gradees">Non gradées</a>
+    <a class="navbar__link" href="boutique.html?cat=boosters">Boosters</a>
+      </nav>
+  <div class="navbar__actions">
+    <a class="icon-btn" href="boutique.html?cat=fav" aria-label="Mes favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg><span class="icon-btn__count" id="count-fav" data-count="0">0</span></a>
+    <a class="icon-btn" href="connexion.html" aria-label="Se connecter" title="Connexion"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></a>
+    <a class="icon-btn" href="panier.html" aria-label="Panier"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="icon-btn__count" id="count-cart" data-count="0">0</span></a>
+    <button class="icon-btn navbar__burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<main class="section page-top"><div class="container">
+  <p class="crumbs"><a href="boutique.html">Boutique</a> / <a href="boutique.html?cat=gradees">Cartes gradées</a> / Dracaufeu</p>
+  <div class="product-layout">
+    <div class="product-media">
+    <div class="pcard"><div class="pcard__inner"><div class="pcard__art"><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">PSA 10</span><span class="pcard__slot-frame">Photo de la carte</span></div></div></div></div>    </div>
+    <div><h1>Dracaufeu</h1><p style="margin-top:1rem">Carte unique évaluée par PSA, livrée dans son boîtier de gradation.</p>
+      <table class="specs"><tr><th>Catégorie</th><td>Carte gradée</td></tr><tr><th>Société de gradation</th><td>PSA</td></tr><tr><th>Note</th><td>10</td></tr><tr><th>Extension</th><td>Set de base</td></tr><tr><th>Numéro</th><td>4/102</td></tr><tr><th>Langue</th><td>FR</td></tr><tr><th>N° de certification</th><td>—</td></tr><tr><th>Bloc</th><td>Démo</td></tr><tr><th>Disponibilité</th><td>Pièce unique, disponible</td></tr></table>
+      <p class="text-dim" style="font-size:.9rem">Livraison offerte dès 100 €. Paiement simulé (démo).</p>
+      <div class="pcard buy" data-id="1" style="margin-top:1.5rem"><p class="buy__price">1 250,00 €</p>
+        <div class="flex gap-4" style="flex-wrap:wrap"><button class="btn btn--primary" data-act="add">Ajouter au panier</button>
+        <button class="btn btn--ghost" data-act="fav" aria-pressed="false">Favori</button></div></div>
+      <div class="flex gap-4" style="margin-top:1.5rem;flex-wrap:wrap"><a class="btn btn--ghost" href="boutique.html?cat=gradees">Retour</a><a class="btn btn--primary" href="panier.html">Voir mon panier</a></div>
+    </div>
+  </div>
+  <h2 style="margin-bottom:1.5rem">Dans la même catégorie</h2><div class="grid grid--cards"><article class="pcard" data-id="2" data-name="Lucario" data-price="89.9" data-stock="1" data-types="all cartes gradees" data-bloc="Démo" data-serie="Extension démo" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#ff7ac8"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--gold">CGC 9.5</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">CGC 9.5</span><span class="pcard__slot-frame">Photo de la carte</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-2.html">Lucario</a></h3><p class="pcard__meta">Extension démo · 010/100</p><span class="badge badge--red">Plus que 1</span><div class="pcard__foot"><span class="pcard__price">89,90 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article><article class="pcard" data-id="3" data-name="Mélofée" data-price="49.9" data-stock="1" data-types="all cartes gradees" data-bloc="Démo" data-serie="Extension démo" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#35e6ff"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--gold">PCA 9</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">PCA 9</span><span class="pcard__slot-frame">Photo de la carte</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-3.html">Mélofée</a></h3><p class="pcard__meta">Extension démo · 020/100</p><span class="badge badge--red">Plus que 1</span><div class="pcard__foot"><span class="pcard__price">49,90 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article></div></div></main>
+<script>
+(function () { var f = document.querySelector('.flip'); if (f) f.addEventListener('click', function () { f.setAttribute('aria-pressed', f.getAttribute('aria-pressed') !== 'true'); });
+  document.querySelectorAll('.gallery__thumb').forEach(function (b) { b.addEventListener('click', function () { document.getElementById('main-img').src = b.dataset.src; }); }); })();
+</script>
+<footer class="footer"><div class="container">
+  <div class="footer__grid">
+    <div><a class="navbar__logo" href="index.html"><img class="navbar__logo-mark" src="assets/img/logo.png" alt="" width="26" height="26">Liggster Shop</a><p style="margin-top:1rem">Cartes gradées et produits scellés pour collectionneurs.</p></div>
+    <div><h4>Boutique</h4><ul><li><a href="boutique.html?cat=gradees">Cartes gradées</a></li><li><a href="boutique.html?cat=non-gradees">Cartes non gradées</a></li><li><a href="boutique.html?cat=boosters">Boosters / Display</a></li></ul></div>
+    <div><h4>Mon espace</h4><ul><li><a href="compte.html">Mon compte</a></li><li><a href="connexion.html">Connexion</a></li><li><a href="inscription.html">Inscription</a></li><li><a href="boutique.html?cat=fav">Mes favoris</a></li></ul></div>
+  </div>
+  <div class="footer__legal"><p>Site de démonstration. Pokémon est une marque de Nintendo, Creatures Inc. et GAME FREAK inc.</p></div>
+</div></footer>
+<script src="assets/js/card-tilt.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/polish.js"></script>
+<script src="assets/js/static-patch.js"></script></body>
+</html>

@@ -1,0 +1,5 @@
+/* LIGGSTER SHOP - account.css */
+.auth-box { max-width: 440px; margin-inline: auto; padding: var(--sp-6); background: var(--c-night-2); border: 1px solid var(--c-line); border-radius: var(--r-lg); box-shadow: var(--glow-violet); }
+.account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-7); align-items: start; }
+.order { padding: var(--sp-4); margin-bottom: var(--sp-3); background: var(--c-night-2); border: 1px solid var(--c-line); border-radius: var(--r-md); }
+@media (max-width: 860px) { .account-grid { grid-template-columns: 1fr; gap: var(--sp-6); } }

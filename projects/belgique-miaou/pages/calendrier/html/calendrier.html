@@ -1,0 +1,173 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier — Belgica FC 3</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/animations.css">
+    <style>
+        body { background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%); color:#fff; }
+        .page-hero { text-align:center; padding:3rem 1rem 1rem; }
+        .page-hero h1 { font-size:2.5rem; color:#e0a800; margin:0; letter-spacing:2px; }
+
+        .cal-section { max-width:720px; margin:2rem auto; padding:0 1rem; }
+        .cal-section-title {
+            font-size:1rem; text-transform:uppercase; letter-spacing:3px;
+            color:#e0a800; border-bottom:2px solid rgba(224,168,0,0.3);
+            padding-bottom:0.4rem; margin-bottom:1.2rem;
+        }
+
+        .match-card {
+            background: linear-gradient(145deg,#1e1e3a,#252540);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-left: 4px solid #e0a800;
+            border-radius:10px; padding:1.1rem 1.4rem;
+            margin-bottom:1rem; color:#fff;
+            display:flex; flex-direction:column; gap:0.3rem;
+            position:relative; overflow:hidden;
+        }
+        .match-card.passe { border-left-color:#555; opacity:0.65; }
+        .match-card::after {
+            content:''; position:absolute; inset:0;
+            background: linear-gradient(135deg, rgba(224,168,0,0.04), transparent);
+            opacity:0; transition:opacity 0.3s;
+        }
+        .match-card:hover::after { opacity:1; }
+        .match-titre { font-size:1.05rem; font-weight:700; }
+        .match-detail { font-size:0.88rem; color:#bbb; }
+        .badge-avenir {
+            display:inline-block; background:#e0a800; color:#000;
+            font-size:0.7rem; font-weight:700; padding:2px 9px;
+            border-radius:20px; margin-left:0.6rem; vertical-align:middle;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .badge-passe {
+            display:inline-block; background:#555; color:#ccc;
+            font-size:0.7rem; padding:2px 9px;
+            border-radius:20px; margin-left:0.6rem; vertical-align:middle;
+        }
+        .empty-msg { text-align:center; color:#666; padding:2rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+<div id="page-loader">
+    <div class="loader-ball"></div>
+    <div class="loader-ball"></div>
+    <div class="loader-ball"></div>
+</div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════ -->
+<div class="header" id="site-header">
+
+    <!-- Logo -->
+    <a href="../../../index.html" class="logo-wrap">
+        <div class="logo-img">
+            <img src="../../../multimedia/img/logo/rfcl-logo.png" alt="RFC Liège">
+        </div>
+        <div class="logo-text">
+            <span class="club-name">RFC Liège</span>
+            <span class="club-sub">Sang &amp; Marine</span>
+        </div>
+    </a>
+
+    <!-- Navigation desktop -->
+    <nav class="nav-desktop">
+                    <a href="../../../index.html"
+               class="nav-btn">
+                Accueil            </a>
+                    <a href="../../../pages/joueurs/html/joueurs.html"
+               class="nav-btn">
+                Joueurs            </a>
+                    <a href="../../../pages/calendrier/html/calendrier.html"
+               class="nav-btn active">
+                Calendrier            </a>
+                    <a href="../../../index.html#section-actualites"
+               class="nav-btn">
+                News            </a>
+                    <a href="../../../pages/historique/html/historique.html"
+               class="nav-btn">
+                Histoire            </a>
+            </nav>
+
+    <!-- Zone droite : compte + hamburger -->
+    <div class="header-right">
+        
+        <!-- Hamburger (IDs requis par main.js) -->
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</div>
+
+<!-- Overlay mobile (id requis par main.js) -->
+<div id="navMobileOverlay"></div>
+
+<!-- Navigation mobile (id requis par main.js) -->
+<nav class="nav-mobile" id="navMobile">
+            <a href="../../../index.html"
+           class="nav-btn nav-m-link">
+            Accueil        </a>
+            <a href="../../../pages/joueurs/html/joueurs.html"
+           class="nav-btn nav-m-link">
+            Joueurs        </a>
+            <a href="../../../pages/calendrier/html/calendrier.html"
+           class="nav-btn nav-m-link active">
+            Calendrier        </a>
+            <a href="../../../index.html#section-actualites"
+           class="nav-btn nav-m-link">
+            News        </a>
+            <a href="../../../pages/historique/html/historique.html"
+           class="nav-btn nav-m-link">
+            Histoire        </a>
+    </nav>
+
+    <div class="page-hero reveal">
+        <h1>📅 Calendrier</h1>
+        <p style="color:#aaa">0 match à venir</p>
+    </div>
+
+    
+    
+            <p class="empty-msg">Aucun match programmé.</p>
+    
+    <div class="footer reveal">
+        <div class="réseaux">
+            <a href="https://www.instagram.com/acbellinzona_official/"><img src="../../../multimedia/img/resaux/instagram.png" alt="instagram"></a>
+            <a href="https://www.tiktok.com/@acbellinzona.official"><img src="../../../multimedia/img/resaux/tiktok.png" alt="tiktok"></a>
+            <a href="https://x.com/ACB1904"><img src="../../../multimedia/img/resaux/twitter.png" alt="twitter"></a>
+            <a href="https://www.facebook.com/ACBellinzona1904"><img src="../../../multimedia/img/resaux/facebook.png" alt="facebook"></a>
+        </div>
+    </div>
+
+    <script src="../../../js/main.js?v=3"></script>
+<script src="../../../js/animations.js"></script>
+<script src="../../../js/static-patch.js"></script>
+</body>
+</html>

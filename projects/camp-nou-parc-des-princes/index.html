@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOUT DROIT — Camp Nou → Parc des Princes à vélo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-map" data-page="index">
+
+<div id="map"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="topbar">
+  <header class="title-block reveal" style="--d:.1s">
+    <div class="eyebrow">Le challenge</div>
+    <h1 class="title">TOUT<br>DROIT</h1>
+    <div class="rule"></div>
+    <p class="subtitle">Camp&nbsp;Nou <span class="arrow">→</span> Parc&nbsp;des&nbsp;Princes<br><em>à vélo</em></p>
+  </header>
+  <nav class="day-bar reveal" style="--d:.25s" aria-label="Les journées du parcours"></nav>
+  <div class="hud-status reveal" id="hud-status" style="--d:.35s"></div>
+</div>
+
+<div class="hud hud-stats reveal" style="--d:.5s">
+  <div class="stat"><div class="stat-value" id="stat-km">0</div><div class="stat-unit">km parcourus</div></div>
+  <div class="stat-div"></div>
+  <div class="stat"><div class="stat-value" id="stat-days">0</div><div class="stat-unit" id="stat-days-unit">jour de route</div></div>
+</div>
+
+<div class="hud hud-legend reveal" style="--d:.65s">
+  <div class="lg"><i class="lg-line"></i> Trajet parcouru</div>
+  <div class="lg"><i class="lg-progress"></i> Étape en cours</div>
+  <div class="lg"><i class="lg-pulse"></i> Position actuelle</div>
+  <div class="lg"><i class="lg-goal"></i> Objectif</div>
+  <div class="lg-hint">Survole une bulle pour un aperçu, clique pour voir les clips</div>
+  <a class="lg-btn lg-btn-link" href="clips.html">Tous les clips</a>
+  <a class="lg-btn lg-btn-link lg-btn-bestof" id="bestof" href="#" target="_blank" rel="noopener" hidden>🎬 Bestof</a>
+  <button type="button" id="see-goal" class="lg-btn">Voir tout le défi</button>
+  <div class="map-modes" id="map-modes" role="group" aria-label="Style de carte">
+    <button type="button" class="mode-btn" data-style="satellite">Satellite</button>
+    <button type="button" class="mode-btn" data-style="clair">Clair</button>
+  </div>
+</div>
+
+<script src="data/trip-data.js"></script>
+<script src="assets/js/core.js"></script>
+</body>
+</html>

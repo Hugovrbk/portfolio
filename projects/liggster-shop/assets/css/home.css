@@ -1,0 +1,25 @@
+/* LIGGSTER SHOP - home.css : accueil + boutique */
+.hero { min-height: 100vh; display: flex; align-items: center; position: relative; z-index: var(--z-content); padding-top: var(--nav-h); }
+.hero__content { max-width: 640px; }
+.hero__title { font-size: var(--fs-hero); line-height: .95; margin-bottom: var(--sp-5); }
+.hero__sub { font-size: var(--fs-lg); margin-bottom: var(--sp-6); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); }
+.panel {
+  position: relative; overflow: hidden; padding: var(--sp-7) var(--sp-6); min-height: 280px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: var(--sp-3);
+  border: 1px solid var(--c-line); border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--c-night-3), var(--c-night-2));
+  transition: border-color var(--t-med), transform var(--t-med) var(--ease-out);
+}
+.panel:hover { border-color: var(--c-gold); transform: translateY(-6px); }
+.panel--grade { background: radial-gradient(circle at 85% 15%, rgba(255,201,77,.22), transparent 55%), var(--c-night-2); }
+.panel--sealed { background: radial-gradient(circle at 85% 15%, rgba(53,230,255,.2), transparent 55%), var(--c-night-2); }
+.shop-head { padding-top: calc(var(--nav-h) + var(--sp-7)); }
+.filters { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-block: var(--sp-5) var(--sp-6); }
+.chip { padding: .55rem 1.2rem; border-radius: var(--r-pill); border: 1px solid var(--c-line); background: var(--c-night-2); font-size: var(--fs-sm); font-weight: 600; transition: all var(--t-fast); }
+.chip:hover { border-color: var(--c-violet); }
+.chip.is-active { background: var(--grad-gold); color: #1a1100; border-color: transparent; }
+.empty { padding: var(--sp-8) 0; text-align: center; grid-column: 1 / -1; }
+body.page-shop #bg-canvas { opacity: .3; }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } }

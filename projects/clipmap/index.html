@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0d14"><meta name="description" content="ClipMap : la carte communautaire des clips Twitch. Explore, enquête, localise, joue."><title>ClipMap · La carte des clips Twitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/maplibre/maplibre-gl.css">
+<link rel="stylesheet" href="assets/style.css"></head><body>
+<a class="skip" href="#q">Aller à la recherche</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c3 4 6 6 6 10a6 6 0 0 1-12 0c0-2 1-3 2-4 .5 2 1.5 2.5 2.5 2.5C11 9 11 6 12 3z"/></symbol>
+<symbol id="i-bars" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></symbol>
+<symbol id="i-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="11.5" r=".7" fill="currentColor"/><circle cx="18" cy="13.5" r=".7" fill="currentColor"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1-4 4-6 8-6s7 2 8 6"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.5 9.7l5.9-.9z"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/></symbol>
+</defs></svg>
+<div id="map" role="application" aria-label="Carte des clips Twitch"></div>
+<header id="hd"><a class="logo" href="./" aria-label="ClipMap, accueil"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 26s9-7.6 9-14.2A9 9 0 0 0 5 11.8C5 18.4 14 26 14 26z" fill="#7c4dff"/><path d="M11.5 9.2v6.6l5.6-3.3z" fill="#fff"/></svg><span>Clip<b>Map</b></span></a>
+<div class="search" role="search"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><input id="q" class="in" type="search" placeholder="Streamer, clip, ville, lieu…" aria-label="Rechercher" autocomplete="off"></div>
+<nav aria-label="Navigation principale"><button class="nv" data-h="trend" title="Tendances"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg><span>Tendances</span></button><button class="nv" data-h="stats" title="Statistiques"><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><span>Stats</span></button><button class="nv" data-h="game" title="Jouer"><svg class="ic" aria-hidden="true"><use href="#i-gamepad"/></svg><span>Jouer</span></button><button class="nv" data-h="hunt" title="Enquêtes"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Enquêtes</span></button><button class="nv" data-h="board" title="Classement"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg><span>Classement</span></button>
+<button class="btn pri" data-h="add"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>Ajouter un clip</button><div class="me" data-h="board" id="me" role="button" tabindex="0" aria-label="Mon profil"></div></nav></header>
+<aside id="panel" aria-label="Détails"></aside><div id="banner" role="status"><span id="bt"></span><button id="bc">Annuler</button></div><div id="cap" role="status"></div>
+<div id="rail" aria-label="À la une"></div>
+<div id="hero" role="group" aria-label="Découvrir"><button id="dd"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span><small>Clip mystère</small><b>Du jour</b></span></button><button id="dj"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg><span><small>Clip du jour</small><b id="djs"></b></span></button><button id="rnd" class="pri"><svg class="ic" aria-hidden="true"><use href="#i-dice"/></svg>Au hasard</button></div>
+<div id="lg"><b id="hc"></b><span class="confirmed"><i></i>Confirmée</span><span class="probable"><i></i>Probable</span><span class="uncertain"><i></i>Incertaine</span></div>
+<div id="zm" role="group" aria-label="Contrôles de la carte"><button class="btn" id="zi" aria-label="Zoom avant"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button><button class="btn" id="zo" aria-label="Zoom arrière"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button><button class="btn" id="zv" aria-label="Carte de chaleur" title="Carte de chaleur"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></button><button class="btn" id="zg" aria-label="Globe 3D" title="Globe 3D"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></button><button class="btn" id="zf" aria-label="Plein écran" title="Plein écran"><svg class="ic" aria-hidden="true"><use href="#i-expand"/></svg></button><button class="btn" id="zr" aria-label="Vue monde" title="Vue monde"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></button></div>
+<nav id="tabs" aria-label="Navigation mobile"><button class="tb on" data-t="x"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>Explorer</button><button class="tb" data-h="game"><svg class="ic" aria-hidden="true"><use href="#i-gamepad"/></svg>Jouer</button><button class="tb add" data-h="add" aria-label="Ajouter un clip"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button><button class="tb" data-h="hunt"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Enquêtes</button><button class="tb" data-h="board"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Profil</button></nav>
+<div id="toasts" role="status" aria-live="polite"></div>
+<script src="assets/vendor/maplibre/maplibre-gl.js"></script>
+<script src="assets/app.js"></script></body></html>

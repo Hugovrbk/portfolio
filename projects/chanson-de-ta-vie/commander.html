@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commander ma Chanson — Chanson de Vie</title>
+  <meta name="description" content="Commandez votre chanson personnalisée en quelques minutes. Remplissez le formulaire avec vos souvenirs et recevez votre mélodie unique sur CD ou vinyle.">
+  <meta property="og:title"       content="Commander ma Chanson — Chanson de Vie">
+  <meta property="og:description" content="Commandez votre chanson personnalisée en quelques minutes. Remplissez le formulaire avec vos souvenirs et recevez votre mélodie unique sur CD ou vinyle.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">Votre commande</span>
+    <h1>Créons Votre Chanson</h1>
+    <p>Remplissez le formulaire ci-dessous. Dix minutes suffisent pour offrir un cadeau inoubliable.</p>
+  </div>
+</div>
+
+<section class="commander-section">
+  <div class="container">
+
+    
+    <!-- Indicateurs d'étapes -->
+    <div class="form-steps">
+      <div class="form-step-indicator active" id="ind1">
+        <div class="form-step-indicator__num">1</div>
+        <div class="form-step-indicator__label">Format</div>
+      </div>
+      <div class="form-step-indicator" id="ind2">
+        <div class="form-step-indicator__num">2</div>
+        <div class="form-step-indicator__label">Histoire</div>
+      </div>
+      <div class="form-step-indicator" id="ind3">
+        <div class="form-step-indicator__num">3</div>
+        <div class="form-step-indicator__label">Vos infos</div>
+      </div>
+      <div class="form-step-indicator" id="ind4">
+        <div class="form-step-indicator__num">4</div>
+        <div class="form-step-indicator__label">Paiement</div>
+      </div>
+    </div>
+
+    <form method="POST" action="#" id="orderForm">
+
+      <!-- ═══ ÉTAPE 1 : FORMAT ═══ -->
+      <div class="form-panel active" id="step1">
+        <div class="form-panel__title">Choisissez votre format</div>
+        <p class="form-panel__sub">Quel support souhaitez-vous pour votre chanson ?</p>
+
+        <!-- Format : MP3 ou CD -->
+        <p style="font-size:.78rem;color:var(--or);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem;font-family:var(--font-display)">Format</p>
+        <div class="product-cards product-cards--2">
+          <label class="product-card ">
+            <input type="radio" name="produit" value="mp3" >
+            <span class="product-card__icon">🎵</span>
+            <div class="product-card__name">Fichier MP3</div>
+            <div class="product-card__price">à partir de 20 €</div>
+            <div class="product-card__desc">Livré par email sous 48 h</div>
+          </label>
+          <label class="product-card selected">
+            <input type="radio" name="produit" value="cd" checked>
+            <span class="product-card__icon">💿</span>
+            <div class="product-card__name">CD Personnalisé</div>
+            <div class="product-card__price">à partir de 30 €</div>
+            <div class="product-card__desc">Gravé + pochette imprimée • livraison 7–10 j</div>
+          </label>
+        </div>
+
+        <!-- Nombre de chansons -->
+                <p style="font-size:.78rem;color:var(--or);letter-spacing:.12em;text-transform:uppercase;margin:.8rem 0;font-family:var(--font-display)">Nombre de chansons</p>
+        <div class="product-cards product-cards--3">
+          <label class="product-card selected">
+            <input type="radio" name="nombre_chansons" value="1" checked>
+            <div class="product-card__name">1 chanson</div>
+            <div class="product-card__price" style="font-size:1.2rem">+0 €</div>
+            <div class="product-card__desc">Prix de base</div>
+          </label>
+          <label class="product-card ">
+            <input type="radio" name="nombre_chansons" value="2" >
+            <div class="product-card__name">2 chansons</div>
+            <div class="product-card__price" style="font-size:1.2rem">+5 €</div>
+            <div class="product-card__desc">Ex : douce + festive</div>
+          </label>
+          <label class="product-card ">
+            <input type="radio" name="nombre_chansons" value="3" >
+            <div class="product-card__name">3 chansons</div>
+            <div class="product-card__price" style="font-size:1.2rem">+10 €</div>
+            <div class="product-card__desc">Ex : 3 ambiances différentes</div>
+          </label>
+        </div>
+
+        <!-- Total dynamique -->
+        <div style="text-align:right;margin-top:1rem;font-family:var(--font-display);font-size:1.1rem;color:var(--gris-clair)">
+          Total : <span id="prixTotal" style="color:var(--or);font-size:1.4rem">—</span>
+        </div>
+
+        <div class="form-nav">
+          <span></span>
+          <button type="button" class="btn btn--or" onclick="goToStep(2)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- ═══ ÉTAPE 2 : HISTOIRE ═══ -->
+      <div class="form-panel" id="step2">
+        <div class="form-panel__title">L'histoire à raconter</div>
+        <p class="form-panel__sub">Ces détails permettent de créer une chanson vraiment personnalisée.</p>
+
+        <div class="field-group">
+          <div class="field">
+            <label>Prénom de la personne célébrée *</label>
+            <input type="text" name="prenom" placeholder="ex : Mamie Jeanne, Papa Michel..." value="" required>
+          </div>
+          <div class="field">
+            <label>L'occasion *</label>
+            <input type="text" name="occasion"
+                   placeholder="ex : 80e anniversaire, Retraite de Papa, Noël, Mariage d'or…"
+                   value="">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Style musical *</label>
+          <select name="style_musical" required>
+            <option value="">Choisissez un style…</option>
+            <option value="Variété Française" >Variété Française</option><option value="Jazz Intime" >Jazz Intime</option><option value="Folk Acoustique" >Folk Acoustique</option><option value="Classique Orchestral" >Classique Orchestral</option><option value="Pop Années 80" >Pop Années 80</option><option value="Rock Nostalgique" >Rock Nostalgique</option><option value="Bossa Nova" >Bossa Nova</option><option value="Comptine & Douceur" >Comptine &amp; Douceur</option>          </select>
+        </div>
+
+        <div id="souvenirsContainer">
+                    <div class="souvenir-field">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem">
+              <label style="margin-bottom:0">Souvenir 1 — Le plus important *</label>
+                          </div>
+            <textarea name="souvenir[]" rows="3" required              placeholder="ex : Son jardin fleuri où elle passait toutes ses après-midis d'été…"
+            ></textarea>
+          </div>
+                  </div>
+
+        <div style="margin-bottom:1.5rem">
+          <button type="button" id="btnAddSouvenir" class="btn btn--outline btn--sm" onclick="addSouvenir()">
+            + Ajouter un souvenir
+          </button>
+          <span id="souvenirCount" style="font-size:.78rem;color:var(--gris);margin-left:1rem">1/10</span>
+        </div>
+        <div class="field">
+          <label>Message personnel <span style="color:var(--gris)">(optionnel)</span></label>
+          <textarea name="message" placeholder="Une phrase à intégrer dans la chanson, ou des précisions sur le style, les artistes qu'elle aime..." rows="3"></textarea>
+          <p class="field-hint">Ex : "Elle adore Aznavour", "Le refrain doit parler de ses enfants", "Finir par 'Bonne fête Mamie !'"</p>
+        </div>
+
+        <!-- Mot sur la carte — visible uniquement si CD sélectionné -->
+        <div class="field" id="motCdField" style="display:none">
+          <label>Mot à écrire sur la carte dans le colis <span style="color:var(--gris)">(optionnel)</span></label>
+          <input type="text" name="mot_cd" maxlength="120"
+                 placeholder="ex : Joyeux 80e anniversaire Mamie Jeanne, avec tout notre amour ♥"
+                 value="">
+          <p class="field-hint">Cette phrase sera écrite sur une carte glissée dans le colis, comme un mot personnalisé de votre part. Maximum 120 caractères.</p>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn--outline" onclick="goToStep(1)">← Retour</button>
+          <button type="button" class="btn btn--or" onclick="goToStep(3)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- ═══ ÉTAPE 3 : VOS INFOS ═══ -->
+      <div class="form-panel" id="step3">
+        <div class="form-panel__title">Vos informations</div>
+        <p class="form-panel__sub">Pour vous envoyer la chanson et, si nécessaire, livrer votre commande.</p>
+
+        <div class="field-group">
+          <div class="field">
+            <label>Votre nom complet *</label>
+            <input type="text" name="nom_client"
+                   placeholder="Prénom NOM"
+                   value=""
+                   required>
+          </div>
+          <div class="field">
+            <label>Votre email *</label>
+            <input type="email" name="email_client"
+                   placeholder="vous@exemple.com"
+                   value=""
+                   required>
+            <p class="field-hint">Pré-rempli depuis votre compte. Nous vous enverrons la chanson ici pour validation.</p>
+          </div>
+        </div>
+
+        <div class="field" id="adresseField">
+          <label>Adresse de livraison <span id="adresseRequired" style="color:var(--or)">*</span></label>
+          <textarea name="adresse" placeholder="Rue, numéro, code postal, ville, pays" rows="3"></textarea>
+          <p class="field-hint" id="adresseHint">Requise pour le CD. Livraison Belgique et France.</p>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn--outline" onclick="goToStep(2)">← Retour</button>
+          <button type="button" class="btn btn--or" onclick="goToStep(4)">Voir le récapitulatif →</button>
+        </div>
+      </div>
+
+      <!-- ═══ ÉTAPE 4 : RÉCAPITULATIF + PAIEMENT ═══ -->
+      <div class="form-panel" id="step4">
+        <div class="form-panel__title">Récapitulatif</div>
+        <p class="form-panel__sub">Vérifiez votre commande avant de procéder au paiement.</p>
+
+        <div class="recap-box">
+          <h4>Votre commande</h4>
+          <div class="recap-row">
+            <span class="recap-row__label">Format</span>
+            <span class="recap-row__value" id="recap-produit">—</span>
+          </div>
+          <div class="recap-row">
+            <span class="recap-row__label">Pour</span>
+            <span class="recap-row__value" id="recap-prenom">—</span>
+          </div>
+          <div class="recap-row">
+            <span class="recap-row__label">Occasion</span>
+            <span class="recap-row__value" id="recap-occasion">—</span>
+          </div>
+          <div class="recap-row">
+            <span class="recap-row__label">Style musical</span>
+            <span class="recap-row__value" id="recap-style">—</span>
+          </div>
+          <div class="recap-row recap-row--total">
+            <span class="recap-row__label">Total TTC</span>
+            <span class="recap-row__value" id="recap-prix">—</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom:1.2rem">
+          <label class="checkbox-field">
+            <input type="checkbox" name="cgv" id="cgvCheck" >
+            <span>J'ai lu et j'accepte les <a href="cgv.html" target="_blank">Conditions Générales de Vente</a> et la <a href="mentions-legales.html" target="_blank">Politique de confidentialité</a>. *</span>
+          </label>
+        </div>
+
+                  <div class="alert" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--creme-2);margin-bottom:1.5rem"><strong>Version démo :</strong> aucune donnée n'est envoyée et aucun paiement n'est effectué. Votre commande fictive s'affichera sur la page de confirmation.</div>
+        
+        <div class="form-nav">
+          <button type="button" class="btn btn--outline" onclick="goToStep(3)">← Retour</button>
+          <button type="submit" class="btn btn--or" style="font-size:1rem;padding:1rem 2.5rem">
+            ✓ Valider ma commande (démo)          </button>
+        </div>
+        <p style="font-size:.8rem;color:var(--gris);text-align:center;margin-top:1rem">
+          Paiement 100 % sécurisé — Vos données bancaires ne passent jamais par notre site.
+        </p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+<script src="assets/js/scroll.js"></script>
+<script>
+// ── Gestion multi-étapes ─────────────────────────────────────
+const tarifs      = { mp3: 20, cd: 30 };
+const supplements = { '1': 0, '2': 5, '3': 10 };
+const noms        = { mp3: 'Fichier MP3', cd: 'CD Personnalisé' };
+let currentStep = 1;
+
+function goToStep(n) {
+  // Validation rapide avant d'avancer
+  if (n > currentStep) {
+    if (currentStep === 1) {
+      if (!document.querySelector('input[name="produit"]:checked')) {
+        alert('Veuillez choisir un format (MP3, CD ou Vinyle).');
+        return;
+      }
+    }
+    if (currentStep === 2) {
+      const prenom   = document.querySelector('[name="prenom"]').value.trim();
+      const occasion = document.querySelector('[name="occasion"]').value.trim();
+      const style    = document.querySelector('[name="style_musical"]').value;
+      const s1       = document.querySelector('#souvenirsContainer textarea')?.value.trim() || '';
+      if (!prenom || !occasion || !style || !s1) {
+        alert('Veuillez remplir les champs obligatoires (prénom, occasion, style, souvenir 1).');
+        return;
+      }
+    }
+    if (currentStep === 3) {
+      const nom   = document.querySelector('[name="nom_client"]').value.trim();
+      const email = document.querySelector('[name="email_client"]').value.trim();
+      if (!nom || !email) {
+        alert('Votre nom et votre email sont requis.');
+        return;
+      }
+    }
+  }
+
+  // Cacher panel actuel, afficher nouveau
+  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+
+  // Indicateurs
+  for (let i = 1; i <= 4; i++) {
+    const ind = document.getElementById('ind' + i);
+    ind.classList.toggle('active', i === n);
+    ind.classList.toggle('done', i < n);
+  }
+
+  currentStep = n;
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+
+  if (n === 4) updateRecap();
+}
+
+function getTotal() {
+  const produit    = document.querySelector('input[name="produit"]:checked')?.value || 'cd';
+  const nbChansons = document.querySelector('input[name="nombre_chansons"]:checked')?.value || '1';
+  return (tarifs[produit] || 0) + (supplements[nbChansons] || 0);
+}
+
+function updatePrixTotal() {
+  const el = document.getElementById('prixTotal');
+  if (el) el.textContent = getTotal() + ' €';
+}
+
+function updateRecap() {
+  const radio = document.querySelector('input[name="produit"]:checked');
+  const produit = radio ? radio.value : 'cd';
+  const nbChansons = document.querySelector('input[name="nombre_chansons"]:checked')?.value || '1';
+  const total = getTotal();
+  const nbLabel = nbChansons > 1 ? ` × ${nbChansons} chansons` : '';
+  document.getElementById('recap-produit').textContent  = (noms[produit] || '—') + nbLabel;
+  document.getElementById('recap-prenom').textContent   = document.querySelector('[name="prenom"]').value || '—';
+  document.getElementById('recap-occasion').textContent = document.querySelector('[name="occasion"]').value || '—';
+  document.getElementById('recap-style').textContent    = document.querySelector('[name="style_musical"]').value || '—';
+  document.getElementById('recap-prix').textContent     = total + ' €';
+
+  // Masquer le champ adresse si MP3
+  const adresseField = document.getElementById('adresseField');
+  if (produit === 'mp3') {
+    adresseField.style.opacity = '0.5';
+    document.getElementById('adresseRequired').style.display = 'none';
+    document.getElementById('adresseHint').textContent = 'Non requis pour le fichier MP3.';
+  } else {
+    adresseField.style.opacity = '1';
+    document.getElementById('adresseRequired').style.display = 'inline';
+    document.getElementById('adresseHint').textContent = 'Requise pour le CD. Livraison Belgique et France.';
+  }
+}
+
+function updateCdFields() {
+  const produit = document.querySelector('input[name="produit"]:checked')?.value;
+  const motCd = document.getElementById('motCdField');
+  if (motCd) motCd.style.display = (produit === 'cd') ? 'block' : 'none';
+}
+
+// Appliquer au chargement
+updateCdFields();
+updatePrixTotal();
+
+// Le contour vert est géré par CSS (:has(input:checked)) — pas besoin de JS pour ça
+// Click sur la carte pour mettre à jour prix/récap/champs
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', function() {
+    updateRecap();
+    updateCdFields();
+    updatePrixTotal();
+  });
+});
+
+// ── Souvenirs dynamiques ─────────────────────────────────────
+const MAX_SOUVENIRS = 10;
+
+function getSouvenirCount() {
+  return document.querySelectorAll('#souvenirsContainer .souvenir-field').length;
+}
+function updateSouvenirUI() {
+  const n = getSouvenirCount();
+  document.getElementById('souvenirCount').textContent = n + '/10';
+  document.getElementById('btnAddSouvenir').disabled = n >= MAX_SOUVENIRS;
+  // Re-numéroter les labels
+  document.querySelectorAll('#souvenirsContainer .souvenir-field').forEach((f, i) => {
+    const lbl = f.querySelector('label');
+    if (lbl) lbl.textContent = i === 0 ? 'Souvenir 1 — Le plus important *' : 'Souvenir ' + (i + 1);
+  });
+}
+function addSouvenir() {
+  if (getSouvenirCount() >= MAX_SOUVENIRS) return;
+  const div = document.createElement('div');
+  div.className = 'souvenir-field';
+  div.style.animation = 'fadeUp 0.3s ease';
+  const n = getSouvenirCount() + 1;
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem">
+      <label style="margin-bottom:0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-clair);font-family:var(--font-display)">Souvenir ${n}</label>
+      <button type="button" onclick="removeSouvenir(this)"
+              style="background:none;border:none;color:var(--gris);cursor:pointer;font-size:1.2rem;padding:0;line-height:1">−</button>
+    </div>
+    <textarea name="souvenir[]" rows="3" placeholder="Un autre souvenir, anecdote, lieu, passion…"
+              style="width:100%;background:var(--noir-3);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);padding:.85rem 1.1rem;color:var(--creme);font-family:var(--font-body);font-size:1rem;font-weight:300;outline:none;resize:vertical;min-height:90px"></textarea>
+  `;
+  document.getElementById('souvenirsContainer').appendChild(div);
+  div.querySelector('textarea').focus();
+  updateSouvenirUI();
+}
+function removeSouvenir(btn) {
+  btn.closest('.souvenir-field').remove();
+  updateSouvenirUI();
+}
+
+// Si erreur PHP, aller à l'étape où se trouve l'erreur
+</script>
+

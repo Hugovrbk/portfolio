@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Plateforme mondiale des actions étudiantes">
+    <meta name="keywords" content="étudiants, actions, manifestations, carte mondiale, vidéos, clips, mobilisations">
+    <meta name="author" content="Student Map Team">
+
+    <!-- Open Graph / Meta Tags pour les réseaux sociaux -->
+    <meta property="og:site_name" content="Student Map">
+    <meta property="og:title" content="Student Map">
+    <meta property="og:description" content="Plateforme mondiale des actions étudiantes">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Map">
+    <meta name="twitter:description" content="Plateforme mondiale des actions étudiantes">
+
+    <title>Politique de confidentialité - Student Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/map.css">
+    <link rel="stylesheet" href="../assets/css/media.css">
+
+    <!-- Leaflet Marker Cluster -->
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.Default.css">
+
+    <!-- Google Fonts -->
+    <link rel="preload" href="../assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/source-serif-4-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#ECEEF4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B0F26" media="(prefers-color-scheme: dark)">
+
+    <!-- JavaScript -->
+    <script src="../assets/vendor/leaflet/leaflet.js"></script>
+    <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
+
+    <!-- Configuration globale JavaScript -->
+    <script>
+        window.STUDENT_MAP_CONFIG = {
+            baseUrl: '', assetBase: '../',
+            csrfToken: '',
+            language: 'fr',
+            isLoggedIn: false,
+            userRole: 'guest',
+            map: {
+                defaultZoom: 3,
+                minZoom: 2,
+                maxZoom: 18,
+                center: [48.8566, 2.3522]
+            }
+        };
+    </script>
+<script src="../assets/js/static-data.js"></script><script src="../assets/js/static-patch.js" defer></script></head>
+<body class="main-page">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="../index.html" class="navbar-brand">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">
+                        <span class="logo-title">STUDENT</span>
+                        <span class="logo-subtitle">MAP</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu principal -->
+            <div class="navbar-menu">
+                <ul class="nav-list">
+                    <li class="nav-item ">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../explorer.html" class="nav-link">
+                            <i class="fas fa-compass"></i>
+                            <span>Explorer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../actions.html" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Actions à venir</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../media.html" class="nav-link">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Médiathèque</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../clips.html" class="nav-link">
+                            <i class="fas fa-video"></i>
+                            <span>Clips</span>
+                        </a>
+                    </li>
+
+                    <!-- Menu déroulant Catégories -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-tags"></i>
+                            <span>Catégories</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-manifestation.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #e74c3c">
+                                        <span class="category-dot" style="background-color: #e74c3c"></span>
+                                        Manifestation                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-blocus.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #f39c12">
+                                        <span class="category-dot" style="background-color: #f39c12"></span>
+                                        Blocus                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-list"></i>
+                                    Toutes les catégories                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Menu déroulant Pays -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span>Pays</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-countries">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-BE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇧🇪</span>
+                                        Belgique                                        <span class="country-count">
+                                            5                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-US.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇺🇸</span>
+                                        États-Unis                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-FR.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇫🇷</span>
+                                        France                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-DE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇩🇪</span>
+                                        Allemagne                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-globe-americas"></i>
+                                    Tous les pays                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="../about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>À propos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu utilisateur -->
+            <div class="navbar-user">
+                                    <div class="auth-buttons">
+                    </div>
+                
+                <div class="language-switch" aria-label="Site language">
+                    <a href="privacy.html" lang="fr" aria-current="page">FR</a>
+                    <a href="../en/legal/privacy.html" lang="en" >EN</a>
+                </div>
+
+                <!-- Bouton mobile -->
+                <button class="navbar-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">
+                    <span class="logo-title">STUDENT</span>
+                    <span class="logo-subtitle">MAP</span>
+                </span>
+            </div>
+            <div class="language-switch mobile-language-switch" aria-label="Site language">
+                <a href="privacy.html" lang="fr" aria-current="page">Français</a>
+                <a href="../en/legal/privacy.html" lang="en" >English</a>
+            </div>
+            <button class="mobile-menu-close" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="../index.html" class="mobile-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../explorer.html" class="mobile-nav-link">
+                        <i class="fas fa-compass"></i>
+                        <span>Explorer</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../actions.html" class="mobile-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Actions à venir</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../media.html" class="mobile-nav-link">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Médiathèque</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../clips.html" class="mobile-nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Clips</span>
+                    </a>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-tags"></i>
+                        <span>Catégories</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>Pays</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-BE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇧🇪</span>
+                                    Belgique                                    <span class="country-count">5</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-US.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇺🇸</span>
+                                    États-Unis                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-FR.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇫🇷</span>
+                                    France                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-DE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇩🇪</span>
+                                    Allemagne                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item">
+                    <a href="../about.html" class="mobile-nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>À propos</span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Messages flash -->
+    <div class="flash-messages">
+            </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="mobile-menu-overlay"></div>
+<!-- Section héro -->
+<section class="legal-hero">
+    <div class="legal-hero-container">
+        <div class="legal-hero-content">
+            <h1 class="legal-hero-title">
+                <i class="fas fa-lock"></i>
+                Politique de confidentialité
+            </h1>
+            <p class="legal-hero-description">
+                Comment Student Map protège vos données personnelles
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contenu principal -->
+<section class="legal-content">
+    <div class="legal-container">
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-file-contract"></i>
+                Introduction
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Bienvenue sur <strong>Student Map</strong>. Nous accordons une grande importance à la protection de vos données personnelles.
+                    Cette politique de confidentialité explique comment nous collectons, utilisons, divulgons et protégeons vos informations
+                    lorsque vous utilisez notre plateforme.
+                </p>
+                <p>
+                    En utilisant Student Map, vous acceptez les pratiques décrites dans cette politique de confidentialité.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-info-circle"></i>
+                Informations que nous collectons
+            </h2>
+            <div class="legal-section-content">
+                <h3>Informations personnelles</h3>
+                <p>
+                    Lorsque vous créez un compte sur Student Map, nous pouvons collecter les informations suivantes :
+                </p>
+                <ul>
+                    <li>Nom d'utilisateur</li>
+                    <li>Adresse email</li>
+                    <li>Nom affiché (optionnel)</li>
+                    <li>URL de l'avatar (optionnel)</li>
+                    <li>Biographie (optionnel)</li>
+                    <li>Mot de passe (stocké de manière sécurisée)</li>
+                </ul>
+
+                <h3>Informations de profil</h3>
+                <p>
+                    Vous pouvez choisir de fournir des informations supplémentaires dans votre profil, telles que :
+                </p>
+                <ul>
+                    <li>Photo de profil</li>
+                    <li>Description personnelle</li>
+                    <li>Localisation générale</li>
+                </ul>
+
+                <h3>Données d'utilisation</h3>
+                <p>
+                    Nous collectons automatiquement certaines informations lorsque vous utilisez notre site :
+                </p>
+                <ul>
+                    <li>Adresse IP</li>
+                    <li>Type de navigateur et version</li>
+                    <li>Système d'exploitation</li>
+                    <li>Pages visitées et durée de la visite</li>
+                    <li>Heure et date de votre visite</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-exchange-alt"></i>
+                Comment nous utilisons vos informations
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous utilisons les informations que nous collectons pour :
+                </p>
+                <ul>
+                    <li>Fournir, exploiter et améliorer notre plateforme</li>
+                    <li>Créer et maintenir votre compte utilisateur</li>
+                    <li>Vous permettre de publier et de gérer du contenu</li>
+                    <li>Communiquer avec vous, y compris pour répondre à vos questions ou demandes</li>
+                    <li>Envoyer des notifications et des mises à jour</li>
+                    <li>Analyser l'utilisation de notre plateforme</li>
+                    <li>Prévenir la fraude et améliorer la sécurité</li>
+                    <li>Respecter nos obligations légales</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-share-alt"></i>
+                Partage de vos informations
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous ne vendons, ne louons ni ne partageons vos informations personnelles avec des tiers, sauf dans les cas suivants :
+                </p>
+                <ul>
+                    <li><strong>Avec votre consentement :</strong> Nous pouvons partager vos informations si vous nous donnez votre consentement explicite.</li>
+                    <li><strong>Pour le contenu public :</strong> Les informations que vous choisissez de rendre publiques (comme les commentaires, les clips publiés, etc.) sont visibles par tous les utilisateurs de la plateforme.</li>
+                    <li><strong>Pour le respect de la loi :</strong> Nous pouvons divulguer vos informations si la loi l'exige ou si nous croyons de bonne foi que cette divulgation est nécessaire pour :</li>
+                    <ul>
+                        <li>Se conformer à une obligation légale</li>
+                        <li>Protéger les droits, la propriété ou la sécurité de Student Map</li>
+                        <li>Prévenir ou enquêter sur des activités frauduleuses ou illégales</li>
+                        <li>Protéger la sécurité personnelle des utilisateurs de Student Map ou du public</li>
+                    </ul>
+                    <li><strong>En cas de fusion ou d'acquisition :</strong> Si Student Map est impliqué dans une fusion, une acquisition ou une vente d'actifs, vos informations pourraient être transférées.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-shield-alt"></i>
+                Sécurité de vos informations
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos informations personnelles contre l'accès non autorisé,
+                    l'altération, la divulgation ou la destruction. Cependant, veuillez noter qu'aucune méthode de transmission sur Internet ou de stockage
+                    électronique n'est totalement sécurisée.
+                </p>
+                <p>
+                    Nous utilisons les mesures de sécurité suivantes :
+                </p>
+                <ul>
+                    <li>Chiffrement des données sensibles</li>
+                    <li>Stockage sécurisé des mots de passe (hachage avec bcrypt)</li>
+                    <li>Protection contre les attaques courantes (injection SQL, XSS, CSRF)</li>
+                    <li>Accès restreint à vos données personnelles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-cookie-bite"></i>
+                Cookies et technologies similaires
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous utilisons des cookies et des technologies similaires pour améliorer votre expérience sur notre site.
+                    Les cookies sont de petits fichiers texte stockés sur votre appareil qui nous aident à :
+                </p>
+                <ul>
+                    <li>Maintenir votre session connectée</li>
+                    <li>Mémoriser vos préférences</li>
+                    <li>Analyser l'utilisation de notre site</li>
+                    <li>Améliorer la sécurité</li>
+                </ul>
+                <p>
+                    Vous pouvez configurer votre navigateur pour refuser tous les cookies ou pour indiquer quand un cookie est envoyé.
+                    Cependant, certaines fonctionnalités de notre site peuvent ne pas fonctionner correctement sans les cookies.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-clipboard-list"></i>
+                Conservation de vos informations
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous conservons vos informations personnelles aussi longtemps que nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées,
+                    y compris pour satisfaire à toute obligation légale, comptable ou de reporting.
+                </p>
+                <p>
+                    Lorsque nous n'avons plus besoin de vos informations personnelles, nous les supprimons de manière sécurisée ou les anonymisons.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-user-cog"></i>
+                Vos droits
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Selon la législation applicable, vous pouvez avoir les droits suivants concernant vos informations personnelles :
+                </p>
+                <ul>
+                    <li><strong>Droit d'accès :</strong> Vous avez le droit de demander une copie des informations personnelles que nous détenons sur vous.</li>
+                    <li><strong>Droit de rectification :</strong> Vous avez le droit de corriger ou de mettre à jour vos informations personnelles.</li>
+                    <li><strong>Droit à l'effacement :</strong> Vous avez le droit de demander la suppression de vos informations personnelles dans certains cas.</li>
+                    <li><strong>Droit de restriction :</strong> Vous avez le droit de demander la restriction du traitement de vos informations personnelles.</li>
+                    <li><strong>Droit à la portabilité :</strong> Vous avez le droit de recevoir vos informations personnelles dans un format structuré et lisible par machine.</li>
+                    <li><strong>Droit d'opposition :</strong> Vous avez le droit de vous opposer au traitement de vos informations personnelles dans certains cas.</li>
+                </ul>
+                <p>
+                    Pour exercer ces droits, vous pouvez nous contacter à l'adresse indiquée à la fin de cette politique.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-globe-americas"></i>
+                Transfert international de données
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Vos informations peuvent être transférées et traitées sur des serveurs situés en dehors de votre pays de résidence.
+                    Les lois sur la protection des données dans ces pays peuvent être différentes de celles de votre pays.
+                </p>
+                <p>
+                    En utilisant Student Map, vous acceptez que vos informations puissent être transférées vers d'autres pays conformément à cette politique de confidentialité.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Liens vers des sites tiers
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Notre plateforme peut contenir des liens vers des sites web ou des services tiers qui ne sont pas exploités par nous.
+                    Cette politique de confidentialité ne s'applique pas à ces sites tiers. Nous vous conseillons de consulter les politiques de confidentialité
+                    de ces sites tiers pour comprendre comment ils collectent, utilisent et protègent vos informations.
+                </p>
+                <p>
+                    Nous n'avons aucun contrôle sur le contenu, les politiques de confidentialité ou les pratiques des sites ou services tiers,
+                    et nous déclinons toute responsabilité à leur égard.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-child"></i>
+                Protection des enfants
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Student Map n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles
+                    auprès d'enfants de moins de 13 ans. Si vous êtes un parent ou un tuteur et que vous savez que votre enfant nous a fourni des informations personnelles,
+                    veuillez nous contacter immédiatement.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-edit"></i>
+                Mises à jour de cette politique
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant
+                    la nouvelle politique de confidentialité sur cette page.
+                </p>
+                <p>
+                    Nous vous conseillons de consulter cette politique de confidentialité régulièrement pour toute modification.
+                    Les modifications apportées à cette politique de confidentialité entreront en vigueur dès leur publication sur cette page.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Si vous avez des questions concernant cette politique de confidentialité ou si vous souhaitez exercer vos droits,
+                    n'hésitez pas à nous contacter :
+                </p>
+                <ul>
+                    <li>Par email : <a href="mailto:privacy@studentmap.local">privacy@studentmap.local</a></li>
+                </ul>
+                <p>
+                    Nous répondrons à votre demande dans les meilleurs délais.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    </div>
+    <!-- Fin du contenu principal -->
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <!-- Section statistiques -->
+        <div class="footer-stats">
+            <div class="footer-stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Événements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Clips vidéo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Villes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Pays</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal du pied de page -->
+        <div class="footer-main">
+            <div class="footer-container">
+                <!-- Section À propos -->
+                <div class="footer-section about-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="footer-logo-text">
+                            <span class="footer-logo-title">STUDENT</span>
+                            <span class="footer-logo-subtitle">MAP</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        Plateforme mondiale des actions étudiantes est une plateforme internationale dédiée à la découverte
+                        et au suivi des actions, manifestations et mobilisations étudiantes à travers le monde.
+                    </p>
+                    <div class="footer-cta">
+                        <a href="../explorer.html" class="btn btn-outline-light">
+                            <i class="fas fa-compass"></i>
+                            Explorer la carte
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section Liens rapides -->
+                <div class="footer-section links-section">
+                    <h3 class="footer-section-title">Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="../index.html" class="footer-link">
+                                <i class="fas fa-home"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer.html" class="footer-link">
+                                <i class="fas fa-compass"></i>
+                                Explorer
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../actions.html" class="footer-link">
+                                <i class="fas fa-calendar-check"></i>
+                                Actions à venir
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../media.html" class="footer-link">
+                                <i class="fas fa-photo-video"></i>
+                                Médiathèque
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../clips.html" class="footer-link">
+                                <i class="fas fa-video"></i>
+                                Clips vidéo
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-date-desc.html" class="footer-link">
+                                <i class="fas fa-clock"></i>
+                                Récents
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-views-desc.html" class="footer-link">
+                                <i class="fas fa-eye"></i>
+                                Populaires
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section Catégories -->
+                <div class="footer-section categories-section">
+                    <h3 class="footer-section-title">Catégories</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="footer-link"
+                                   style="--category-color: #e74c3c">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="footer-link"
+                                   style="--category-color: #f39c12">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Pages légales -->
+                <div class="footer-section legal-section">
+                    <h3 class="footer-section-title">Informations légales</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../about.html" class="footer-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    À propos                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="privacy.html" class="footer-link">
+                                    <i class="fas fa-lock"></i>
+                                    Politique de confidentialité                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="terms.html" class="footer-link">
+                                    <i class="fas fa-file-contract"></i>
+                                    Conditions d&#039;utilisation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="cookies.html" class="footer-link">
+                                    <i class="fas fa-cookie-bite"></i>
+                                    Gestion des cookies                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Réseaux sociaux -->
+                <div class="footer-section social-section">
+                    <h3 class="footer-section-title">Suivez-nous</h3>
+                    <div class="social-links">
+                                                    <a href="#"
+                               class="social-link"
+                               title="Twitter"
+                               style="--social-color: #1DA1F2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Facebook"
+                               style="--social-color: #3B5998">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Instagram"
+                               style="--social-color: #E1306C">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="YouTube"
+                               style="--social-color: #FF0000">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="LinkedIn"
+                               style="--social-color: #0077B5">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                                            </div>
+                    <div class="social-text">
+                        <p>Rejoignez notre communauté pour rester informé des dernières actions étudiantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre de copyright -->
+        <div class="footer-copyright">
+            <div class="footer-copyright-container">
+                <div class="copyright-text">
+                    &copy; 2026 <strong>Student Map</strong>.
+                    Tous droits réservés.
+                </div>
+                <div class="copyright-links">
+                    <span class="version">Version 1.0.0</span>
+                                            <span class="debug-badge">Mode développement</span>
+                                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts JavaScript -->
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/map.js"></script>
+    <script src="../assets/js/media.js"></script>
+
+    <!-- Scripts spécifiques à la page -->
+    <!-- Scripts de l'administration -->
+    
+    <!-- Google Analytics (optionnel - à configurer) -->
+    
+</body>
+</html>

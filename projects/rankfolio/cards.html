@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mes cartes — RANKFOLIO</title>
+<meta name="description" content="Crée des cartes de collection à partir de tes rangs compétitifs, exporte-les en PNG, JPEG ou PDF et partage ton profil.">
+<meta name="theme-color" content="#0e171f">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="rf-body rf-page-cards " data-base="">
+<a class="rf-skip" href="#contenu">Aller au contenu</a>
+<header class="rf-header">
+  <div class="rf-header-inner">
+    <a class="rf-logo" href="index.html" aria-label="RANKFOLIO — accueil">
+      <svg class="rf-logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+        <path d="M3 9.5 12 4.5l9 5M3 14.5l9-5 9 5M3 19.5l9-5 9 5"/>
+      </svg>
+      <span class="rf-logo-text">RANKFOLIO</span>
+    </a>
+
+    <button class="rf-nav-toggle" type="button" aria-expanded="false" aria-controls="rf-nav">
+      <span class="rf-sr-only">Menu</span>
+      <span class="rf-nav-bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="rf-nav" id="rf-nav" aria-label="Navigation principale">
+      <a href="gallery.html">Galerie</a>              <a href="dashboard.html">Tableau de bord</a>        <a href="accounts.html">Comptes</a>        <a href="cards.html" aria-current="page">Mes cartes</a>                <span class="rf-nav-sep" aria-hidden="true"></span>
+        <a class="rf-btn rf-btn-primary rf-btn-sm" href="editor.html?new=1">Créer une carte</a>
+        
+          </nav>
+  </div>
+</header>
+<main class="rf-main" id="contenu">
+<header class="rf-pagehead">
+  <div>
+    <h1>Mes cartes</h1>
+    <p>1 carte dans ta collection</p>
+  </div>
+  <a class="rf-btn rf-btn-primary" href="editor.html?new=1">Nouvelle carte</a>
+</header>
+
+  <div class="rf-slab-grid" data-static-grid>
+    <article class="rf-slab" style="--c1:#0a0a0f;--c2:#1a1a24;--acc:#c9a961"><header class="rf-slab-label"><span class="rf-slab-title">Carte signature</span><span class="rf-slab-serial" title="Numéro de carte">№&nbsp;0001</span></header><a class="rf-slab-window" href="editor.html?id=1" aria-label="Ouvrir « Carte signature »"><div class="rf-mini"><span class="rf-mini-name">Nova</span><span class="rf-mini-row"><img class="rf-mini-emblem" src="assets/ranks/valorant/radiant.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/league-of-legends/challenger.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/counter-strike-2/global.png" alt="" loading="lazy" width="40" height="40"></span></div></a><footer class="rf-slab-foot"><div class="rf-slab-line"><span class="rf-slab-by">Obsidian · Horizontale</span><span class="rf-badge rf-badge-ok">Publique</span></div><div class="rf-slab-actions"><a class="rf-btn rf-btn-secondary rf-btn-sm" href="editor.html?id=1">Modifier</a><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="cards.php"><button class="rf-btn rf-btn-ghost rf-btn-sm " name="action" value="toggle_public">Rendre privée</button></form><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="cards.php"><button class="rf-btn rf-btn-ghost rf-btn-sm " name="action" value="duplicate">Dupliquer</button></form><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="cards.php"><button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" name="action" value="delete" data-confirm="Supprimer « Carte signature » ? Cette action est définitive.">Supprimer</button></form></div></footer></article>  </div>
+</main>
+<footer class="rf-footer">
+  <div class="rf-footer-inner">
+    <div class="rf-footer-brand">
+      <strong>RANKFOLIO</strong>
+      <span>Cartes de rangs pour joueurs compétitifs</span>
+    </div>
+    <nav class="rf-footer-links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="gallery.html">Galerie</a>
+          </nav>
+    <small class="rf-footer-copy">© 2026 RANKFOLIO. Emblèmes de rang originaux, dessinés pour ce projet. Les noms de jeux appartiennent à leurs éditeurs.</small>
+  </div>
+</footer>
+<script src="assets/js/static-data.js"></script><script src="assets/js/static-patch.js"></script><script src="assets/js/app.js" defer></script>
+</body>
+</html>

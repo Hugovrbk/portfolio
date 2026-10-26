@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tableau de bord — RANKFOLIO</title>
+<meta name="description" content="Crée des cartes de collection à partir de tes rangs compétitifs, exporte-les en PNG, JPEG ou PDF et partage ton profil.">
+<meta name="theme-color" content="#0e171f">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="rf-body rf-page-dashboard " data-base="">
+<a class="rf-skip" href="#contenu">Aller au contenu</a>
+<header class="rf-header">
+  <div class="rf-header-inner">
+    <a class="rf-logo" href="index.html" aria-label="RANKFOLIO — accueil">
+      <svg class="rf-logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+        <path d="M3 9.5 12 4.5l9 5M3 14.5l9-5 9 5M3 19.5l9-5 9 5"/>
+      </svg>
+      <span class="rf-logo-text">RANKFOLIO</span>
+    </a>
+
+    <button class="rf-nav-toggle" type="button" aria-expanded="false" aria-controls="rf-nav">
+      <span class="rf-sr-only">Menu</span>
+      <span class="rf-nav-bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="rf-nav" id="rf-nav" aria-label="Navigation principale">
+      <a href="gallery.html">Galerie</a>              <a href="dashboard.html" aria-current="page">Tableau de bord</a>        <a href="accounts.html">Comptes</a>        <a href="cards.html">Mes cartes</a>                <span class="rf-nav-sep" aria-hidden="true"></span>
+        <a class="rf-btn rf-btn-primary rf-btn-sm" href="editor.html?new=1">Créer une carte</a>
+        
+          </nav>
+  </div>
+</header>
+<main class="rf-main" id="contenu">
+<header class="rf-pagehead">
+  <div>
+    <h1>Bonjour, Nova</h1>
+    <p>5 jeux · 1 carte</p>
+  </div>
+  <div class="rf-actions">
+    <a class="rf-btn rf-btn-ghost" href="profile.html">Voir mon profil public</a>  </div>
+</header>
+
+<div class="rf-dash">
+  <div class="rf-dash-main">
+    <section class="rf-panel" aria-labelledby="h-mygames">
+      <header class="rf-panel-head"><h2 id="h-mygames">Mes jeux</h2><a class="rf-link" href="accounts.html">Gérer mes comptes</a></header>
+              <ul class="rf-gamelist">
+                      <li class="rf-gamerow" style="--game:#ff4655">
+              <img class="rf-emblem" src="assets/ranks/valorant/radiant.png" alt="" loading="lazy" width="40" height="40">              <div class="rf-gamerow-main">
+                <strong>Valorant</strong>
+                <span>nova#eu</span>
+              </div>
+              <div class="rf-gamerow-rank">
+                <span class="rf-rankname">Radiant</span>
+                <span class="rf-muted">450 pts</span>
+              </div>
+              <span class="rf-badge" title="Donnée de démonstration">Démo</span>              <div class="rf-gamerow-actions">
+                                <form method="post" action="/api/account_action.php" class="rf-inline-form" data-rf-demo><input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="dashboard.php">
+                  <button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" type="submit" data-confirm="Retirer Valorant de ton profil ?">Retirer</button></form>
+              </div>
+            </li>
+                      <li class="rf-gamerow" style="--game:#c8aa6e">
+              <img class="rf-emblem" src="assets/ranks/league-of-legends/challenger.png" alt="" loading="lazy" width="40" height="40">              <div class="rf-gamerow-main">
+                <strong>League of Legends</strong>
+                <span>Nova</span>
+              </div>
+              <div class="rf-gamerow-rank">
+                <span class="rf-rankname">Challenger</span>
+                <span class="rf-muted">1 200 pts</span>
+              </div>
+              <span class="rf-badge" title="Donnée de démonstration">Démo</span>              <div class="rf-gamerow-actions">
+                                <form method="post" action="/api/account_action.php" class="rf-inline-form" data-rf-demo><input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="2"><input type="hidden" name="back" value="dashboard.php">
+                  <button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" type="submit" data-confirm="Retirer League of Legends de ton profil ?">Retirer</button></form>
+              </div>
+            </li>
+                      <li class="rf-gamerow" style="--game:#f0a020">
+              <img class="rf-emblem" src="assets/ranks/counter-strike-2/global.png" alt="" loading="lazy" width="40" height="40">              <div class="rf-gamerow-main">
+                <strong>Counter-Strike 2</strong>
+                <span>nova_steam</span>
+              </div>
+              <div class="rf-gamerow-rank">
+                <span class="rf-rankname">Global Elite</span>
+                <span class="rf-muted"></span>
+              </div>
+              <span class="rf-badge" title="Donnée de démonstration">Démo</span>              <div class="rf-gamerow-actions">
+                                <form method="post" action="/api/account_action.php" class="rf-inline-form" data-rf-demo><input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="3"><input type="hidden" name="back" value="dashboard.php">
+                  <button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" type="submit" data-confirm="Retirer Counter-Strike 2 de ton profil ?">Retirer</button></form>
+              </div>
+            </li>
+                      <li class="rf-gamerow" style="--game:#00a8e8">
+              <span class="rf-emblem rf-emblem-dot" style="--dot:#00a8e8" aria-hidden="true"></span>              <div class="rf-gamerow-main">
+                <strong>Rocket League</strong>
+                <span>nova_rl</span>
+              </div>
+              <div class="rf-gamerow-rank">
+                <span class="rf-rankname">Supersonic Legend</span>
+                <span class="rf-muted"></span>
+              </div>
+              <span class="rf-badge" title="Donnée de démonstration">Démo</span>              <div class="rf-gamerow-actions">
+                                <form method="post" action="/api/account_action.php" class="rf-inline-form" data-rf-demo><input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="4"><input type="hidden" name="back" value="dashboard.php">
+                  <button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" type="submit" data-confirm="Retirer Rocket League de ton profil ?">Retirer</button></form>
+              </div>
+            </li>
+                      <li class="rf-gamerow" style="--game:#da2929">
+              <span class="rf-emblem rf-emblem-dot" style="--dot:#da2929" aria-hidden="true"></span>              <div class="rf-gamerow-main">
+                <strong>Apex Legends</strong>
+                <span>nova_apex</span>
+              </div>
+              <div class="rf-gamerow-rank">
+                <span class="rf-rankname">Apex Predator</span>
+                <span class="rf-muted"></span>
+              </div>
+              <span class="rf-badge" title="Donnée de démonstration">Démo</span>              <div class="rf-gamerow-actions">
+                                <form method="post" action="/api/account_action.php" class="rf-inline-form" data-rf-demo><input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="5"><input type="hidden" name="back" value="dashboard.php">
+                  <button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" type="submit" data-confirm="Retirer Apex Legends de ton profil ?">Retirer</button></form>
+              </div>
+            </li>
+                  </ul>
+          </section>
+
+    <section class="rf-panel" aria-labelledby="h-mycards">
+      <header class="rf-panel-head">
+        <h2 id="h-mycards">Mes cartes récentes</h2>
+              </header>
+              <div class="rf-slab-grid rf-slab-grid-compact">
+          <article class="rf-slab" style="--c1:#0a0a0f;--c2:#1a1a24;--acc:#c9a961"><header class="rf-slab-label"><span class="rf-slab-title">Carte signature</span><span class="rf-slab-serial" title="Numéro de carte">№&nbsp;0001</span></header><a class="rf-slab-window" href="editor.html?id=1" aria-label="Ouvrir « Carte signature »"><div class="rf-mini"><span class="rf-mini-name">Nova</span><span class="rf-mini-row"><img class="rf-mini-emblem" src="assets/ranks/valorant/radiant.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/league-of-legends/challenger.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/counter-strike-2/global.png" alt="" loading="lazy" width="40" height="40"></span></div></a><footer class="rf-slab-foot"><div class="rf-slab-line"><span class="rf-slab-by">Obsidian · Horizontale</span><span class="rf-badge rf-badge-ok">Publique</span></div><div class="rf-slab-actions"><a class="rf-btn rf-btn-secondary rf-btn-sm" href="editor.html?id=1">Modifier</a><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="dashboard.php"><button class="rf-btn rf-btn-ghost rf-btn-sm " name="action" value="toggle_public">Rendre privée</button></form><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="dashboard.php"><button class="rf-btn rf-btn-ghost rf-btn-sm " name="action" value="duplicate">Dupliquer</button></form><form method="post" action="/api/card_action.php" data-rf-demo><input type="hidden" name="id" value="1"><input type="hidden" name="back" value="dashboard.php"><button class="rf-btn rf-btn-ghost rf-btn-sm rf-btn-danger" name="action" value="delete" data-confirm="Supprimer « Carte signature » ? Cette action est définitive.">Supprimer</button></form></div></footer></article>        </div>
+          </section>
+  </div>
+
+  <aside class="rf-dash-side">
+    <section class="rf-panel" aria-labelledby="h-conn">
+      <header class="rf-panel-head"><h2 id="h-conn">Comptes liés</h2></header>
+      <ul class="rf-provlist">
+        <li><span>Riot Games</span><span class="rf-badge">Non connecté</span></li>
+        <li><span>Steam</span><span class="rf-badge">Non connecté</span></li>
+      </ul>
+      <p class="rf-hint">Chaque compte est vérifié : personne ne peut afficher le rang d'un autre joueur.</p>
+      <a class="rf-btn rf-btn-primary rf-btn-block" href="accounts.html">Gérer mes comptes</a>
+    </section>
+
+    <section class="rf-panel" aria-labelledby="h-prof">
+      <header class="rf-panel-head"><h2 id="h-prof">Profil public</h2></header>
+      <form method="post" action="/api/save_profile.php" class="rf-form" data-rf-demo>
+        <div class="rf-field">
+          <label class="rf-label" for="display_name">Nom affiché</label>
+          <input class="rf-input" id="display_name" name="display_name" maxlength="80" value="Nova">
+        </div>
+        <div class="rf-field">
+          <label class="rf-label" for="bio">Bio <span class="rf-optional">facultatif</span></label>
+          <textarea class="rf-textarea" id="bio" name="bio" rows="3" maxlength="500">Compte de démonstration. Données fictives.</textarea>
+        </div>
+        <label class="rf-switch">
+          <input type="checkbox" name="is_public" value="1" checked>
+          <span class="rf-switch-ui" aria-hidden="true"></span>
+          <span>Rendre mon profil visible</span>
+        </label>
+        <p class="rf-hint">Adresse du profil : <code>profile.php?u=nova</code>. Un profil public est requis pour afficher un QR code sur tes cartes.</p>
+        <button class="rf-btn rf-btn-secondary rf-btn-block" type="submit">Enregistrer le profil</button>
+      </form>
+    </section>
+  </aside>
+</div>
+</main>
+<footer class="rf-footer">
+  <div class="rf-footer-inner">
+    <div class="rf-footer-brand">
+      <strong>RANKFOLIO</strong>
+      <span>Cartes de rangs pour joueurs compétitifs</span>
+    </div>
+    <nav class="rf-footer-links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="gallery.html">Galerie</a>
+          </nav>
+    <small class="rf-footer-copy">© 2026 RANKFOLIO. Emblèmes de rang originaux, dessinés pour ce projet. Les noms de jeux appartiennent à leurs éditeurs.</small>
+  </div>
+</footer>
+<script src="assets/js/static-data.js"></script><script src="assets/js/static-patch.js"></script><script src="assets/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Map — Verbeek Hugo</title>
+<meta name="description" content="Student Map recense des actions étudiantes à travers le monde : on les explore sur une carte ou un globe 3D, on filtre par pays, catégorie ou date, et on consulte une médiathèque d’images et de vidéos.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233a46f0'/%3E%3Cpath d='M20 44V20h14a8 8 0 010 16H26' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>try{var d=document.documentElement,t=localStorage.getItem("pf-theme"),z=localStorage.getItem("pf-size");if(t)d.dataset.theme=t;if(z)d.dataset.size=z}catch(e){}</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" data-site="name">Verbeek Hugo</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="../index.html#projets" aria-current="true">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="contenu">
+<section class="d-hero" style="--pa:#2B4BFF">
+  <div class="wrap">
+    <a class="crumb" href="../index.html#projets">← Tous les projets</a>
+    <p class="kind">Carte d’actions étudiantes et médiathèque</p>
+    <h1>Student Map</h1>
+    <p class="lead">Student Map recense des actions étudiantes à travers le monde : on les explore sur une carte ou un globe 3D, on filtre par pays, catégorie ou date, et on consulte une médiathèque d’images et de vidéos.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="../projects/student-map/index.html">Ouvrir le projet</a><a class="btn btn-ghost" href="#apercu">Aperçu interactif</a></div>
+    <dl class="facts"><div><dt>Type</dt><dd>Carte et médiathèque</dd></div><div><dt>Pages</dt><dd>84 (FR et EN)</dd></div><div><dt>Données</dt><dd>Exemples de démonstration</dd></div><div><dt>Version</dt><dd>100 % statique</dd></div></dl>
+  </div>
+</section>
+<div class="wrap" style="--pa:#2B4BFF">
+  <section class="d-section two"><h2>L’objectif</h2><p>Rendre les mobilisations étudiantes faciles à repérer et à explorer, avec un travail de vérification et de modération des contenus.</p></section>
+  <section class="d-section two"><h2>Ce que j’ai réalisé</h2><ul class="list"><li>Carte Leaflet avec regroupement des marqueurs, et globe 3D (globe.gl) au clic.</li><li>Pages ville, pays, catégorie et événement ; recherche et filtres (catégorie, pays, ville, dates, tri).</li><li>Médiathèque d’images et de vidéos intégrées depuis des plateformes externes, avec score d’« aura » et votes.</li><li>Site bilingue français / anglais, commentaires modérés et favoris.</li><li>Comptes, modération et administration (côté serveur).</li></ul></section>
+  <section class="d-section two"><h2>Technologies</h2>
+    <div class="techs">
+      <div><h3>Projet d’origine</h3><p class="note">Ce qui tournait sur serveur.</p><ul class="tags"><li>PHP</li><li>MySQL</li><li>Leaflet</li><li>globe.gl</li><li>JavaScript</li></ul></div>
+      <div><h3>Version du portfolio</h3><p class="note">Ce qui s’ouvre dans le navigateur.</p><ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Leaflet et globe.gl (embarqués)</li></ul></div>
+    </div>
+  </section>
+  <section class="d-section"><h2>Captures</h2>
+    <div class="gallery"><figure class="g-a"><button class="shot" type="button" aria-label="Agrandir : Page d’accueil de Student Map"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>student-map</span></div><img src="../assets/images/sm-1.webp" alt="Page d’accueil de Student Map" width="1400" height="875" decoding="async" loading="lazy"></div></button><figcaption>L’accueil (capture sans fond de carte).</figcaption></figure><figure class="g-m"><button class="shot" type="button" aria-label="Agrandir : Version mobile de l’accueil"><div class="phone"><img src="../assets/images/sm-3.webp" alt="Version mobile de l’accueil" width="780" height="1688" loading="lazy" decoding="async"></div></button><figcaption>Navigation en menu sur téléphone.</figcaption></figure><figure class="g-b"><button class="shot" type="button" aria-label="Agrandir : Médiathèque avec filtres"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>student-map</span></div><img src="../assets/images/sm-2.webp" alt="Médiathèque avec filtres" width="1400" height="875" decoding="async" loading="lazy"></div></button><figcaption>La médiathèque et ses filtres.</figcaption></figure></div>
+  </section>
+  <section class="d-section live" id="apercu"><h2>Aperçu interactif</h2>
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>student-map</span></div>
+      <div class="live-ph"><img src="../assets/images/sm-1.webp" alt="" loading="lazy" decoding="async"><div><p>Le projet se charge ici, sans quitter cette page.</p><button class="btn btn-primary" type="button" data-live="../projects/student-map/index.html">Lancer l’aperçu</button></div></div>
+    </div>
+    <p style="margin-top:1rem"><a href="../projects/student-map/index.html">Ouvrir le projet en plein écran</a></p>
+  </section>
+  <section class="d-section two"><h2>Adapté pour ce portfolio</h2><ul class="list"><li>Les API (villes, événements) sont figées en JSON ; filtres, votes, favoris et commentaires de démonstration fonctionnent dans le navigateur.</li><li>Les données d’exemple du projet (2 événements) sont complétées par 3 événements et 6 images d’exemple, signalés comme démonstration ; les dates sont déplacées dans le futur.</li><li>Leaflet, MarkerCluster, Font Awesome et globe.gl sont embarqués : plus de CDN.</li><li>Connexion, inscription, dépôt de contenu et administration sont retirés.</li></ul></section>
+  <nav class="pn" aria-label="Autres projets">
+    <a href="liggster-shop.html"><small>← Projet précédent</small><strong>Liggster Shop</strong></a>
+    <a href="chanson-de-ta-vie.html"><small>Projet suivant →</small><strong>Chanson de ta vie</strong></a>
+  </nav>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> <span data-site="name">Verbeek Hugo</span></span>
+    <span>Portfolio en HTML, CSS et JavaScript · <a href="../index.html">Retour à l’accueil</a></span>
+  </div>
+</footer>
+<script src="../js/site-config.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/i18n-en.js"></script>
+<script src="../js/prefs.js"></script>
+
+</body>
+</html>

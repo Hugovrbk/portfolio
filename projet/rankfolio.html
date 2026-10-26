@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rankfolio — Verbeek Hugo</title>
+<meta name="description" content="Rankfolio réunit les rangs d’un joueur sur une carte de collection personnalisable : on choisit un modèle et un format, on place ses jeux, puis on exporte ou on partage son profil.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233a46f0'/%3E%3Cpath d='M20 44V20h14a8 8 0 010 16H26' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>try{var d=document.documentElement,t=localStorage.getItem("pf-theme"),z=localStorage.getItem("pf-size");if(t)d.dataset.theme=t;if(z)d.dataset.size=z}catch(e){}</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" data-site="name">Verbeek Hugo</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="../index.html#projets" aria-current="true">Projets</a>
+      <a href="../index.html#apropos">À propos</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="contenu">
+<section class="d-hero" style="--pa:#E8B04A">
+  <div class="wrap">
+    <a class="crumb" href="../index.html#projets">← Tous les projets</a>
+    <p class="kind">Générateur de cartes de rang gaming</p>
+    <h1>Rankfolio</h1>
+    <p class="lead">Rankfolio réunit les rangs d’un joueur sur une carte de collection personnalisable : on choisit un modèle et un format, on place ses jeux, puis on exporte ou on partage son profil.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="../projects/rankfolio/index.html">Ouvrir le projet</a><a class="btn btn-ghost" href="#apercu">Aperçu interactif</a></div>
+    <dl class="facts"><div><dt>Type</dt><dd>Éditeur de cartes</dd></div><div><dt>Jeux</dt><dd>20</dd></div><div><dt>Modèles</dt><dd>15 modèles · 5 formats</dd></div><div><dt>Version</dt><dd>100 % statique</dd></div></dl>
+  </div>
+</section>
+<div class="wrap" style="--pa:#E8B04A">
+  <section class="d-section two"><h2>L’objectif</h2><p>Offrir aux joueurs une carte claire et soignée de leurs rangs, sans logiciel de graphisme : un éditeur en direct et des exports prêts à partager.</p></section>
+  <section class="d-section two"><h2>Ce que j’ai réalisé</h2><ul class="list"><li>Éditeur en direct : rendu sur canevas, 15 modèles, 5 formats et aperçu fidèle de l’export.</li><li>Exports en PNG, JPEG et PDF, avec QR code vers le profil public.</li><li>20 jeux avec leurs rangs et leurs couleurs.</li><li>Tableau de bord, liste « Mes cartes » (modifier, dupliquer, publier, supprimer), galerie publique et profils publics.</li><li>Côté serveur : comptes de jeu vérifiés par API (aucun rang saisi à la main), sessions, jetons CSRF et verrouillage après plusieurs échecs de connexion.</li></ul></section>
+  <section class="d-section two"><h2>Technologies</h2>
+    <div class="techs">
+      <div><h3>Projet d’origine</h3><p class="note">Ce qui tournait sur serveur.</p><ul class="tags"><li>PHP</li><li>MySQL</li><li>JavaScript (Canvas)</li><li>API Riot / Steam</li></ul></div>
+      <div><h3>Version du portfolio</h3><p class="note">Ce qui s’ouvre dans le navigateur.</p><ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript (Canvas)</li><li>PDF généré en JS</li></ul></div>
+    </div>
+  </section>
+  <section class="d-section"><h2>Captures</h2>
+    <div class="gallery"><figure class="g-a"><button class="shot" type="button" aria-label="Agrandir : Éditeur de cartes avec modèles, formats et aperçu en direct"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rankfolio</span></div><img src="../assets/images/rank-1.webp" alt="Éditeur de cartes avec modèles, formats et aperçu en direct" width="1400" height="875" decoding="async" loading="lazy"></div></button><figcaption>L’éditeur : modèles, formats et aperçu en direct.</figcaption></figure><figure class="g-m"><button class="shot" type="button" aria-label="Agrandir : Version mobile de l’accueil"><div class="phone"><img src="../assets/images/rank-3.webp" alt="Version mobile de l’accueil" width="780" height="1688" loading="lazy" decoding="async"></div></button><figcaption>Même interface, adaptée au téléphone.</figcaption></figure><figure class="g-b"><button class="shot" type="button" aria-label="Agrandir : Page d’accueil de Rankfolio"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rankfolio</span></div><img src="../assets/images/rank-2.webp" alt="Page d’accueil de Rankfolio" width="1400" height="875" decoding="async" loading="lazy"></div></button><figcaption>L’accueil et ses 20 jeux.</figcaption></figure></div>
+  </section>
+  <section class="d-section live" id="apercu"><h2>Aperçu interactif</h2>
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rankfolio</span></div>
+      <div class="live-ph"><img src="../assets/images/rank-1.webp" alt="" loading="lazy" decoding="async"><div><p>Le projet se charge ici, sans quitter cette page.</p><button class="btn btn-primary" type="button" data-live="../projects/rankfolio/index.html">Lancer l’aperçu</button></div></div>
+    </div>
+    <p style="margin-top:1rem"><a href="../projects/rankfolio/index.html">Ouvrir le projet en plein écran</a></p>
+  </section>
+  <section class="d-section two"><h2>Adapté pour ce portfolio</h2><ul class="list"><li>Le site est rejoué avec son compte et sa carte de démonstration, puis figé en 7 pages HTML.</li><li>La sauvegarde, la liste « Mes cartes » (dupliquer, supprimer, publier) et l’export PDF fonctionnent dans le navigateur.</li><li>Les emblèmes de rang des éditeurs de jeux, protégés, sont remplacés par 35 emblèmes originaux dessinés pour ce projet.</li><li>Connexion, inscription, liaison de comptes de jeu par API et administration sont retirées.</li></ul></section>
+  <nav class="pn" aria-label="Autres projets">
+    <a href="clipmap.html"><small>← Projet précédent</small><strong>ClipMap</strong></a>
+    <a href="liggster-shop.html"><small>Projet suivant →</small><strong>Liggster Shop</strong></a>
+  </nav>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> <span data-site="name">Verbeek Hugo</span></span>
+    <span>Portfolio en HTML, CSS et JavaScript · <a href="../index.html">Retour à l’accueil</a></span>
+  </div>
+</footer>
+<script src="../js/site-config.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/i18n-en.js"></script>
+<script src="../js/prefs.js"></script>
+
+</body>
+</html>

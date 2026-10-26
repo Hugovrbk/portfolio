@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Plateforme mondiale des actions étudiantes">
+    <meta name="keywords" content="étudiants, actions, manifestations, carte mondiale, vidéos, clips, mobilisations">
+    <meta name="author" content="Student Map Team">
+
+    <!-- Open Graph / Meta Tags pour les réseaux sociaux -->
+    <meta property="og:site_name" content="Student Map">
+    <meta property="og:title" content="Student Map">
+    <meta property="og:description" content="Plateforme mondiale des actions étudiantes">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Map">
+    <meta name="twitter:description" content="Plateforme mondiale des actions étudiantes">
+
+    <title>Conditions d&#039;utilisation - Student Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/map.css">
+    <link rel="stylesheet" href="../../assets/css/media.css">
+
+    <!-- Leaflet Marker Cluster -->
+    <link rel="stylesheet" href="../../assets/vendor/markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../../assets/vendor/markercluster/MarkerCluster.Default.css">
+
+    <!-- Google Fonts -->
+    <link rel="preload" href="../../assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../assets/fonts/source-serif-4-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#ECEEF4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B0F26" media="(prefers-color-scheme: dark)">
+
+    <!-- JavaScript -->
+    <script src="../../assets/vendor/leaflet/leaflet.js"></script>
+    <script src="../../assets/vendor/markercluster/leaflet.markercluster.js"></script>
+
+    <!-- Configuration globale JavaScript -->
+    <script>
+        window.STUDENT_MAP_CONFIG = {
+            baseUrl: '', assetBase: '../../',
+            csrfToken: '',
+            language: 'en',
+            isLoggedIn: false,
+            userRole: 'guest',
+            map: {
+                defaultZoom: 3,
+                minZoom: 2,
+                maxZoom: 18,
+                center: [48.8566, 2.3522]
+            }
+        };
+    </script>
+<script src="../../assets/js/static-data.js"></script><script src="../../assets/js/static-patch.js" defer></script></head>
+<body class="main-page">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="../index.html" class="navbar-brand">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">
+                        <span class="logo-title">STUDENT</span>
+                        <span class="logo-subtitle">MAP</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu principal -->
+            <div class="navbar-menu">
+                <ul class="nav-list">
+                    <li class="nav-item ">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../explorer.html" class="nav-link">
+                            <i class="fas fa-compass"></i>
+                            <span>Explore</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../actions.html" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Upcoming actions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../media.html" class="nav-link">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Media library</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../clips.html" class="nav-link">
+                            <i class="fas fa-video"></i>
+                            <span>Videos</span>
+                        </a>
+                    </li>
+
+                    <!-- Menu déroulant Catégories -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-tags"></i>
+                            <span>Categories</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-manifestation.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #e74c3c">
+                                        <span class="category-dot" style="background-color: #e74c3c"></span>
+                                        Demonstration                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-blocus.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #f39c12">
+                                        <span class="category-dot" style="background-color: #f39c12"></span>
+                                        Blockade                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-list"></i>
+                                    All categories                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Menu déroulant Pays -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span>Countries</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-countries">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-BE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇧🇪</span>
+                                        Belgium                                        <span class="country-count">
+                                            5                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-US.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇺🇸</span>
+                                        United States                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-FR.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇫🇷</span>
+                                        France                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-DE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇩🇪</span>
+                                        Germany                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-globe-americas"></i>
+                                    All countries                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="../about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu utilisateur -->
+            <div class="navbar-user">
+                                    <div class="auth-buttons">
+                    </div>
+                
+                <div class="language-switch" aria-label="Site language">
+                    <a href="../../legal/terms.html" lang="fr" >FR</a>
+                    <a href="terms.html" lang="en" aria-current="page">EN</a>
+                </div>
+
+                <!-- Bouton mobile -->
+                <button class="navbar-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">
+                    <span class="logo-title">STUDENT</span>
+                    <span class="logo-subtitle">MAP</span>
+                </span>
+            </div>
+            <div class="language-switch mobile-language-switch" aria-label="Site language">
+                <a href="../../legal/terms.html" lang="fr" >Français</a>
+                <a href="terms.html" lang="en" aria-current="page">English</a>
+            </div>
+            <button class="mobile-menu-close" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="../index.html" class="mobile-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../explorer.html" class="mobile-nav-link">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../actions.html" class="mobile-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Upcoming actions</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../media.html" class="mobile-nav-link">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Media library</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../clips.html" class="mobile-nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-tags"></i>
+                        <span>Categories</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Demonstration                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blockade                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>Countries</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-BE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇧🇪</span>
+                                    Belgium                                    <span class="country-count">5</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-US.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇺🇸</span>
+                                    United States                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-FR.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇫🇷</span>
+                                    France                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-DE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇩🇪</span>
+                                    Germany                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item">
+                    <a href="../about.html" class="mobile-nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Messages flash -->
+    <div class="flash-messages">
+            </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="mobile-menu-overlay"></div>
+<!-- Section héro -->
+<section class="legal-hero">
+    <div class="legal-hero-container">
+        <div class="legal-hero-content">
+            <h1 class="legal-hero-title">
+                <i class="fas fa-file-contract"></i>
+                Conditions d'utilisation
+            </h1>
+            <p class="legal-hero-description">
+                Les règles régissant l'utilisation de la plateforme Student Map
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contenu principal -->
+<section class="legal-content">
+    <div class="legal-container">
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-info-circle"></i>
+                Introduction
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Bienvenue sur <strong>Student Map</strong> ("nous", "notre", "nos"). Ces conditions d'utilisation ("Conditions") régissent votre accès
+                    et votre utilisation de notre plateforme, y compris notre site web, nos services et nos applications (collectivement, le "Service").
+                </p>
+                <p>
+                    En accédant ou en utilisant le Service, vous acceptez d'être lié par ces Conditions. Si vous n'acceptez pas ces Conditions,
+                    vous ne devez pas accéder ou utiliser le Service.
+                </p>
+                <p>
+                    Ces Conditions constituent un accord juridique entre vous et Student Map. Elles s'appliquent à tous les visiteurs,
+                    utilisateurs et autres personnes qui accèdent au Service ou l'utilisent.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-user-check"></i>
+                Éligibilité
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Pour utiliser le Service, vous devez :
+                </p>
+                <ul>
+                    <li>Avoir au moins 13 ans ;</li>
+                    <li>Ne pas être une personne qui est interdite de recevoir des services conformément aux lois applicables ;</li>
+                    <li>Ne pas être un concurrent de Student Map ou être employé ou engagé par un concurrent ;</li>
+                    <li>Accepter ces Conditions.</li>
+                </ul>
+                <p>
+                    En utilisant le Service, vous représentez et garantissez que vous remplissez toutes les conditions d'éligibilité énoncées ci-dessus.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-user-plus"></i>
+                Création de compte
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Pour accéder à certaines fonctionnalités du Service, vous devez créer un compte ("Compte").
+                    Lorsque vous créez un Compte, vous devez fournir des informations exactes, complètes et à jour.
+                </p>
+                <p>
+                    Vous êtes responsable de la sécurité de votre Compte et de toute activité qui se produit sous votre Compte.
+                    Vous devez informer Student Map immédiatement de tout accès non autorisé à votre Compte.
+                </p>
+                <p>
+                    Vous pouvez utiliser le Service uniquement pour des utilisations personnelles, non commerciales.
+                    Vous ne pouvez pas créer un Compte avec un faux nom ou au nom d'une autre personne dont vous n'êtes pas autorisé à représenter.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-lock"></i>
+                Droits et restrictions
+            </h2>
+            <div class="legal-section-content">
+                <h3>Vos droits</h3>
+                <p>
+                    Sous réserve des restrictions énoncées dans ces Conditions, nous vous accordons une licence limitée, non exclusive,
+                    non transférable, révocable pour :
+                </p>
+                <ul>
+                    <li>Accéder et utiliser le Service à des fins personnelles, non commerciales ;</li>
+                    <li>Accéder et utiliser tout contenu disponible sur le Service ;</li>
+                    <li>Publier, partager et commenter du contenu sur le Service, sous réserve des règles de contenu énoncées ci-dessous.</li>
+                </ul>
+
+                <h3>Restrictions</h3>
+                <p>
+                    Vous acceptez de ne PAS :
+                </p>
+                <ul>
+                    <li>Copier, modifier, distribuer, vendre ou louer toute partie du Service ou de son contenu ;</li>
+                    <li>Utiliser le Service à des fins commerciales ou pour promouvoir des activités commerciales ;</li>
+                    <li>Accéder ou utiliser le Service d'une manière qui viole les lois ou réglementations applicables ;</li>
+                    <li>Tenter de contourner les mesures de sécurité ou d'accès du Service ;</li>
+                    <li>Interférer avec ou perturber le Service ou les serveurs ou réseaux connectés au Service ;</li>
+                    <li>Utiliser le Service pour transmettre des virus ou tout autre code malveillant ;</li>
+                    <li>Collecter ou stocker des informations personnelles concernant d'autres utilisateurs ;</li>
+                    <li>Utiliser le Service pour envoyer des communications non sollicitées ou des pourriels ;</li>
+                    <li>Faire semblant d'être affilié à Student Map ou à l'une de ses filiales ;</li>
+                    <li>Utiliser le Service pour toute activité illégale, frauduleuse ou nuisible.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-pen"></i>
+                Contenu généré par les utilisateurs
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Le Service permet aux utilisateurs de publier, de partager et de commenter du contenu ("Contenu Utilisateur").
+                    Vous êtes entièrement responsable de tout Contenu Utilisateur que vous publiez, partagez ou commentez sur le Service.
+                </p>
+
+                <h3>Droits sur le Contenu Utilisateur</h3>
+                <p>
+                    Vous conservez tous vos droits de propriété intellectuelle sur le Contenu Utilisateur que vous publiez sur le Service.
+                    En publiant du Contenu Utilisateur sur le Service, vous nous accordez une licence mondiale, non exclusive, libre de redevances,
+                    transférable, sous-licenciable, perpétuelle et irrévocable pour utiliser, copier, modifier, adapter, traduire, distribuer,
+                    publier, afficher et traiter ce Contenu Utilisateur dans le monde entier et pour toute médiatisation (médias existants ou futurs).
+                </p>
+
+                <h3>Règles de contenu</h3>
+                <p>
+                    En publiant du Contenu Utilisateur sur le Service, vous déclarez et garantissez que :
+                </p>
+                <ul>
+                    <li>Vous avez le droit de publier ce Contenu Utilisateur ;</li>
+                    <li>Le Contenu Utilisateur ne viole pas les droits de propriété intellectuelle, de confidentialité, de publicité ou autres droits de tiers ;</li>
+                    <li>Le Contenu Utilisateur ne contient pas de matériel illégal, diffamatoire, obscène, pornographique, menaçante, harcelant,
+                        haineux, raciste, ethnique, offensant, incitant à la violence ou autre matière inappropriée ;</li>
+                    <li>Le Contenu Utilisateur ne contient pas de virus, de logiciels malveillants ou tout autre code informatique nuisible ;</li>
+                    <li>Le Contenu Utilisateur ne contient pas d'informations personnelles concernant des tiers ;</li>
+                    <li>Le Contenu Utilisateur ne viole pas les présentes Conditions ou toute loi ou réglementation applicable.</li>
+                </ul>
+                <p>
+                    Student Map se réserve le droit de supprimer tout Contenu Utilisateur qui, selon son jugement,
+                    viole ces règles de contenu ou est autrement inapproprié.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-flag"></i>
+                Signalement de contenu
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Si vous trouvez un Contenu Utilisateur qui, selon vous, viole ces Conditions ou est autrement inapproprié,
+                    vous pouvez le signaler en utilisant la fonctionnalité de signalement disponible sur le Service.
+                </p>
+                <p>
+                    Nous examinerons votre signalement et prendrons les mesures appropriées, y compris la suppression du Contenu Utilisateur
+                    et/ou la suspension du Compte de l'utilisateur qui a publié le Contenu Utilisateur.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-shield-alt"></i>
+                Exclusion de responsabilité
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Le Service est fourni "tel quel" et "selon disponibilité", sans garantie d'aucune sorte, expresse ou implicite.
+                    Student Map ne garantit pas que le Service :
+                </p>
+                <ul>
+                    <li>Répondra à vos besoins ou attentes ;</li>
+                    <li>Seront ininterrompu, sécurisé ou exempt d'erreurs ;</li>
+                    <li>Les résultats obtenus en utilisant le Service seront exacts ou fiables ;</li>
+                    <li>La qualité du Service répondra à vos attentes.</li>
+                </ul>
+                <p>
+                    Student Map ne sera pas responsable de tout dommage direct, indirect, accessoire, spécial ou consécutif résultant de :
+                </p>
+                <ul>
+                    <li>L'utilisation ou l'impossibilité d'utiliser le Service ;</li>
+                    <li>Le coût de l'obtention de biens ou services de remplacement ;</li>
+                    <li>L'accès non autorisé ou la modification de vos données de transmission ;</li>
+                    <li>Toute autre question relative au Service.</li>
+                </ul>
+                <p>
+                    Dans la mesure maximale permise par la loi applicable, Student Map ne sera pas responsable de tout dommage,
+                    perte de données ou autre préjudice résultant de l'utilisation du Service.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-gavel"></i>
+                Indemnisation
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Vous acceptez d'indemniser, de défendre et de tenir Student Map et ses affiliés, directeurs, dirigeants, employés et agents
+                    (collectivement, les "Parties Indemnisées") indemnes de toute réclamation, responsabilité, dommage, perte ou dépense,
+                    y compris les frais d'avocat raisonnables, résultant de ou liés à :
+                </p>
+                <ul>
+                    <li>Votre accès ou utilisation du Service ;</li>
+                    <li>Votre violation de ces Conditions ;</li>
+                    <li>Votre violation de tout droit de tiers, y compris les droits de propriété intellectuelle ;</li>
+                    <li>Toute réclamation que votre Contenu Utilisateur ou votre utilisation du Service a causé des dommages à un tiers.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-ban"></i>
+                Limitation de responsabilité
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Dans la mesure maximale permise par la loi applicable, la responsabilité totale de Student Map et de ses fournisseurs
+                    envers vous pour toute réclamation résultant de ou liée à ces Conditions ou votre utilisation du Service,
+                    quelle qu'en soit la cause et quelle que soit la théorie de responsabilité, ne dépassera pas le montant que vous avez payé
+                    à Student Map pour l'utilisation du Service au cours des douze (12) mois précédant l'événement donnant lieu à la réclamation.
+                </p>
+                <p>
+                    Les limitations de responsabilité énoncées dans cette section s'appliqueront même si les dommages étaient prévisibles
+                    ou si Student Map a été informé de la possibilité de tels dommages.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-edit"></i>
+                Mises à jour des Conditions
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous pouvons mettre à jour ces Conditions de temps à autre. Nous vous informerons de tout changement en publiant
+                    les nouvelles Conditions sur cette page.
+                </p>
+                <p>
+                    Nous vous conseillons de consulter ces Conditions régulièrement pour toute modification.
+                    Les modifications apportées à ces Conditions entreront en vigueur dès leur publication sur cette page.
+                </p>
+                <p>
+                    Votre utilisation continue du Service après la publication des Conditions modifiées constitue votre acceptation
+                    des Conditions modifiées.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Résiliation
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous pouvons suspendre ou résilier votre accès au Service, sans préavis ni responsabilité,
+                    pour toute raison, y compris, sans s'y limiter, si vous violez ces Conditions.
+                </p>
+                <p>
+                    Vous pouvez résilier votre Compte à tout moment en contactant Student Map ou en utilisant les fonctionnalités
+                    de suppression de compte disponibles sur le Service.
+                </p>
+                <p>
+                    Après la résiliation, toutes les provisions de ces Conditions qui, par leur nature, doivent survivre à la résiliation,
+                    survivront, y compris, sans s'y limiter, les sections sur l'indemnisation, la limitation de responsabilité,
+                    l'exclusion de responsabilité et la loi applicable.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-balance-scale"></i>
+                Loi applicable
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Ces Conditions seront régies et interprétées conformément aux lois de la France, sans égard à ses principes de conflit de lois.
+                </p>
+                <p>
+                    Tout litige découlant de ou lié à ces Conditions ou votre utilisation du Service sera soumis à la compétence exclusive
+                    des tribunaux de Paris, France.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Si vous avez des questions concernant ces Conditions, n'hésitez pas à nous contacter :
+                </p>
+                <ul>
+                    <li>Par email : <a href="mailto:legal@studentmap.local">legal@studentmap.local</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    </div>
+    <!-- Fin du contenu principal -->
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <!-- Section statistiques -->
+        <div class="footer-stats">
+            <div class="footer-stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Événements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Clips vidéo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Villes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Pays</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal du pied de page -->
+        <div class="footer-main">
+            <div class="footer-container">
+                <!-- Section À propos -->
+                <div class="footer-section about-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="footer-logo-text">
+                            <span class="footer-logo-title">STUDENT</span>
+                            <span class="footer-logo-subtitle">MAP</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        Plateforme mondiale des actions étudiantes est une plateforme internationale dédiée à la découverte
+                        et au suivi des actions, manifestations et mobilisations étudiantes à travers le monde.
+                    </p>
+                    <div class="footer-cta">
+                        <a href="../explorer.html" class="btn btn-outline-light">
+                            <i class="fas fa-compass"></i>
+                            Explorer la carte
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section Liens rapides -->
+                <div class="footer-section links-section">
+                    <h3 class="footer-section-title">Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="../index.html" class="footer-link">
+                                <i class="fas fa-home"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer.html" class="footer-link">
+                                <i class="fas fa-compass"></i>
+                                Explorer
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../actions.html" class="footer-link">
+                                <i class="fas fa-calendar-check"></i>
+                                Actions à venir
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../media.html" class="footer-link">
+                                <i class="fas fa-photo-video"></i>
+                                Médiathèque
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../clips.html" class="footer-link">
+                                <i class="fas fa-video"></i>
+                                Clips vidéo
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-date-desc.html" class="footer-link">
+                                <i class="fas fa-clock"></i>
+                                Récents
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-views-desc.html" class="footer-link">
+                                <i class="fas fa-eye"></i>
+                                Populaires
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section Catégories -->
+                <div class="footer-section categories-section">
+                    <h3 class="footer-section-title">Catégories</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="footer-link"
+                                   style="--category-color: #e74c3c">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="footer-link"
+                                   style="--category-color: #f39c12">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Pages légales -->
+                <div class="footer-section legal-section">
+                    <h3 class="footer-section-title">Informations légales</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../about.html" class="footer-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    À propos                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="privacy.html" class="footer-link">
+                                    <i class="fas fa-lock"></i>
+                                    Politique de confidentialité                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="terms.html" class="footer-link">
+                                    <i class="fas fa-file-contract"></i>
+                                    Conditions d&#039;utilisation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="cookies.html" class="footer-link">
+                                    <i class="fas fa-cookie-bite"></i>
+                                    Gestion des cookies                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Réseaux sociaux -->
+                <div class="footer-section social-section">
+                    <h3 class="footer-section-title">Suivez-nous</h3>
+                    <div class="social-links">
+                                                    <a href="#"
+                               class="social-link"
+                               title="Twitter"
+                               style="--social-color: #1DA1F2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Facebook"
+                               style="--social-color: #3B5998">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Instagram"
+                               style="--social-color: #E1306C">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="YouTube"
+                               style="--social-color: #FF0000">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="LinkedIn"
+                               style="--social-color: #0077B5">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                                            </div>
+                    <div class="social-text">
+                        <p>Rejoignez notre communauté pour rester informé des dernières actions étudiantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre de copyright -->
+        <div class="footer-copyright">
+            <div class="footer-copyright-container">
+                <div class="copyright-text">
+                    &copy; 2026 <strong>Student Map</strong>.
+                    Tous droits réservés.
+                </div>
+                <div class="copyright-links">
+                    <span class="version">Version 1.0.0</span>
+                                            <span class="debug-badge">Mode développement</span>
+                                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts JavaScript -->
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/map.js"></script>
+    <script src="../../assets/js/media.js"></script>
+
+    <!-- Scripts spécifiques à la page -->
+    <!-- Scripts de l'administration -->
+    
+    <!-- Google Analytics (optionnel - à configurer) -->
+    
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Verbeek Hugo</title>
+<meta name="description" content="Portfolio de développeur web : 8 projets ouverts et cliquables, d’une carte de clips Twitch à un éditeur de cartes de rang, une boutique de collection, un calendrier d’actions étudiantes, des boutiques, des sites vitrines et le site d’un club de football.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f4f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1220" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:site_name" content="Verbeek Hugo">
+<meta property="og:title" content="Portfolio — Verbeek Hugo, développeur web">
+<meta property="og:description" content="Huit projets ouverts et cliquables : cartes interactives, boutiques, sites vitrines et site de club de football.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233a46f0'/%3E%3Cpath d='M20 44V20h14a8 8 0 010 16H26' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>try{var r=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(!r&&(/[?&]intro=1/.test(location.search)||(!sessionStorage.getItem("portfolioIntro")&&!location.hash)))document.documentElement.classList.add("has-intro")}catch(e){}</script>
+<script>setTimeout(function(){var r=document.documentElement;if(r.classList.contains("has-intro")&&!window.__introStarted){r.classList.remove("has-intro");var i=document.getElementById("intro");if(i)i.remove()}},4000)</script>
+<script>try{var d=document.documentElement,t=localStorage.getItem("pf-theme"),z=localStorage.getItem("pf-size");if(t)d.dataset.theme=t;if(z)d.dataset.size=z}catch(e){}</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="intro" id="intro">
+  <div class="intro__waves"></div>
+  <div class="intro__inner">
+    <svg class="intro__logo" id="introLogo" viewBox="0 0 900 180" role="img" aria-label="Verbeek Hugo">
+      <defs><clipPath id="introClip"><path id="introWave" d="M0 0H900V180H0Z"/></clipPath></defs>
+      <text class="logo-outline" id="introOutline" x="450" y="130" text-anchor="middle">Verbeek Hugo.</text>
+      <text class="logo-fill" id="introFill" x="450" y="130" text-anchor="middle" clip-path="url(#introClip)">Verbeek Hugo.</text>
+    </svg>
+    <p class="intro__tag" id="introTag">développeur web</p>
+  </div>
+  <p class="intro__hint" id="introHint"><span>Faites défiler</span><i></i></p>
+  <button class="intro__skip" id="introSkip" type="button">Passer</button>
+</div>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" data-site="name">Verbeek Hugo</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#projets">Projets</a>
+      <a href="index.html#apropos">À propos</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="contenu">
+<section class="hero" id="accueil">
+  <canvas class="hero-tex" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <h1>Huit projets, de la carte de clips au club de foot.</h1>
+      <p class="lead">Je suis <strong data-site="name">Verbeek Hugo</strong>, <span data-site="role">développeur web</span>. Chacun de ces projets s’ouvre directement dans votre navigateur : cliquez, explorez, revenez.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#projets">Voir les projets</a>
+        <a class="btn btn-ghost" href="#contact">Me contacter</a>
+      </div>
+    </div>
+    <div class="fan" aria-label="Aperçu de quatre projets">
+<a href="projet/clipmap.html" style="left:0;top:0;--r:-4deg;--z:1;--i:0;--pa:#7C4DFF" aria-label="Voir le projet ClipMap"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>clipmap</span></div><img src="assets/images/clip-1.webp" alt="Aperçu de ClipMap" width="1400" height="875" decoding="async"></div></a>
+<a href="projet/rankfolio.html" style="left:37%;top:9%;--r:3deg;--z:2;--i:1;--pa:#E8B04A" aria-label="Voir le projet Rankfolio"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rankfolio</span></div><img src="assets/images/rank-1.webp" alt="Aperçu de Rankfolio" width="1400" height="875" decoding="async"></div></a>
+<a href="projet/liggster-shop.html" style="left:3%;top:46%;--r:2.5deg;--z:3;--i:2;--pa:#FFD000" aria-label="Voir le projet Liggster Shop"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>liggster-shop</span></div><img src="assets/images/lig-1.webp" alt="Aperçu de Liggster Shop" width="1400" height="875" decoding="async"></div></a>
+<a href="projet/student-map.html" style="left:38%;top:55%;--r:-3deg;--z:4;--i:3;--pa:#2B4BFF" aria-label="Voir le projet Student Map"><div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>student-map</span></div><img src="assets/images/sm-1.webp" alt="Aperçu de Student Map" width="1400" height="875" decoding="async"></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projets" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Mes projets</h2>
+      <div class="filters" role="group" aria-label="Filtrer les projets"><button type="button" class="chip is-on" data-filter="all" aria-pressed="true">Tous</button><button type="button" class="chip" data-filter="app" aria-pressed="false">Applications</button><button type="button" class="chip" data-filter="shop" aria-pressed="false">Boutiques</button><button type="button" class="chip" data-filter="site" aria-pressed="false">Sites</button></div>
+    </div>
+    <p class="section-sub">Huit réalisations, toutes consultables en ligne. Ce sont des versions statiques de démonstration : le projet d’origine (PHP, MySQL…) est détaillé sur chaque page.</p>
+  </div>
+<section class="tri" id="restaurants" aria-label="TM Restaurant, trois niveaux" style="--pa:#B8902F">
+  <div class="wrap tri-intro">
+    <p class="kind">Sites vitrines pour restaurants · 3 niveaux</p>
+    <h3>TM Restaurant</h3>
+    <p>Une plateforme de sites vitrines pour restaurants, en trois niveaux de finition. Faites défiler : chaque niveau se déplie à son tour.</p>
+    <div class="btn-row"><a class="btn btn-ghost" href="projet/tm-restaurant.html">Voir les détails</a></div>
+  </div>
+  <div class="tri-track"><div class="tri-stage"><article class="tri-band" data-tier="normale" style="--b-bg:#f3ead3;--b-fg:#1c1511"><header class="tri-head"><span class="tri-num">Niveau 1</span><span class="tri-lab">NORMALE</span><h4>Ming Wok</h4><span class="tri-cu">Cuisine sichuanaise et cantonaise</span><a class="tri-open" href="projects/tm-restaurant/normale/index.html">Ouvrir le site <span aria-hidden="true">→</span></a></header><div class="tri-body"><div class="tri-static"><div class="mini mini--normale" aria-hidden="true"><div class="mini-top"></div><div class="mini-hd"><i>明</i><b>Ming Wok</b></div><div class="mini-main"><small>Cuisine sichuanaise et cantonaise</small><strong>Woks minute, nouilles tirées à la main</strong><span class="mini-btn">Voir la carte</span><ul><li><span>Poulet Kung Pao</span><em>17,50 €</em></li><li><span>Bœuf sauce huître</span><em>19,00 €</em></li><li><span>Chow Mein au poulet</span><em>15,00 €</em></li></ul></div></div></div><iframe data-src="projects/tm-restaurant/normale/index.html" title="Aperçu : Ming Wok (NORMALE)" tabindex="-1" aria-hidden="true"></iframe><a class="tri-hit" href="projects/tm-restaurant/normale/index.html" tabindex="-1" aria-hidden="true"></a></div></article><article class="tri-band" data-tier="mieux" style="--b-bg:#ffd23f;--b-fg:#141414"><header class="tri-head"><span class="tri-num">Niveau 2</span><span class="tri-lab">MIEUX</span><h4>Cosecha</h4><span class="tri-cu">Taquería</span><a class="tri-open" href="projects/tm-restaurant/mieux/index.html">Ouvrir le site <span aria-hidden="true">→</span></a></header><div class="tri-body"><div class="tri-static"><div class="mini mini--mieux" aria-hidden="true"><div class="mini-top"></div><div class="mini-hd"><i>C</i><b>Cosecha</b></div><div class="mini-main"><strong>Tacos, mezcal et salsas maison</strong><span class="mini-btn">Voir la carte</span><div class="mini-cards"><div><b>Al Pastor</b><em>12,50 €</em></div><div><b>Barbacoa de res</b><em>13,50 €</em></div></div></div></div></div><iframe data-src="projects/tm-restaurant/mieux/index.html" title="Aperçu : Cosecha (MIEUX)" tabindex="-1" aria-hidden="true"></iframe><a class="tri-hit" href="projects/tm-restaurant/mieux/index.html" tabindex="-1" aria-hidden="true"></a></div></article><article class="tri-band" data-tier="deluxe" style="--b-bg:#111111;--b-fg:#f4ecd8"><header class="tri-head"><span class="tri-num">Niveau 3</span><span class="tri-lab">DELUXE</span><h4>L’Alchimie</h4><span class="tri-cu">Cuisine d’auteur · FR / EN</span><a class="tri-open" href="projects/tm-restaurant/deluxe/index.html">Ouvrir le site <span aria-hidden="true">→</span></a></header><div class="tri-body"><div class="tri-static"><img class="mini-deluxe" src="assets/images/tm-1.webp" alt="" width="1400" height="875" decoding="async" loading="lazy"></div><iframe data-src="projects/tm-restaurant/deluxe/index.html" title="Aperçu : L’Alchimie (DELUXE)" tabindex="-1" aria-hidden="true"></iframe><a class="tri-hit" href="projects/tm-restaurant/deluxe/index.html" tabindex="-1" aria-hidden="true"></a></div></article></div></div>
+</section>
+  <div class="wrap">
+<article class="proj alt" data-cat="app" style="--pa:#7C4DFF">
+  <a class="proj-visual" href="projects/clipmap/index.html" aria-label="Ouvrir le projet : ClipMap">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>clipmap</span></div><img src="assets/images/clip-1.webp" alt="Capture de ClipMap" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Carte communautaire de clips Twitch</p>
+    <h3>ClipMap</h3>
+    <p>Une carte qui donne un lieu à chaque clip de streamer, avec un jeu « Devine où c’est », des enquêtes, de l’XP et un classement.</p>
+    <ul class="tags" aria-label="Technologies"><li>JavaScript</li><li>MapLibre GL</li><li>Esri satellite</li><li>Twitch</li><li>localStorage</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/clipmap/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/clipmap.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj" data-cat="app" style="--pa:#E8B04A">
+  <a class="proj-visual" href="projects/rankfolio/index.html" aria-label="Ouvrir le projet : Rankfolio">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rankfolio</span></div><img src="assets/images/rank-1.webp" alt="Capture de Rankfolio" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Générateur de cartes de rang gaming</p>
+    <h3>Rankfolio</h3>
+    <p>Crée une carte de collection avec tes rangs : 20 jeux, 15 modèles, 5 formats, export PNG, JPEG et PDF, galerie et profil public.</p>
+    <ul class="tags" aria-label="Technologies"><li>JavaScript</li><li>Canvas</li><li>PHP</li><li>MySQL</li><li>Export PDF</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/rankfolio/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/rankfolio.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj alt" data-cat="shop" style="--pa:#FFD000">
+  <a class="proj-visual" href="projects/liggster-shop/index.html" aria-label="Ouvrir le projet : Liggster Shop">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>liggster-shop</span></div><img src="assets/images/lig-1.webp" alt="Capture de Liggster Shop" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Boutique de cartes à collectionner</p>
+    <h3>Liggster Shop</h3>
+    <p>Une boutique de cartes gradées, de cartes à l’unité et de boosters, avec filtres, panier, favoris et fiches produit.</p>
+    <ul class="tags" aria-label="Technologies"><li>PHP</li><li>MySQL</li><li>JavaScript</li><li>CSS</li><li>localStorage</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/liggster-shop/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/liggster-shop.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj" data-cat="app" style="--pa:#2B4BFF">
+  <a class="proj-visual" href="projects/student-map/index.html" aria-label="Ouvrir le projet : Student Map">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>student-map</span></div><img src="assets/images/sm-1.webp" alt="Capture de Student Map" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Carte d’actions étudiantes et médiathèque</p>
+    <h3>Student Map</h3>
+    <p>Un calendrier mondial d’actions étudiantes sur carte et globe 3D, avec médiathèque, filtres, votes et site bilingue FR / EN.</p>
+    <ul class="tags" aria-label="Technologies"><li>PHP</li><li>MySQL</li><li>Leaflet</li><li>JavaScript</li><li>FR / EN</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/student-map/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/student-map.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj alt" data-cat="shop" style="--pa:#C9A84C">
+  <a class="proj-visual" href="projects/chanson-de-ta-vie/index.html" aria-label="Ouvrir le projet : Chanson de ta vie">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>chanson-de-ta-vie</span></div><img src="assets/images/chan-1.webp" alt="Capture de Chanson de ta vie" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Boutique de cadeaux musicaux</p>
+    <h3>Chanson de ta vie</h3>
+    <p>Une boutique de chansons personnalisées à offrir, avec une commande en quatre étapes et un univers visuel inspiré du vinyle.</p>
+    <ul class="tags" aria-label="Technologies"><li>PHP</li><li>MySQL</li><li>Mollie</li><li>JavaScript</li><li>CSS</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/chanson-de-ta-vie/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/chanson-de-ta-vie.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj" data-cat="app" style="--pa:#00C46A">
+  <a class="proj-visual" href="projects/camp-nou-parc-des-princes/index.html" aria-label="Ouvrir le projet : Camp Nou → Parc des Princes">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>tout-droit</span></div><img src="assets/images/camp-1.webp" alt="Capture de Camp Nou → Parc des Princes" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Site de suivi d’un défi à vélo</p>
+    <h3>Camp Nou → Parc des Princes</h3>
+    <p>Carte interactive du défi « Tout droit » : Barcelone–Paris à vélo, étape par étape, avec 1 443 clips Twitch classés par jour.</p>
+    <ul class="tags" aria-label="Technologies"><li>JavaScript</li><li>Leaflet</li><li>OSRM</li><li>API Twitch</li><li>HTML / CSS</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/camp-nou-parc-des-princes/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/camp-nou-parc-des-princes.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+<article class="proj alt" data-cat="site" style="--pa:#C8102E">
+  <a class="proj-visual" href="projects/belgique-miaou/index.html" aria-label="Ouvrir le projet : RFC Liège">
+    <div class="frame"><div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>rfc-liege</span></div><img src="assets/images/belg-1.webp" alt="Capture de Belgique Miaou — RFC Liège" width="1400" height="875" decoding="async" loading="lazy"></div>
+  </a>
+  <div class="proj-body">
+    <p class="kind">Site de club de football</p>
+    <h3>Belgique Miaou — RFC Liège</h3>
+    <p>Le site du Royal Football Club de Liège : 44 pages, classement, calendrier, résultats et espaces pour les supporters, les jeunes et les partenaires.</p>
+    <ul class="tags" aria-label="Technologies"><li>PHP</li><li>MySQL</li><li>JavaScript</li><li>CSS</li><li>CMS sur mesure</li></ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="projects/belgique-miaou/index.html">Ouvrir le projet</a>
+      <a class="btn btn-ghost" href="projet/belgique-miaou.html">Voir les détails</a>
+    </div>
+  </div>
+</article>
+  </div>
+</section>
+
+<section class="section" id="apropos" style="border-top:1px solid var(--line)">
+  <div class="wrap about">
+    <div>
+      <h2>À propos</h2>
+      <p>Je suis <span data-site="name">Verbeek Hugo</span>, <span data-site="role">développeur web</span>. J’aime transformer une idée en application que l’on peut vraiment utiliser : une carte de clips, un éditeur de cartes de rang, une boutique de collection, un calendrier d’actions étudiantes, mais aussi une boutique musicale, la vitrine d’un restaurant, un défi à vélo et le site d’un club de football.</p>
+      <p>Mes projets combinent HTML, CSS et JavaScript côté navigateur, et PHP avec MySQL côté serveur. Pour ce portfolio, je les ai adaptés en sites statiques : ils s’ouvrent sans installation, avec leur design et leurs contenus d’origine.</p>
+    </div>
+    <dl class="skills">
+      <div><dt>Front-end</dt><dd>HTML, CSS, JavaScript, Canvas, responsive, animations au défilement</dd></div>
+      <div><dt>Back-end (projets d’origine)</dt><dd>PHP, MySQL, comptes utilisateurs, administration, paiement Mollie, API externes</dd></div>
+      <div><dt>Cartes et API</dt><dd>Leaflet, MapLibre GL, globe.gl, OSRM, API Twitch</dd></div>
+      <div><dt>Outils</dt><dd>Git, Vercel, Supabase</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Contact</h2>
+      <p>Un projet, une question, une opportunité ? Écrivez-moi : je réponds dès que possible.</p>
+      <div class="mail-line"><a href="mailto:hugolepigeon@gmail.com" data-site="email">hugolepigeon@gmail.com</a><button class="btn-copy" type="button" data-copy-email aria-live="polite">Copier</button></div>
+      <div class="links">
+        <a href="https://github.com/Hugovrbk/" data-site-link="github" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/" data-site-link="linkedin" target="_blank" rel="noopener" hidden>LinkedIn</a>
+      </div>
+    </div>
+    <form class="form" id="contact-form" novalidate>
+      <label>Votre nom<input name="name" autocomplete="name" required></label>
+      <label>Votre e-mail<input name="email" type="email" autocomplete="email" required></label>
+      <label>Votre message<textarea name="message" required></textarea></label>
+      <button class="btn btn-primary" type="submit">Envoyer par e-mail</button>
+      <p class="form-status" role="status"></p>
+      <small>Ce site est statique : le bouton ouvre votre application de messagerie avec le message prérempli.</small>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> <span data-site="name">Verbeek Hugo</span></span>
+    <span>Portfolio en HTML, CSS et JavaScript · <a href="index.html">Retour à l’accueil</a> · <a href="index.html?intro=1">Revoir l’intro</a></span>
+  </div>
+</footer>
+<script src="js/site-config.js"></script>
+<script src="js/script.js"></script>
+<script src="js/i18n-en.js"></script>
+<script src="js/prefs.js"></script>
+<script src="js/intro.js"></script>
+</body>
+</html>

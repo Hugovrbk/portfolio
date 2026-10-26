@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditions Générales de Vente — Chanson de Vie</title>
+  <meta name="description" content="Conditions générales de vente de Chanson de Vie. Commandes, paiements, livraisons et remboursements.">
+  <meta property="og:title"       content="Conditions Générales de Vente — Chanson de Vie">
+  <meta property="og:description" content="Conditions générales de vente de Chanson de Vie. Commandes, paiements, livraisons et remboursements.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<section class="legal-section">
+  <div class="container container--narrow">
+    <span class="section-label">Vos droits</span>
+    <h1>Conditions Générales de Vente</h1>
+    <p class="last-update">Version en vigueur depuis le 30/09/2026</p>
+
+    <h2>Article 1 — Définitions</h2>
+    <p>
+      <strong>« Vendeur »</strong> désigne Chanson de Vie.<br>
+      <strong>« Client »</strong> désigne toute personne physique passant commande sur le site.<br>
+      <strong>« Chanson »</strong> désigne la chanson personnalisée générée via intelligence artificielle.<br>
+      <strong>« Produit »</strong> désigne le fichier MP3, le CD ou le vinyle commandé.
+    </p>
+
+    <h2>Article 2 — Objet</h2>
+    <p>
+      Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes conclues entre
+      Chanson de Vie et ses Clients sur le site lachansondetavie.be. Toute commande implique
+      l'acceptation pleine et entière des présentes CGV.
+    </p>
+
+    <h2>Article 3 — Commande</h2>
+    <p>
+      La commande est validée après paiement complet du prix indiqué. Le Client reçoit un email de
+      confirmation contenant le numéro de commande et le récapitulatif.
+    </p>
+    <p>
+      Le Vendeur se réserve le droit de refuser ou d'annuler toute commande en cas de suspicion de fraude,
+      d'indisponibilité du service ou d'informations incomplètes ou incorrectes.
+    </p>
+
+    <h2>Article 4 — Prix</h2>
+    <ul>
+      <li>Fichier MP3 : <strong>19 € TTC</strong></li>
+      <li>CD personnalisé avec pochette : <strong>39 € TTC</strong></li>
+      <li>Vinyle collector avec pochette : <strong>69 € TTC</strong></li>
+    </ul>
+    <p>
+      Les prix sont indiqués en euros, toutes taxes comprises. Le Vendeur se réserve le droit de modifier
+      ses prix à tout moment, les prix applicables étant ceux en vigueur au moment de la commande.
+    </p>
+
+    <h2>Article 5 — Paiement</h2>
+    <p>
+      Le paiement est dû intégralement au moment de la commande, avant tout début de production.
+      Nous acceptons : Bancontact, Visa, Mastercard, PayPal via la plateforme sécurisée Mollie.
+      Le Client ne sera jamais débité avant validation de sa commande.
+    </p>
+
+    <h2>Article 6 — Délais de livraison</h2>
+    <ul>
+      <li><strong>MP3</strong> : envoi par email sous <strong>48 heures ouvrables</strong> après commande.</li>
+      <li><strong>CD</strong> : livraison sous <strong>7 à 10 jours ouvrables</strong> après validation de la chanson par le Client.</li>
+      <li><strong>Vinyle</strong> : livraison sous <strong>3 à 4 semaines</strong> après validation, en raison des délais de fabrication.</li>
+    </ul>
+    <p>
+      Ces délais sont donnés à titre indicatif. En cas de dépassement significatif, le Client sera informé
+      par email et pourra choisir entre attendre ou se faire rembourser.
+    </p>
+
+    <h2>Article 7 — Processus de validation</h2>
+    <p>
+      Après création, la chanson est envoyée au Client par email pour validation.
+      Chaque commande inclut <strong>1 révision offerte</strong>.
+      Des révisions supplémentaires sont facturées 5 € pièce.
+      La production physique (CD/vinyle) ne commence qu'après validation écrite du Client.
+    </p>
+
+    <h2>Article 8 — Droit de rétractation</h2>
+    <p>
+      Conformément à l'article VI.47 §1 3° du Code de droit économique belge et à la directive européenne
+      2011/83/UE, le droit de rétractation de 14 jours ne s'applique pas aux contenus numériques fournis
+      sur support immatériel (MP3) dès lors que le Client a expressément consenti à la fourniture immédiate.
+    </p>
+    <p>
+      Pour les commandes CD et vinyle, le Client dispose d'un délai de rétractation de <strong>14 jours</strong>
+      à compter de la réception, à condition que le produit n'ait pas été personnalisé ou produit à sa demande.
+      Une fois la production physique lancée (après validation de la chanson par le Client), le droit de
+      rétractation ne s'applique plus, le produit étant entièrement personnalisé.
+    </p>
+
+    <h2>Article 9 — Remboursement</h2>
+    <p>
+      En cas de droit de rétractation valable, le remboursement est effectué dans les <strong>14 jours</strong>
+      suivant la demande, via le même moyen de paiement que celui utilisé lors de la commande.
+      En cas de défaut avéré du produit, le Vendeur proposera un remplacement ou un remboursement intégral.
+    </p>
+
+    <h2>Article 10 — Propriété intellectuelle</h2>
+    <p>
+      Une fois la commande payée et la chanson livrée, le Client devient propriétaire de la chanson
+      pour un usage <strong>strictement personnel et non commercial</strong>.
+      Toute diffusion publique, commercialisation ou revente de la chanson est interdite sans accord écrit préalable.
+    </p>
+
+    <h2>Article 11 — Responsabilité</h2>
+    <p>
+      Le Vendeur ne saurait être tenu responsable des dommages indirects résultant de l'utilisation ou de
+      l'impossibilité d'utilisation du service. La responsabilité du Vendeur est en tout état de cause limitée
+      au montant de la commande concernée.
+    </p>
+    <p>
+      Le Client garantit que les souvenirs et informations fournis ne portent pas atteinte aux droits de tiers
+      (droit à l'image, diffamation, etc.).
+    </p>
+
+    <h2>Article 12 — Données personnelles</h2>
+    <p>
+      Le traitement des données personnelles est décrit dans notre
+      <a href="mentions-legales.html">Politique de confidentialité</a>.
+    </p>
+
+    <h2>Article 13 — Litiges</h2>
+    <p>
+      En cas de litige, le Client peut contacter le Vendeur par email à
+      <a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a>.
+      En cas de désaccord persistant, les parties s'efforceront de trouver une solution amiable.
+      À défaut, tout litige sera soumis aux tribunaux compétents belges.
+    </p>
+
+    <h2>Article 14 — Droit applicable</h2>
+    <p>
+      Les présentes CGV sont soumises au droit belge. Elles sont rédigées en français.
+      En cas de traduction, la version française prévaut.
+    </p>
+
+    <div class="groove-divider" style="margin:3rem 0"><div class="groove-divider-dot"></div></div>
+    <p style="font-size:.85rem;color:var(--gris)">
+      <a href="mentions-legales.html">→ Consulter nos Mentions Légales et Politique de Confidentialité</a>
+    </p>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+

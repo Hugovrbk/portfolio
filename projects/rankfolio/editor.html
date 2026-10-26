@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modifier « Carte signature » — RANKFOLIO</title>
+<meta name="description" content="Crée des cartes de collection à partir de tes rangs compétitifs, exporte-les en PNG, JPEG ou PDF et partage ton profil.">
+<meta name="theme-color" content="#0e171f">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="rf-body rf-page-editor " data-base="">
+<a class="rf-skip" href="#contenu">Aller au contenu</a>
+<header class="rf-header">
+  <div class="rf-header-inner">
+    <a class="rf-logo" href="index.html" aria-label="RANKFOLIO — accueil">
+      <svg class="rf-logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+        <path d="M3 9.5 12 4.5l9 5M3 14.5l9-5 9 5M3 19.5l9-5 9 5"/>
+      </svg>
+      <span class="rf-logo-text">RANKFOLIO</span>
+    </a>
+
+    <button class="rf-nav-toggle" type="button" aria-expanded="false" aria-controls="rf-nav">
+      <span class="rf-sr-only">Menu</span>
+      <span class="rf-nav-bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="rf-nav" id="rf-nav" aria-label="Navigation principale">
+      <a href="gallery.html">Galerie</a>              <a href="dashboard.html">Tableau de bord</a>        <a href="accounts.html">Comptes</a>        <a href="cards.html">Mes cartes</a>                <span class="rf-nav-sep" aria-hidden="true"></span>
+        <a class="rf-btn rf-btn-primary rf-btn-sm" href="editor.html?new=1">Créer une carte</a>
+        
+          </nav>
+  </div>
+</header>
+<main class="rf-main" id="contenu">
+<div class="rf-editor" id="editor">
+  <aside class="rf-tools" aria-label="Réglages de la carte">
+
+    <details class="rf-tool" open>
+      <summary>Modèle</summary>
+      <div class="rf-tool-body">
+        <div id="templateGrid" class="rf-template-grid" role="group" aria-label="Modèles"></div>
+      </div>
+    </details>
+
+    <details class="rf-tool">
+      <summary>Format</summary>
+      <div class="rf-tool-body">
+        <label class="rf-sr-only" for="layoutSel">Format de la carte</label>
+        <select id="layoutSel" class="rf-select">
+                      <option value="horizontal">Horizontale (1200 × 675)</option>
+                      <option value="vertical">Verticale (675 × 1200)</option>
+                      <option value="square">Carrée (900 × 900)</option>
+                      <option value="panoramic">Panoramique (1500 × 600)</option>
+                      <option value="banner">Bannière (1500 × 500)</option>
+                  </select>
+      </div>
+    </details>
+
+    <details class="rf-tool" open>
+      <summary>Joueur</summary>
+      <div class="rf-tool-body rf-form">
+        <div class="rf-field">
+          <label class="rf-label" for="p_name">Pseudo</label>
+          <input id="p_name" class="rf-input" maxlength="40" autocomplete="off">
+        </div>
+        <div class="rf-field">
+          <label class="rf-label" for="p_title">Titre ou statut</label>
+          <input id="p_title" class="rf-input" maxlength="60" placeholder="Main Radiant" autocomplete="off">
+        </div>
+      </div>
+    </details>
+
+    <details class="rf-tool" open>
+      <summary>Jeux <span class="rf-count" id="gameCount">0</span></summary>
+      <div class="rf-tool-body rf-form">
+        <p class="rf-hint rf-hint-top" id="noAccounts" hidden>Aucun compte connecté. <a href="accounts.html">Connecte un compte</a> : le rang de chaque jeu est alors récupéré automatiquement et vérifié.</p>
+        <div id="accountPicker" class="rf-acclist" aria-label="Mes comptes connectés"></div>
+        <button id="importBtn" type="button" class="rf-btn rf-btn-ghost rf-btn-block" hidden>Tout ajouter</button>
+        <a class="rf-link" href="accounts.html">Gérer mes comptes</a>
+
+        
+        <ul id="gameList" class="rf-editor-games" aria-label="Jeux sur la carte"></ul>
+      </div>
+    </details>
+
+    <details class="rf-tool">
+      <summary>Affichage</summary>
+      <div class="rf-tool-body rf-checks">
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="name" checked>
+            <span>Pseudo</span>
+          </label>
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="title" checked>
+            <span>Titre</span>
+          </label>
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="games" checked>
+            <span>Jeux</span>
+          </label>
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="points" checked>
+            <span>Points</span>
+          </label>
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="date" checked>
+            <span>Date de mise à jour</span>
+          </label>
+                  <label class="rf-check">
+            <input type="checkbox" data-toggle="qr" checked>
+            <span>QR code vers mon profil</span>
+          </label>
+                <p class="rf-hint" id="qrHint" hidden>Le QR code pointe vers ton profil public. Active-le dans le <a href="dashboard.html">tableau de bord</a>.</p>
+      </div>
+    </details>
+  </aside>
+
+  <section class="rf-workspace" aria-label="Aperçu">
+    <div class="rf-toolbar">
+      <div class="rf-toolbar-title">
+        <label class="rf-sr-only" for="cardTitle">Titre de la carte</label>
+        <input id="cardTitle" class="rf-input rf-input-title" maxlength="120" placeholder="Titre de la carte" value="Carte signature">
+        <span class="rf-dirty" id="dirtyBadge" hidden>Non enregistré</span>
+      </div>
+      <label class="rf-switch rf-switch-sm" title="Une carte publique apparaît dans la galerie">
+        <input type="checkbox" id="isPublic">
+        <span class="rf-switch-ui" aria-hidden="true"></span>
+        <span>Publique</span>
+      </label>
+      <div class="rf-toolbar-actions">
+        <div class="rf-btn-group" role="group" aria-label="Exporter">
+          <button id="exportPng" type="button" class="rf-btn rf-btn-secondary rf-btn-sm">PNG</button>
+          <button id="exportJpg" type="button" class="rf-btn rf-btn-secondary rf-btn-sm">JPEG</button>
+          <button id="exportPdf" type="button" class="rf-btn rf-btn-secondary rf-btn-sm">PDF</button>
+        </div>
+        <button id="saveBtn" type="button" class="rf-btn rf-btn-primary rf-btn-sm">Enregistrer</button>
+      </div>
+    </div>
+
+    <div class="rf-stage">
+      <canvas id="cardCanvas" width="1200" height="675" role="img" aria-label="Aperçu de la carte"></canvas>
+    </div>
+    <p class="rf-stage-meta" id="stageMeta" aria-live="polite"></p>
+  </section>
+</div>
+<script type="application/json" id="rf-editor-data">{"csrf":"c8819b2bed12d445c3d16c9e880dd7e32a9fcac989a39114c53aa79f6df3e6f8","games":{"valorant":{"name":"Valorant","color":"#ff4655","ranks":[["iron","Iron",1,["#4a4a4a","#2a2a2a","#1a1a1a"]],["bronze","Bronze",2,["#8c5a2b","#5c3a1a","#3a2410"]],["silver","Silver",3,["#a8adb3","#7a7f85","#4a4e54"]],["gold","Gold",4,["#e0b64f","#a37e28","#5c4410"]],["platinum","Platinum",5,["#7ed7d4","#3a9694","#1a4a48"]],["diamond","Diamond",6,["#c58bff","#7c3aed","#3b1a72"]],["ascendant","Ascendant",7,["#3ed6a7","#159c74","#0a4a38"]],["immortal","Immortal",8,["#ff4655","#a11d2a","#5a0d15"]],["radiant","Radiant",9,["#fff4c2","#ffd93d","#a37e28"]]]},"league-of-legends":{"name":"League of Legends","color":"#c8aa6e","ranks":[["iron","Iron",1,["#5a5a5a","#3a3a3a","#1f1f1f"]],["bronze","Bronze",2,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",3,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",4,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",5,["#6ec6c0","#2e8680","#0e4038"]],["emerald","Emerald",6,["#3ecc88","#1a8c52","#0a4a28"]],["diamond","Diamond",7,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",8,["#b06ade","#6a2a9e","#3a105a"]],["grandmaster","Grandmaster",9,["#ff5a5a","#b01e1e","#5a0a0a"]],["challenger","Challenger",10,["#fff0b0","#ffd24a","#a3821a"]]]},"counter-strike-2":{"name":"Counter-Strike 2","color":"#f0a020","ranks":[["silver","Silver",1,["#b0b0b0","#808080","#4a4a4a"]],["nova","Nova",2,["#8ac46a","#4a8a3a","#1a4a10"]],["mg","Master Guardian",3,["#6ac4c4","#2a8a8a","#0a4a4a"]],["dmg","Distinguished Master Guardian",4,["#7a5ae0","#3a1a9a","#1a0a5a"]],["le","Legendary Eagle",5,["#e0a04a","#9a6a1a","#5a3a0a"]],["lem","Legendary Eagle Master",6,["#e07a3a","#9a4a1a","#5a2a0a"]],["supreme","Supreme Master First Class",7,["#e04a4a","#9a1a1a","#5a0a0a"]],["global","Global Elite",8,["#ffd94a","#c89a1a","#7a5a0a"]]]},"rocket-league":{"name":"Rocket League","color":"#00a8e8","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["champion","Champion",6,["#b06ade","#6a2a9e","#3a105a"]],["grand-champion","Grand Champion",7,["#ff5a5a","#b01e1e","#5a0a0a"]],["ssl","Supersonic Legend",8,["#fff0b0","#ffd24a","#a3821a"]]]},"fortnite":{"name":"Fortnite","color":"#8b5cf6","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["elite","Elite",6,["#b06ade","#6a2a9e","#3a105a"]],["champion","Champion",7,["#ff5a5a","#b01e1e","#5a0a0a"]],["unreal","Unreal",8,["#fff0b0","#ffd24a","#a3821a"]]]},"apex-legends":{"name":"Apex Legends","color":"#da2929","ranks":[["rookie","Rookie",1,["#7a7a7a","#4a4a4a","#2a2a2a"]],["bronze","Bronze",2,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",3,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",4,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",5,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",6,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",7,["#b06ade","#6a2a9e","#3a105a"]],["predator","Apex Predator",8,["#ff5a5a","#b01e1e","#5a0a0a"]]]},"overwatch-2":{"name":"Overwatch 2","color":"#f99e1a","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",6,["#b06ade","#6a2a9e","#3a105a"]],["grandmaster","Grandmaster",7,["#ff5a5a","#b01e1e","#5a0a0a"]],["champion","Champion",8,["#fff0b0","#ffd24a","#a3821a"]]]},"rainbow-six-siege":{"name":"Rainbow Six Siege","color":"#c8a24a","ranks":[["copper","Copper",1,["#a05a3a","#6a3a22","#3a1a10"]],["bronze","Bronze",2,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",3,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",4,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",5,["#7ac4d4","#3a7a94","#163a4a"]],["emerald","Emerald",6,["#3ecc88","#1a8c52","#0a4a28"]],["diamond","Diamond",7,["#7ac4ff","#3a7ad4","#163a72"]],["champion","Champion",8,["#ff5a5a","#b01e1e","#5a0a0a"]]]},"dota-2":{"name":"Dota 2","color":"#c23c2a","ranks":[["herald","Herald",1,["#6a6a6a","#3a3a3a","#1a1a1a"]],["guardian","Guardian",2,["#8a7a5a","#5a4a2a","#2a1a0a"]],["crusader","Crusader",3,["#a0a0a0","#6a6a6a","#3a3a3a"]],["archon","Archon",4,["#8ac46a","#4a8a3a","#1a4a10"]],["legend","Legend",5,["#6ac4c4","#2a8a8a","#0a4a4a"]],["ancient","Ancient",6,["#4aa0e0","#1a5a9a","#0a2a5a"]],["divine","Divine",7,["#b06ade","#6a2a9e","#3a105a"]],["immortal","Immortal",8,["#ffd94a","#c89a1a","#7a5a0a"]]]},"pubg":{"name":"PUBG: Battlegrounds","color":"#e07a1a","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",6,["#b06ade","#6a2a9e","#3a105a"]],["grandmaster","Grandmaster",7,["#ff5a5a","#b01e1e","#5a0a0a"]]]},"warzone":{"name":"Call of Duty: Warzone","color":"#a8a8a8","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["crimson","Crimson",6,["#e04a6a","#9a1a3a","#5a0a1a"]],["iridescent","Iridescent",7,["#b06ade","#6a2a9e","#3a105a"]],["top250","Top 250",8,["#fff0b0","#ffd24a","#a3821a"]]]},"tft":{"name":"Teamfight Tactics","color":"#7ac4ff","ranks":[["iron","Iron",1,["#5a5a5a","#3a3a3a","#1f1f1f"]],["bronze","Bronze",2,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",3,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",4,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",5,["#6ec6c0","#2e8680","#0e4038"]],["emerald","Emerald",6,["#3ecc88","#1a8c52","#0a4a28"]],["diamond","Diamond",7,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",8,["#b06ade","#6a2a9e","#3a105a"]],["grandmaster","Grandmaster",9,["#ff5a5a","#b01e1e","#5a0a0a"]],["challenger","Challenger",10,["#fff0b0","#ffd24a","#a3821a"]]]},"marvel-rivals":{"name":"Marvel Rivals","color":"#e04a4a","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["grandmaster","Grandmaster",6,["#b06ade","#6a2a9e","#3a105a"]],["celestial","Celestial",7,["#ff5a5a","#b01e1e","#5a0a0a"]],["eternity","Eternity",8,["#fff0b0","#ffd24a","#a3821a"]]]},"brawlhalla":{"name":"Brawlhalla","color":"#5ac8e0","ranks":[["tin","Tin",1,["#9a9a9a","#6a6a6a","#3a3a3a"]],["bronze","Bronze",2,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",3,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",4,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",5,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",6,["#7ac4ff","#3a7ad4","#163a72"]],["valhallan","Valhallan",7,["#b06ade","#6a2a9e","#3a105a"]]]},"ea-fc":{"name":"EA Sports FC","color":"#7ac46a","ranks":[["div10","Division 10",1,["#6a6a6a","#3a3a3a","#1a1a1a"]],["div7","Division 7",2,["#8a7a5a","#5a4a2a","#2a1a0a"]],["div5","Division 5",3,["#a0a0a0","#6a6a6a","#3a3a3a"]],["div3","Division 3",4,["#8ac46a","#4a8a3a","#1a4a10"]],["div1","Division 1",5,["#6ac4c4","#2a8a8a","#0a4a4a"]],["elite","Elite",6,["#b06ade","#6a2a9e","#3a105a"]]]},"street-fighter-6":{"name":"Street Fighter 6","color":"#ffb04a","ranks":[["rookie","Rookie",1,["#8a8a8a","#5a5a5a","#2a2a2a"]],["iron","Iron",2,["#5a5a5a","#3a3a3a","#1f1f1f"]],["bronze","Bronze",3,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",4,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",5,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",6,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",7,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",8,["#b06ade","#6a2a9e","#3a105a"]]]},"tekken-8":{"name":"Tekken 8","color":"#c84a5a","ranks":[["beginner","Beginner",1,["#8a8a8a","#5a5a5a","#2a2a2a"]],["fighter","Fighter",2,["#a0a0a0","#6a6a6a","#3a3a3a"]],["brawler","Brawler",3,["#a06a3a","#6a4422","#3a2410"]],["ranger","Ranger",4,["#8ac46a","#4a8a3a","#1a4a10"]],["vanquisher","Vanquisher",5,["#6ac4c4","#2a8a8a","#0a4a4a"]],["destroyer","Destroyer",6,["#4aa0e0","#1a5a9a","#0a2a5a"]],["eliminator","Eliminator",7,["#b06ade","#6a2a9e","#3a105a"]],["tekken-king","Tekken King",8,["#ff5a5a","#b01e1e","#5a0a0a"]],["god","God of Destruction",9,["#fff0b0","#ffd24a","#a3821a"]]]},"hearthstone":{"name":"Hearthstone","color":"#e0a84a","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["legend","Legend",6,["#ff5a5a","#b01e1e","#5a0a0a"]]]},"starcraft-2":{"name":"StarCraft II","color":"#4aa0e0","ranks":[["bronze","Bronze",1,["#a06a3a","#6a4422","#3a2410"]],["silver","Silver",2,["#b8c0c8","#808a94","#4a525a"]],["gold","Gold",3,["#e6c26a","#a8863a","#5a4418"]],["platinum","Platinum",4,["#7ac4d4","#3a7a94","#163a4a"]],["diamond","Diamond",5,["#7ac4ff","#3a7ad4","#163a72"]],["master","Master",6,["#b06ade","#6a2a9e","#3a105a"]],["grandmaster","Grandmaster",7,["#ff5a5a","#b01e1e","#5a0a0a"]]]},"pokemon-unite":{"name":"Pokémon UNITE","color":"#ffd24a","ranks":[["beginner","Beginner",1,["#8a8a8a","#5a5a5a","#2a2a2a"]],["great","Great",2,["#8ac46a","#4a8a3a","#1a4a10"]],["expert","Expert",3,["#4aa0e0","#1a5a9a","#0a2a5a"]],["veteran","Veteran",4,["#b06ade","#6a2a9e","#3a105a"]],["ultra","Ultra",5,["#ff5a5a","#b01e1e","#5a0a0a"]],["master","Master",6,["#fff0b0","#ffd24a","#a3821a"]]]}},"templates":{"obsidian":{"name":"Obsidian","bg":["#0a0a0f","#1a1a24"],"accent":"#c9a961"},"platinum":{"name":"Platinum","bg":["#15161a","#2a2c33"],"accent":"#d8dde5"},"sovereign":{"name":"Sovereign","bg":["#0d0a14","#1f1230"],"accent":"#c9a961"},"eclipse":{"name":"Eclipse","bg":["#050510","#101030"],"accent":"#7aa0ff"},"royalgold":{"name":"Royal Gold","bg":["#100a00","#2a1c08"],"accent":"#f0c860"},"crystal":{"name":"Crystal","bg":["#0a1018","#1a2838"],"accent":"#8ad4ff"},"signature":{"name":"Signature","bg":["#0f0f0f","#1a1a1a"],"accent":"#ffffff"},"proplayer":{"name":"Pro Player","bg":["#0a0a0a","#151515"],"accent":"#e04a4a"},"minimal":{"name":"Minimal","bg":["#f5f5f5","#ffffff"],"accent":"#111111","light":true},"collector":{"name":"Collector","bg":["#0a0810","#1a1028"],"accent":"#b06ade"},"monochrome":{"name":"Monochrome","bg":["#0a0a0a","#222222"],"accent":"#cccccc"},"midnight":{"name":"Midnight","bg":["#050818","#0a1428"],"accent":"#4a6fa5"},"holographic":{"name":"Holographic","bg":["#0a0a1a","#1a0a2a"],"accent":"#7affd4"},"elite":{"name":"Elite","bg":["#0a0a0a","#1a0a0a"],"accent":"#ff5a5a"},"custom":{"name":"Custom","bg":["#101015","#1a1a24"],"accent":"#c9a961"}},"icons":["counter-strike-2/dmg", "counter-strike-2/global", "counter-strike-2/le", "counter-strike-2/lem", "counter-strike-2/mg", "counter-strike-2/nova", "counter-strike-2/silver", "counter-strike-2/supreme", "league-of-legends/bronze", "league-of-legends/challenger", "league-of-legends/diamond", "league-of-legends/emerald", "league-of-legends/gold", "league-of-legends/grandmaster", "league-of-legends/iron", "league-of-legends/master", "league-of-legends/platinum", "league-of-legends/silver", "rainbow-six-siege/bronze", "rainbow-six-siege/champion", "rainbow-six-siege/copper", "rainbow-six-siege/diamond", "rainbow-six-siege/emerald", "rainbow-six-siege/gold", "rainbow-six-siege/platinum", "rainbow-six-siege/silver", "valorant/ascendant", "valorant/bronze", "valorant/diamond", "valorant/gold", "valorant/immortal", "valorant/iron", "valorant/platinum", "valorant/radiant", "valorant/silver"],"allowManual":false,"accountsUrl":"accounts.html","accounts":[{"game":"valorant","rank":"radiant","points":450,"trust":"demo"},{"game":"league-of-legends","rank":"challenger","points":1200,"trust":"demo"},{"game":"counter-strike-2","rank":"global","points":null,"trust":"demo"},{"game":"rocket-league","rank":"ssl","points":null,"trust":"demo"},{"game":"apex-legends","rank":"predator","points":null,"trust":"demo"}],"card":{"id":1,"title":"Carte signature","template":"obsidian","layout":"horizontal","is_public":true,"config":{"player":{"name":"Nova","title":"Main Radiant"},"games":[{"slug":"valorant","name":"Valorant","color":"#ff4655","rankSlug":"radiant","rankName":"Radiant","rankTier":9,"rankColors":["#fff4c2","#ffd93d","#a37e28"],"points":450},{"slug":"league-of-legends","name":"League of Legends","color":"#c8aa6e","rankSlug":"challenger","rankName":"Challenger","rankTier":10,"rankColors":["#fff0b0","#ffd24a","#a3821a"],"points":1200},{"slug":"counter-strike-2","name":"Counter-Strike 2","color":"#f0a020","rankSlug":"global","rankName":"Global Elite","rankTier":8,"rankColors":["#ffd94a","#c89a1a","#7a5a0a"],"points":null}],"show":{"name":true,"title":true,"games":true,"points":true,"date":true,"qr":false}}},"playerName":"Nova","profileUrl":"profile.html"}</script>
+</main>
+<footer class="rf-footer">
+  <div class="rf-footer-inner">
+    <div class="rf-footer-brand">
+      <strong>RANKFOLIO</strong>
+      <span>Cartes de rangs pour joueurs compétitifs</span>
+    </div>
+    <nav class="rf-footer-links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="gallery.html">Galerie</a>
+          </nav>
+    <small class="rf-footer-copy">© 2026 RANKFOLIO. Emblèmes de rang originaux, dessinés pour ce projet. Les noms de jeux appartiennent à leurs éditeurs.</small>
+  </div>
+</footer>
+<script src="assets/js/static-data.js"></script><script src="assets/js/static-patch.js"></script><script src="assets/js/app.js" defer></script>
+<script src="assets/js/ranks.js" defer></script>
+<script src="assets/js/card-renderer.js" defer></script>
+<script src="assets/js/qr.js" defer></script>
+<script src="assets/js/editor.js" defer></script>
+</body>
+</html>

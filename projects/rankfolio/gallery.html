@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galerie — RANKFOLIO</title>
+<meta name="description" content="Crée des cartes de collection à partir de tes rangs compétitifs, exporte-les en PNG, JPEG ou PDF et partage ton profil.">
+<meta name="theme-color" content="#0e171f">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="rf-body rf-page-gallery " data-base="">
+<a class="rf-skip" href="#contenu">Aller au contenu</a>
+<header class="rf-header">
+  <div class="rf-header-inner">
+    <a class="rf-logo" href="index.html" aria-label="RANKFOLIO — accueil">
+      <svg class="rf-logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+        <path d="M3 9.5 12 4.5l9 5M3 14.5l9-5 9 5M3 19.5l9-5 9 5"/>
+      </svg>
+      <span class="rf-logo-text">RANKFOLIO</span>
+    </a>
+
+    <button class="rf-nav-toggle" type="button" aria-expanded="false" aria-controls="rf-nav">
+      <span class="rf-sr-only">Menu</span>
+      <span class="rf-nav-bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="rf-nav" id="rf-nav" aria-label="Navigation principale">
+      <a href="gallery.html" aria-current="page">Galerie</a>              <a href="dashboard.html">Tableau de bord</a>        <a href="accounts.html">Comptes</a>        <a href="cards.html">Mes cartes</a>                <span class="rf-nav-sep" aria-hidden="true"></span>
+        <a class="rf-btn rf-btn-primary rf-btn-sm" href="editor.html?new=1">Créer une carte</a>
+        
+          </nav>
+  </div>
+</header>
+<main class="rf-main" id="contenu">
+<header class="rf-pagehead">
+  <div>
+    <h1>Galerie</h1>
+    <p>1 carte publiée par la communauté</p>
+  </div>
+  <form method="get" class="rf-filter">
+    <label class="rf-sr-only" for="gameFilter">Filtrer par jeu</label>
+    <select class="rf-select" id="gameFilter" name="game" data-autosubmit>
+      <option value="">Tous les jeux</option>
+              <option value="valorant" >Valorant</option>
+              <option value="league-of-legends" >League of Legends</option>
+              <option value="counter-strike-2" >Counter-Strike 2</option>
+              <option value="rocket-league" >Rocket League</option>
+              <option value="fortnite" >Fortnite</option>
+              <option value="apex-legends" >Apex Legends</option>
+              <option value="overwatch-2" >Overwatch 2</option>
+              <option value="rainbow-six-siege" >Rainbow Six Siege</option>
+              <option value="dota-2" >Dota 2</option>
+              <option value="pubg" >PUBG: Battlegrounds</option>
+              <option value="warzone" >Call of Duty: Warzone</option>
+              <option value="tft" >Teamfight Tactics</option>
+              <option value="marvel-rivals" >Marvel Rivals</option>
+              <option value="brawlhalla" >Brawlhalla</option>
+              <option value="ea-fc" >EA Sports FC</option>
+              <option value="street-fighter-6" >Street Fighter 6</option>
+              <option value="tekken-8" >Tekken 8</option>
+              <option value="hearthstone" >Hearthstone</option>
+              <option value="starcraft-2" >StarCraft II</option>
+              <option value="pokemon-unite" >Pokémon UNITE</option>
+          </select>
+    <button class="rf-btn rf-btn-secondary">Filtrer</button>
+  </form>
+</header>
+
+  <div class="rf-slab-grid" data-static-grid>
+    <article class="rf-slab" style="--c1:#0a0a0f;--c2:#1a1a24;--acc:#c9a961"><header class="rf-slab-label"><span class="rf-slab-title">Carte signature</span><span class="rf-slab-serial" title="Numéro de carte">№&nbsp;0001</span></header><div class="rf-slab-window"><div class="rf-mini"><span class="rf-mini-name">Nova</span><span class="rf-mini-row"><img class="rf-mini-emblem" src="assets/ranks/valorant/radiant.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/league-of-legends/challenger.png" alt="" loading="lazy" width="40" height="40"><img class="rf-mini-emblem" src="assets/ranks/counter-strike-2/global.png" alt="" loading="lazy" width="40" height="40"></span></div></div><footer class="rf-slab-foot"><div class="rf-slab-line"><span class="rf-slab-by">par <a href="profile.html">Nova</a></span><span class="rf-badge">Obsidian</span></div></footer></article>  </div>
+
+  </main>
+<footer class="rf-footer">
+  <div class="rf-footer-inner">
+    <div class="rf-footer-brand">
+      <strong>RANKFOLIO</strong>
+      <span>Cartes de rangs pour joueurs compétitifs</span>
+    </div>
+    <nav class="rf-footer-links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="gallery.html">Galerie</a>
+          </nav>
+    <small class="rf-footer-copy">© 2026 RANKFOLIO. Emblèmes de rang originaux, dessinés pour ce projet. Les noms de jeux appartiennent à leurs éditeurs.</small>
+  </div>
+</footer>
+<script src="assets/js/static-data.js"></script><script src="assets/js/static-patch.js"></script><script src="assets/js/app.js" defer></script>
+</body>
+</html>

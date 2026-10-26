@@ -1,0 +1,17 @@
+/* LIGGSTER SHOP - cart.css */
+.page-top { padding-top: calc(var(--nav-h) + var(--sp-7)); min-height: 80vh; }
+.steps { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-5) 0 var(--sp-6); }
+.steps li { padding: .45rem 1rem; border-radius: var(--r-pill); border: 1px solid var(--c-line); font-size: var(--fs-sm); color: var(--c-text-faint); }
+.steps .is-current { color: #1a1100; background: var(--grad-gold); border-color: transparent; font-weight: 700; }
+.steps .is-done { color: var(--c-green); border-color: var(--c-green); }
+.cart-layout { display: grid; grid-template-columns: 1fr 340px; gap: var(--sp-6); align-items: start; }
+.cart-line { display: grid; grid-template-columns: 56px 1fr auto auto auto; align-items: center; gap: var(--sp-4); padding: var(--sp-4); margin-bottom: var(--sp-3); background: var(--c-night-2); border: 1px solid var(--c-line); border-radius: var(--r-md); }
+.cart-line__art { width: 56px; height: 68px; display: grid; place-items: center; border-radius: var(--r-sm); font-family: var(--font-title); font-weight: 900; background: radial-gradient(circle at 30% 20%, var(--accent), var(--c-night-3)); }
+.qty { display: flex; align-items: center; gap: var(--sp-3); }
+.qty button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--c-line); background: var(--c-night-3); }
+.qty button:hover:not([disabled]) { border-color: var(--c-violet); }
+.qty button[disabled] { opacity: .35; cursor: not-allowed; }
+.summary { padding: var(--sp-5); background: var(--c-night-2); border: 1px solid var(--c-line); border-radius: var(--r-lg); position: sticky; top: calc(var(--nav-h) + 16px); }
+.sum-row { display: flex; justify-content: space-between; gap: var(--sp-4); padding: .45rem 0; color: var(--c-text-dim); }
+.sum-total { color: var(--c-gold); font-family: var(--font-title); font-weight: 700; border-top: 1px solid var(--c-line); margin-top: .5rem; padding-top: .9rem; }
+@media (max-width: 860px) { .cart-layout { grid-template-columns: 1fr; } .cart-line { grid-template-columns: 56px 1fr auto; } .summary { position: static; } }

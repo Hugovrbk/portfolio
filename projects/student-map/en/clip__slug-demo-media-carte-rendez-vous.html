@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Plateforme mondiale des actions étudiantes">
+    <meta name="keywords" content="étudiants, actions, manifestations, carte mondiale, vidéos, clips, mobilisations">
+    <meta name="author" content="Student Map Team">
+
+    <!-- Open Graph / Meta Tags pour les réseaux sociaux -->
+    <meta property="og:site_name" content="Student Map">
+    <meta property="og:title" content="Student Map">
+    <meta property="og:description" content="Plateforme mondiale des actions étudiantes">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Map">
+    <meta name="twitter:description" content="Plateforme mondiale des actions étudiantes">
+
+    <title>Carte des rendez-vous du mois - Student Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/map.css">
+    <link rel="stylesheet" href="../assets/css/media.css">
+
+    <!-- Leaflet Marker Cluster -->
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.Default.css">
+
+    <!-- Google Fonts -->
+    <link rel="preload" href="../assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/source-serif-4-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#ECEEF4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B0F26" media="(prefers-color-scheme: dark)">
+
+    <!-- JavaScript -->
+    <script src="../assets/vendor/leaflet/leaflet.js"></script>
+    <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
+
+    <!-- Configuration globale JavaScript -->
+    <script>
+        window.STUDENT_MAP_CONFIG = {
+            baseUrl: '', assetBase: '../',
+            csrfToken: '',
+            language: 'en',
+            isLoggedIn: false,
+            userRole: 'guest',
+            map: {
+                defaultZoom: 3,
+                minZoom: 2,
+                maxZoom: 18,
+                center: [48.8566, 2.3522]
+            }
+        };
+    </script>
+<script src="../assets/js/static-data.js"></script><script src="../assets/js/static-patch.js" defer></script></head>
+<body class="main-page">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="index.html" class="navbar-brand">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">
+                        <span class="logo-title">STUDENT</span>
+                        <span class="logo-subtitle">MAP</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu principal -->
+            <div class="navbar-menu">
+                <ul class="nav-list">
+                    <li class="nav-item ">
+                        <a href="index.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="explorer.html" class="nav-link">
+                            <i class="fas fa-compass"></i>
+                            <span>Explore</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="actions.html" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Upcoming actions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="media.html" class="nav-link">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Media library</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="clips.html" class="nav-link">
+                            <i class="fas fa-video"></i>
+                            <span>Videos</span>
+                        </a>
+                    </li>
+
+                    <!-- Menu déroulant Catégories -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-tags"></i>
+                            <span>Categories</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__category-manifestation.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #e74c3c">
+                                        <span class="category-dot" style="background-color: #e74c3c"></span>
+                                        Demonstration                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__category-blocus.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #f39c12">
+                                        <span class="category-dot" style="background-color: #f39c12"></span>
+                                        Blockade                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="explorer.html" class="dropdown-link">
+                                    <i class="fas fa-list"></i>
+                                    All categories                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Menu déroulant Pays -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span>Countries</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-countries">
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-BE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇧🇪</span>
+                                        Belgium                                        <span class="country-count">
+                                            5                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-US.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇺🇸</span>
+                                        United States                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-FR.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇫🇷</span>
+                                        France                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-DE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇩🇪</span>
+                                        Germany                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="explorer.html" class="dropdown-link">
+                                    <i class="fas fa-globe-americas"></i>
+                                    All countries                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu utilisateur -->
+            <div class="navbar-user">
+                                    <div class="auth-buttons">
+                    </div>
+                
+                <div class="language-switch" aria-label="Site language">
+                    <a href="../clip__slug-demo-media-carte-rendez-vous.html" lang="fr" >FR</a>
+                    <a href="clip__slug-demo-media-carte-rendez-vous.html" lang="en" aria-current="page">EN</a>
+                </div>
+
+                <!-- Bouton mobile -->
+                <button class="navbar-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">
+                    <span class="logo-title">STUDENT</span>
+                    <span class="logo-subtitle">MAP</span>
+                </span>
+            </div>
+            <div class="language-switch mobile-language-switch" aria-label="Site language">
+                <a href="../clip__slug-demo-media-carte-rendez-vous.html" lang="fr" >Français</a>
+                <a href="clip__slug-demo-media-carte-rendez-vous.html" lang="en" aria-current="page">English</a>
+            </div>
+            <button class="mobile-menu-close" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="index.html" class="mobile-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="explorer.html" class="mobile-nav-link">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="actions.html" class="mobile-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Upcoming actions</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="media.html" class="mobile-nav-link">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Media library</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="clips.html" class="mobile-nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-tags"></i>
+                        <span>Categories</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__category-manifestation.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Demonstration                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__category-blocus.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blockade                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>Countries</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-BE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇧🇪</span>
+                                    Belgium                                    <span class="country-count">5</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-US.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇺🇸</span>
+                                    United States                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-FR.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇫🇷</span>
+                                    France                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-DE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇩🇪</span>
+                                    Germany                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Messages flash -->
+    <div class="flash-messages">
+            </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="mobile-menu-overlay"></div>
+<!-- Section héro -->
+<section class="clip-hero">
+    <div class="clip-hero-container">
+        <div class="clip-hero-content">
+            
+            <h1 class="clip-hero-title">Carte des rendez-vous du mois</h1>
+
+            <div class="clip-meta">
+                <div class="clip-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Berlin, 🇩🇪 Allemagne</span>
+                </div>
+                <div class="clip-date">
+                    <i class="fas fa-calendar"></i>
+                    <span>04 Oct 2026</span>
+                </div>
+            </div>
+
+            <div class="clip-stats">
+                <div class="clip-stat"><i class="fas fa-eye"></i> 73 vues</div>
+                <div class="clip-stat"><i class="fas fa-star"></i> Aura 0</div>
+                            </div>
+
+            <div class="aura-voting" data-clip-id="9" data-vote="0"><span class="aura-score">Aura <strong>0</strong></span><button class="aura-vote-btn" type="button" data-vote="1" aria-label="Give an upvote" aria-pressed="false"><i class="fas fa-arrow-up"></i> <span class="upvote-count">0</span></button><button class="aura-vote-btn" type="button" data-vote="-1" aria-label="Give a downvote" aria-pressed="false"><i class="fas fa-arrow-down"></i> <span class="downvote-count">0</span></button></div>
+
+            <div class="clip-actions">
+                                <a href="city__slug-berlin.html" class="btn btn-outline-light"><i class="fas fa-city"></i> Voir la ville</a>
+                                <button class="btn btn-primary share-btn" data-clip-id="9" data-clip-title="Carte des rendez-vous du mois" data-clip-url="clip.php?slug=demo-media-carte-rendez-vous">
+                    <i class="fas fa-share-alt"></i> Partager
+                </button>
+            </div>
+        </div>
+
+        <div class="clip-hero-thumbnail">
+                            <img src="../assets/img/demo/demo-5.png" alt="Carte des rendez-vous du mois" class="clip-thumbnail-large">
+                    </div>
+    </div>
+</section>
+
+<!-- Description -->
+<section class="clip-description-section">
+    <div class="clip-description-container">
+        <h2 class="section-title"><i class="fas fa-info-circle"></i> Description</h2>
+        <div class="clip-description-content">
+                            <div class="description-text">Image d’exemple (démonstration).</div>
+                    </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-container">
+        <div class="cta-content">
+            <h2>Continuez à explorer</h2>
+            <p>Découvrez d'autres clips et événements étudiants.</p>
+            <div class="cta-actions">
+                <a href="index.html#world-map" class="btn btn-primary"><i class="fas fa-map-marked-alt"></i> Explorer la carte</a>
+                <a href="clips.html" class="btn btn-outline-light"><i class="fas fa-video"></i> Tous les clips</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modale de partage -->
+<div class="modal" id="shareModal" aria-hidden="true">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Partager ce clip</h3>
+            <button class="modal-close" onclick="closeModal(this.closest('.modal'))"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="share-link-container">
+                <input type="text" id="shareLink" value="clip.php?slug=demo-media-carte-rendez-vous" readonly>
+                <button class="btn btn-primary" onclick="copyToClipboard('shareLink')"><i class="fas fa-copy"></i> Copier</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    <!-- Fin du contenu principal -->
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <!-- Section statistiques -->
+        <div class="footer-stats">
+            <div class="footer-stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Événements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Clips vidéo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Villes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Pays</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal du pied de page -->
+        <div class="footer-main">
+            <div class="footer-container">
+                <!-- Section À propos -->
+                <div class="footer-section about-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="footer-logo-text">
+                            <span class="footer-logo-title">STUDENT</span>
+                            <span class="footer-logo-subtitle">MAP</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        Plateforme mondiale des actions étudiantes est une plateforme internationale dédiée à la découverte
+                        et au suivi des actions, manifestations et mobilisations étudiantes à travers le monde.
+                    </p>
+                    <div class="footer-cta">
+                        <a href="explorer.html" class="btn btn-outline-light">
+                            <i class="fas fa-compass"></i>
+                            Explorer la carte
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section Liens rapides -->
+                <div class="footer-section links-section">
+                    <h3 class="footer-section-title">Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="index.html" class="footer-link">
+                                <i class="fas fa-home"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="explorer.html" class="footer-link">
+                                <i class="fas fa-compass"></i>
+                                Explorer
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="actions.html" class="footer-link">
+                                <i class="fas fa-calendar-check"></i>
+                                Actions à venir
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="media.html" class="footer-link">
+                                <i class="fas fa-photo-video"></i>
+                                Médiathèque
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="clips.html" class="footer-link">
+                                <i class="fas fa-video"></i>
+                                Clips vidéo
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="explorer__sort-date-desc.html" class="footer-link">
+                                <i class="fas fa-clock"></i>
+                                Récents
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="explorer__sort-views-desc.html" class="footer-link">
+                                <i class="fas fa-eye"></i>
+                                Populaires
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section Catégories -->
+                <div class="footer-section categories-section">
+                    <h3 class="footer-section-title">Catégories</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="explorer__category-manifestation.html"
+                                   class="footer-link"
+                                   style="--category-color: #e74c3c">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="explorer__category-blocus.html"
+                                   class="footer-link"
+                                   style="--category-color: #f39c12">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Pages légales -->
+                <div class="footer-section legal-section">
+                    <h3 class="footer-section-title">Informations légales</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="about.html" class="footer-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    À propos                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="legal/privacy.html" class="footer-link">
+                                    <i class="fas fa-lock"></i>
+                                    Politique de confidentialité                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="legal/terms.html" class="footer-link">
+                                    <i class="fas fa-file-contract"></i>
+                                    Conditions d&#039;utilisation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="legal/cookies.html" class="footer-link">
+                                    <i class="fas fa-cookie-bite"></i>
+                                    Gestion des cookies                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Réseaux sociaux -->
+                <div class="footer-section social-section">
+                    <h3 class="footer-section-title">Suivez-nous</h3>
+                    <div class="social-links">
+                                                    <a href="#"
+                               class="social-link"
+                               title="Twitter"
+                               style="--social-color: #1DA1F2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Facebook"
+                               style="--social-color: #3B5998">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Instagram"
+                               style="--social-color: #E1306C">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="YouTube"
+                               style="--social-color: #FF0000">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="LinkedIn"
+                               style="--social-color: #0077B5">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                                            </div>
+                    <div class="social-text">
+                        <p>Rejoignez notre communauté pour rester informé des dernières actions étudiantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre de copyright -->
+        <div class="footer-copyright">
+            <div class="footer-copyright-container">
+                <div class="copyright-text">
+                    &copy; 2026 <strong>Student Map</strong>.
+                    Tous droits réservés.
+                </div>
+                <div class="copyright-links">
+                    <span class="version">Version 1.0.0</span>
+                                            <span class="debug-badge">Mode développement</span>
+                                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts JavaScript -->
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/map.js"></script>
+    <script src="../assets/js/media.js"></script>
+
+    <!-- Scripts spécifiques à la page -->
+    <!-- Scripts de l'administration -->
+    
+    <!-- Google Analytics (optionnel - à configurer) -->
+    
+</body>
+</html>
+
+<script>
+function copyToClipboard(elementId) {
+    const input = document.getElementById(elementId);
+    input.select();
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Lien copié dans le presse-papiers!');
+}
+
+document.querySelectorAll('[data-type="clip"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const clipId = this.getAttribute('data-clip-id');
+        const action = this.getAttribute('data-action');
+        fetch('api/favorites.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `action=${action}&type=clip&id=${clipId}&csrf_token=2e17549b210ca2b2ab1ee0d22240222e0eb8c4b1c3f7ba68e985ed7aba4b933c`
+        }).then(r => r.json()).then(d => {
+            if (d.success) {
+                this.setAttribute('data-action', action === 'add' ? 'remove' : 'add');
+                this.className = this.className.replace(/btn-\w+/, '') + (action === 'add' ? 'btn-secondary' : 'btn-light');
+            }
+        });
+    });
+});
+</script>

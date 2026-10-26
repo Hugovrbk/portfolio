@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 8 Styles Musicaux — Chanson de Vie</title>
+  <meta name="description" content="Choisissez parmi 8 styles musicaux : variété française, jazz, folk, classique, pop 80s, rock, bossa nova ou comptine. Votre chanson personnalisée dans le style que vous aimez.">
+  <meta property="og:title"       content="Les 8 Styles Musicaux — Chanson de Vie">
+  <meta property="og:description" content="Choisissez parmi 8 styles musicaux : variété française, jazz, folk, classique, pop 80s, rock, bossa nova ou comptine. Votre chanson personnalisée dans le style que vous aimez.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">Catalogue musical</span>
+    <h1>Les 8 Styles Musicaux</h1>
+    <p>Choisissez l'univers sonore qui correspond à votre histoire. Chaque style est disponible pour tous nos formats (MP3, CD, Vinyle).</p>
+  </div>
+</div>
+
+<section class="styles-section" style="padding-top:3rem">
+  <div class="container">
+    <div class="styles-grid">
+              <div class="style-card" style="--card-color:#c9a84c">
+          <span class="style-card__emoji">🎹</span>
+          <div class="style-card__name">Variété Française</div>
+          <p class="style-card__desc">Pour les amateurs de Brel, Brassens, Aznavour et Piaf. Textes poétiques et profonds, guitare acoustique chaleureuse, voix grave et sincère. Un style intemporel qui touche l&#039;âme.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Anniversaires importants, hommages, retraites            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Brel, Brassens, Aznavour, Barbara, Piaf            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Vari%C3%A9t%C3%A9+Fran%C3%A7aise" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#8a9fc9">
+          <span class="style-card__emoji">🎷</span>
+          <div class="style-card__name">Jazz Intime</div>
+          <p class="style-card__desc">L&#039;ambiance d&#039;un club parisien feutré. Basse acoustique, piano doux, percussions légères, voix féminine envoûtante. Une chanson qui s&#039;écoute avec un verre de vin à la main.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Retraites, anniversaires élégants, hommages raffinés            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Norah Jones (style), Chet Baker, Juliette Gréco            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Jazz+Intime" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#6ab07a">
+          <span class="style-card__emoji">🌿</span>
+          <div class="style-card__name">Folk Acoustique</div>
+          <p class="style-card__desc">Doux, naturel, authentique. Le fingerpicking d&#039;une guitare acoustique, une voix sincère qui raconte. Comme une ballade au coin du feu, un soir d&#039;automne.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Anniversaires familiaux, hommages intimes, fêtes champêtres            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Francis Cabrel, Ben Harper, James Taylor            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Folk+Acoustique" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#c9a84c">
+          <span class="style-card__emoji">🎻</span>
+          <div class="style-card__name">Classique Orchestral</div>
+          <p class="style-card__desc">Majestueux et émouvant. Un orchestre à cordes qui s&#039;enfle et qui touche. Sans paroles — la musique seule suffit à raconter une grande vie. Idéal pour un hommage solennel.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Hommages, funérailles célébratoires, grandes occasions            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Hans Zimmer (style), Bach, Satie            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Classique+Orchestral" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#c96ab0">
+          <span class="style-card__emoji">🕺</span>
+          <div class="style-card__name">Pop Années 80</div>
+          <p class="style-card__desc">Festif, pétillant, irrésistiblement joyeux ! Synthétiseurs rétro, batterie puissante, refrain accrocheur. Pour les amoureux des paillettes et des années Dorothée.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Anniversaires festifs, fêtes, retraites joyeuses            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Étienne Daho, Lio, Desireless, Cookie Dingler            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Pop+Ann%C3%A9es+80" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#c96a6a">
+          <span class="style-card__emoji">🎸</span>
+          <div class="style-card__name">Rock Nostalgique</div>
+          <p class="style-card__desc">Pour les fans de Johnny Hallyday et Eddy Mitchell. Guitare électrique qui rugit, batterie qui claque, voix rauque et émotionnelle. Un rock français qui remue les tripes.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Anniversaires d&#039;hommes, hommages rock, fêtes entre amis            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Johnny Hallyday, Eddy Mitchell, Téléphone            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Rock+Nostalgique" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#6ab0a0">
+          <span class="style-card__emoji">🌊</span>
+          <div class="style-card__name">Bossa Nova</div>
+          <p class="style-card__desc">Chaleureuse, ensoleillée, elle sent les vacances et la douceur de vivre. Guitare nylon, percussions légères, voix romantique. Voyage garanti sans quitter votre salon.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Anniversaires romantiques, hommages ensoleillés, fêtes estivales            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> João Gilberto, Stan Getz, Astrud Gilberto            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Bossa+Nova" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+              <div class="style-card" style="--card-color:#a08ac9">
+          <span class="style-card__emoji">🎠</span>
+          <div class="style-card__name">Comptine &amp; Douceur</div>
+          <p class="style-card__desc">Tendre, magique, intime. Une boîte à musique, un piano léger, une voix douce comme une berceuse. Pour raviver les souvenirs d&#039;enfance d&#039;un grand-parent. Idéal pour un cadeau de la part des petits-enfants.</p>
+          <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Idéal pour :</span> Cadeau des petits-enfants à leurs grands-parents, hommages nostalgiques            </p>
+            <p style="font-size:.78rem;color:var(--gris);margin:.3rem 0">
+              <span style="color:var(--or)">Influences :</span> Yann Tiersen, Amélie Poulain (style), Comptines d&#039;un autre été            </p>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="commander.html?style=Comptine+%26+Douceur" class="btn btn--or btn--sm btn--full">
+              Choisir ce style ♪
+            </a>
+          </div>
+          <div class="style-card__badge">✓</div>
+        </div>
+          </div>
+
+    <div style="text-align:center;margin-top:5rem;padding:4rem 2rem;background:var(--noir-2);border:1px solid rgba(201,168,76,.12);border-radius:var(--radius)">
+      <span class="section-label">Vous hésitez ?</span>
+      <h2 style="font-size:1.8rem;margin-bottom:1rem">Pas sûr(e) du style ?</h2>
+      <p class="muted" style="max-width:500px;margin:0 auto 2rem">
+        Indiquez les artistes que la personne aime dans le champ "Message personnel" lors de votre commande. Nous trouverons le style parfait pour vous.
+      </p>
+      <a href="commander.html" class="btn btn--or">Commander ma chanson — dès 19 €</a>
+    </div>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+<script src="assets/js/scroll.js"></script>
+

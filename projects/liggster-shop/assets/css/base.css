@@ -1,0 +1,106 @@
+/* =====================================================
+   LIGGSTER SHOP - base.css
+   Reset, typographie, layout, accessibilité
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--c-night);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, canvas, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+h1 { font-size: var(--fs-2xl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+p  { color: var(--c-text-dim); max-width: 68ch; }
+
+/* Layout */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+.section { padding-block: var(--sp-8); position: relative; z-index: var(--z-content); }
+.section--tight { padding-block: var(--sp-7); }
+.section-head { margin-bottom: var(--sp-7); }
+.section-head p { margin-top: var(--sp-3); }
+
+.grid { display: grid; gap: var(--sp-5); }
+.grid--cards { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+.gap-2 { gap: var(--sp-2); } .gap-4 { gap: var(--sp-4); }
+
+/* Utilitaires */
+.text-gold { color: var(--c-gold); }
+.text-cyan { color: var(--c-cyan); }
+.text-dim  { color: var(--c-text-dim); }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.gradient-text {
+  background: var(--grad-gold);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* Canvas 3D plein écran en fond */
+#bg-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+}
+
+/* Accessibilité */
+:focus-visible {
+  outline: 2px solid var(--c-cyan);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+::selection { background: var(--c-violet); color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--c-night); }
+::-webkit-scrollbar-thumb { background: var(--c-line); border-radius: var(--r-pill); }
+::-webkit-scrollbar-thumb:hover { background: var(--c-violet); }
+
+@media (max-width: 720px) {
+  .section { padding-block: var(--sp-7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chanson de Vie — Créez une chanson personnalisée unique</title>
+  <meta name="description" content="Transformez vos souvenirs en mélodie éternelle. Chanson personnalisée générée par IA, gravée sur CD ou vinyle et livrée chez vous. Cadeau idéal pour anniversaire, retraite, hommage.">
+  <meta property="og:title"       content="Chanson de Vie — Créez une chanson personnalisée unique">
+  <meta property="og:description" content="Transformez vos souvenirs en mélodie éternelle. Chanson personnalisée générée par IA, gravée sur CD ou vinyle et livrée chez vous. Cadeau idéal pour anniversaire, retraite, hommage.">
+  <meta property="og:type"        content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        Chanson <span>de Vie</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="styles.html">Les Styles</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+
+                  <!-- Non connecté -->
+          <li><a href="commander.html" class="nav__cta">Commander</a></li>
+              </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair / sombre">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // ── Thème clair / sombre ──────────────────────────────────
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    // Icône : ☀ en mode sombre (pour basculer vers le clair), ☾ en mode clair
+    function updateIcon() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.theme-toggle__icon').textContent = t === 'dark' ? '☀' : '☾';
+    }
+    updateIcon();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateIcon();
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    });
+  })();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('navBurger').addEventListener('click', function() {
+    const links = document.querySelector('.nav__links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display      = isOpen ? 'none' : 'flex';
+    links.style.flexDirection= 'column';
+    links.style.position     = 'absolute';
+    links.style.top          = '64px';
+    links.style.left         = '0';
+    links.style.right        = '0';
+    links.style.background   = 'rgba(13,11,10,0.97)';
+    links.style.padding      = '1rem 2rem 2rem';
+    links.style.backdropFilter = 'blur(16px)';
+    links.style.zIndex       = '999';
+  });
+</script>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__rings"></div>
+  <div class="hero__notes">
+    <span class="hero__note">♪</span>
+    <span class="hero__note">♫</span>
+    <span class="hero__note">♩</span>
+    <span class="hero__note">♬</span>
+    <span class="hero__note">♭</span>
+    <span class="hero__note">♮</span>
+  </div>
+  <div class="hero__content">
+    <span class="hero__eyebrow">✦ Cadeau Musical Personnalisé ✦</span>
+    <h1 class="display hero__title">
+      Chanson<br><em>de Vie</em>
+    </h1>
+    <p class="hero__subtitle">
+      Partagez trois souvenirs. Nous créons une chanson unique,<br>
+      envoyée par email ou gravée sur CD, livrée avec amour.
+    </p>
+    <div class="hero__actions">
+      <a href="commander.html" class="btn btn--or">Commander ma chanson</a>
+      <a href="#demos" class="btn btn--outline">Écouter des démos ↓</a>
+    </div>
+  </div>
+  <div class="hero__scroll-hint">
+    <span>Découvrir</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VINYL SCROLL
+     ============================================================ -->
+<section class="vinyl-section">
+  <div class="vinyl-sticky">
+    <div class="container">
+      <div class="vinyl-layout">
+        <div class="vinyl-wrap">
+          <div class="vinyl-shadow"></div>
+          <svg id="vinyl" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vinyle tournant"></svg>
+        </div>
+        <div class="vinyl-texts">
+          <div class="vinyl-text-item active">
+            <div class="step-num">01</div>
+            <h3>Partagez vos souvenirs</h3>
+            <p class="muted">Remplissez un formulaire simple : prénom, occasion, trois moments marquants, style musical. Dix minutes suffisent.</p>
+          </div>
+          <div class="vinyl-text-item">
+            <div class="step-num">02</div>
+            <h3>Votre chanson est créée</h3>
+            <p class="muted">Nous générons votre chanson sur mesure et vous l'envoyons pour validation. Rien n'est gravé sans votre accord.</p>
+          </div>
+          <div class="vinyl-text-item">
+            <div class="step-num">03</div>
+            <h3>Gravée pour l'éternité</h3>
+            <p class="muted">Validé, nous faisons graver votre chanson sur CD ou vinyle avec pochette personnalisée et livrons à votre porte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMMENT ÇA MARCHE
+     ============================================================ -->
+<section class="how-section">
+  <div class="container">
+    <span class="section-label">Le processus</span>
+    <h2 class="section-title">En 4 étapes simples</h2>
+    <p class="section-intro">Du formulaire jusqu'à votre porte, nous gérons tout.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-card__num">1</div>
+        <div class="how-card__icon">✍️</div>
+        <h3>Vous partagez</h3>
+        <p>Prénom de la personne, occasion, souvenirs et style musical préféré. Comptez 10 minutes.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-card__num">2</div>
+        <div class="how-card__icon">🎵</div>
+        <h3>Nous créons</h3>
+        <p>Votre chanson personnalisée est générée sous 48 h. Nous vous envoyons le fichier audio pour validation.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-card__num">3</div>
+        <div class="how-card__icon">✅</div>
+        <h3>Vous validez</h3>
+        <p>Vous aimez ? Parfait. Vous souhaitez un ajustement ? On s'adapte. Rien n'est gravé sans votre accord.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-card__num">4</div>
+        <div class="how-card__icon">📦</div>
+        <h3>Livré chez vous</h3>
+        <p>CD ou vinyle avec pochette personnalisée, emballé dans un joli coffret. Livraison en Belgique et France.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OCCASIONS — À quoi ça sert
+     ============================================================ -->
+<section class="occasions-section">
+  <div class="container">
+    <span class="section-label">Idées cadeaux</span>
+    <h2 class="section-title">L'occasion parfaite<br><em style="font-style:italic;font-family:var(--font-display);font-weight:300">existe déjà</em></h2>
+    <p class="section-intro">Une chanson personnalisée convient à chaque grand moment de vie. Voici quelques idées pour vous inspirer.</p>
+    <div class="occasions-grid">
+      <div class="occasion-card" data-delay="0">
+        <span class="occasion-card__icon">🎂</span>
+        <h3 class="occasion-card__title">Anniversaire</h3>
+        <p class="occasion-card__desc">Pour les 70, 80, 90 ans — un cadeau unique à la hauteur d'une vie bien remplie. La chanson raconte <em>leur</em> histoire, leurs souvenirs, leurs moments forts.</p>
+      </div>
+      <div class="occasion-card" data-delay="1">
+        <span class="occasion-card__icon">🏖️</span>
+        <h3 class="occasion-card__title">Départ à la retraite</h3>
+        <p class="occasion-card__desc">Après des années de travail, offrez une chanson qui résume une belle carrière et ouvre une nouvelle page. Un cadeau du bureau qui marquera les esprits.</p>
+      </div>
+      <div class="occasion-card" data-delay="2">
+        <span class="occasion-card__icon">💒</span>
+        <h3 class="occasion-card__title">Noces d'or & mariage</h3>
+        <p class="occasion-card__desc">Célébrez des décennies d'amour ou un grand oui avec une mélodie qui raconte votre histoire à deux. Le cadeau de mariage que personne d'autre n'offrira.</p>
+      </div>
+      <div class="occasion-card" data-delay="3">
+        <span class="occasion-card__icon">💐</span>
+        <h3 class="occasion-card__title">Fête des mères & pères</h3>
+        <p class="occasion-card__desc">Le cadeau zéro déchet le plus émouvant qui soit. Rien à mettre en pile, rien à brancher. Juste une chanson qui leur dit <em>tout ce qu'on n'ose pas toujours dire</em>.</p>
+      </div>
+      <div class="occasion-card" data-delay="4">
+        <span class="occasion-card__icon">🕯️</span>
+        <h3 class="occasion-card__title">Hommage & souvenir</h3>
+        <p class="occasion-card__desc">Perpétuez la mémoire d'un proche grâce à une chanson qui lui ressemble. Une façon douce et belle de garder son souvenir vivant pour toujours.</p>
+      </div>
+      <div class="occasion-card" data-delay="5">
+        <span class="occasion-card__icon">🎄</span>
+        <h3 class="occasion-card__title">Noël & cadeaux rares</h3>
+        <p class="occasion-card__desc">Sous le sapin, rien de plus inoubliable qu'une chanson créée rien que pour lui. Le cadeau qui brise la routine des chèques-cadeaux et laisse sans voix.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3.5rem">
+      <a href="commander.html" class="btn btn--or">Créer la chanson maintenant</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STYLES MUSICAUX — horizontal scroll driven par le scroll vertical
+     ============================================================ -->
+<section class="styles-h-section" id="stylesSection">
+  <div class="styles-h-sticky">
+
+    <div class="styles-h-header">
+      <span class="section-label">Nos styles</span>
+      <h2 class="section-title">8 univers musicaux</h2>
+      <p class="styles-h-scroll-hint">
+        <span class="styles-h-arrow">—</span> Scrollez pour découvrir
+      </p>
+    </div>
+
+    <div class="styles-h-viewport">
+      <div class="styles-h-track" id="stylesTrack">
+                  <a href="commander.html?style=Vari%C3%A9t%C3%A9+Fran%C3%A7aise" class="style-card-h">
+            <span class="style-card-h__num">01</span>
+            <span class="style-card-h__emoji">🎹</span>
+            <div class="style-card-h__name">Variété Française</div>
+            <p class="style-card-h__desc">Pour les fans de Brel, Brassens, Aznavour. Textes poétiques, guitare acoustique.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Jazz+Intime" class="style-card-h">
+            <span class="style-card-h__num">02</span>
+            <span class="style-card-h__emoji">🎷</span>
+            <div class="style-card-h__name">Jazz Intime</div>
+            <p class="style-card-h__desc">Ambiance club parisien feutré. Piano doux, basse et voix chaleureuse.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Folk+Acoustique" class="style-card-h">
+            <span class="style-card-h__num">03</span>
+            <span class="style-card-h__emoji">🌿</span>
+            <div class="style-card-h__name">Folk Acoustique</div>
+            <p class="style-card-h__desc">Doux et naturel, comme une ballade au coin du feu. Fingerpicking et voix sincère.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Classique+Orchestral" class="style-card-h">
+            <span class="style-card-h__num">04</span>
+            <span class="style-card-h__emoji">🎻</span>
+            <div class="style-card-h__name">Classique Orchestral</div>
+            <p class="style-card-h__desc">Majestueux, pour célébrer une grande vie. Cordes et orchestre, sans paroles.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Pop+Ann%C3%A9es+80" class="style-card-h">
+            <span class="style-card-h__num">05</span>
+            <span class="style-card-h__emoji">🕺</span>
+            <div class="style-card-h__name">Pop Années 80</div>
+            <p class="style-card-h__desc">Festif, pour les amoureux des années paillettes. Synthés et refrains accrocheurs.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Rock+Nostalgique" class="style-card-h">
+            <span class="style-card-h__num">06</span>
+            <span class="style-card-h__emoji">🎸</span>
+            <div class="style-card-h__name">Rock Nostalgique</div>
+            <p class="style-card-h__desc">Pour les fans de Johnny &amp; Eddy. Guitare électrique et énergie des années 70.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Bossa+Nova" class="style-card-h">
+            <span class="style-card-h__num">07</span>
+            <span class="style-card-h__emoji">🌊</span>
+            <div class="style-card-h__name">Bossa Nova</div>
+            <p class="style-card-h__desc">Chaleureuse et ensoleillée. Guitare nylon, percussions douces, voyage garanti.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+                  <a href="commander.html?style=Comptine+%26+Douceur" class="style-card-h">
+            <span class="style-card-h__num">08</span>
+            <span class="style-card-h__emoji">🎠</span>
+            <div class="style-card-h__name">Comptine &amp; Douceur</div>
+            <p class="style-card-h__desc">Pour un souvenir d&#039;enfance. Boîte à musique, piano léger, tendresse absolue.</p>
+            <div class="style-card-h__cta">Choisir ce style ↗</div>
+          </a>
+              </div>
+    </div>
+
+    <div class="styles-h-progress-wrap">
+      <div class="styles-h-progress-bar" id="stylesProgressBar"></div>
+    </div>
+
+    <div class="styles-h-footer">
+      <a href="styles.html" class="btn btn--outline-or">Voir tous les styles en détail</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     DÉMOS AUDIO
+     ============================================================ -->
+<section class="demos-section" id="demos">
+  <div class="container">
+    <span class="section-label">Exemples</span>
+    <h2 class="section-title">Écoutez avant de commander</h2>
+    <p class="section-intro">Ces démos ont été créées pour illustrer nos styles. Votre chanson sera 100 % personnalisée avec vos souvenirs.</p>
+    <div class="demos-grid">
+      <div class="demo-card">
+        <div class="demo-card__style">Variété Française</div>
+        <div class="demo-card__title">Pour les 80 ans de Mamie Jeanne</div>
+        <p class="demo-card__desc">Souvenirs : son jardin, les étés en Ardenne, ses gâteaux au miel.</p>
+        <div class="audio-player">
+          <div class="audio-player__controls">
+            <button class="audio-player__btn" data-audio-todo="assets/audio/demos/demo-variete.mp3" title="Lire / Pause">▶</button>
+            <div class="audio-player__info">
+              <div class="audio-player__time">0:00 / 0:00</div>
+              <div class="audio-player__progress">
+                <div class="audio-player__fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card__style">Jazz Intime</div>
+        <div class="demo-card__title">Retraite de Papa Michel</div>
+        <p class="demo-card__desc">Souvenirs : ses dimanches jazz, le saxophone qu'il n'a jamais appris, ses blagues au bureau.</p>
+        <div class="audio-player">
+          <div class="audio-player__controls">
+            <button class="audio-player__btn" data-audio-todo="assets/audio/demos/demo-jazz.mp3" title="Lire / Pause">▶</button>
+            <div class="audio-player__info">
+              <div class="audio-player__time">0:00 / 0:00</div>
+              <div class="audio-player__progress">
+                <div class="audio-player__fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card__style">Folk Acoustique</div>
+        <div class="demo-card__title">Hommage à Grand-père Henri</div>
+        <p class="demo-card__desc">Souvenirs : sa ferme, les promenades en forêt, sa passion pour la pêche.</p>
+        <div class="audio-player">
+          <div class="audio-player__controls">
+            <button class="audio-player__btn" data-audio-todo="assets/audio/demos/demo-folk.mp3" title="Lire / Pause">▶</button>
+            <div class="audio-player__info">
+              <div class="audio-player__time">0:00 / 0:00</div>
+              <div class="audio-player__progress">
+                <div class="audio-player__fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TARIFS
+     ============================================================ -->
+<section class="pricing-section">
+  <div class="container">
+    <span class="section-label">Nos offres</span>
+    <h2 class="section-title">Choisissez votre format</h2>
+    <p class="section-intro">Du fichier numérique au vinyle collector — il y en a pour tous les budgets et toutes les occasions.</p>
+    <div class="pricing-grid" style="max-width:900px;margin:0 auto">
+      <div class="pricing-card">
+        <span class="pricing-card__icon">🎵</span>
+        <div class="pricing-card__name">Fichier MP3</div>
+        <div class="pricing-card__price"><sup>€</sup>20</div>
+        <div class="pricing-card__delivery">Livraison par email sous 48 h</div>
+        <ul class="pricing-card__features">
+          <li>Chanson personnalisée unique</li>
+          <li>Fichier MP3 haute qualité</li>
+          <li>Paroles incluses en PDF</li>
+          <li>1 révision offerte</li>
+          <li>+5 € pour 2 chansons</li>
+          <li>+10 € pour 3 chansons</li>
+        </ul>
+        <a href="commander.html?produit=mp3" class="btn btn--outline btn--full">Choisir MP3</a>
+      </div>
+      <div class="pricing-card pricing-card--featured">
+        <span class="pricing-card__icon">💿</span>
+        <div class="pricing-card__name">CD Personnalisé</div>
+        <div class="pricing-card__price"><sup>€</sup>30</div>
+        <div class="pricing-card__delivery">Livraison sous 7–10 jours ouvrables</div>
+        <ul class="pricing-card__features">
+          <li>Chanson personnalisée unique</li>
+          <li>CD gravé avec pochette imprimée</li>
+          <li>Photo et texte sur la pochette</li>
+          <li>Paroles incluses en livret</li>
+          <li>1 révision offerte</li>
+          <li>Emballage cadeau inclus</li>
+          <li>+5 € pour 2 chansons</li>
+          <li>+10 € pour 3 chansons</li>
+        </ul>
+        <a href="commander.html?produit=cd" class="btn btn--or btn--full">Choisir CD</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AVIS CLIENTS (carrousel)
+     ============================================================ -->
+<section class="avis-section">
+  <div class="container">
+    <span class="section-label">Ce qu'ils disent</span>
+    <h2 class="section-title">Des larmes de joie garanties</h2>
+    <p class="section-intro">Plus de 50 chansons créées. Voici quelques retours de nos clients.</p>
+
+    <div class="carousel" id="avisCarousel">
+      <div class="carousel__track">
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★★</div>
+            <p class="avis-card__text">"Ma mère a fondu en larmes en entendant sa chanson pour ses 80 ans. C'est le plus beau cadeau que j'aie jamais offert. Un service magique."</p>
+            <div class="avis-card__author">Marie-Claire D.</div>
+            <div class="avis-card__occasion">80 ans de sa maman • Variété française</div>
+          </div>
+        </div>
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★★</div>
+            <p class="avis-card__text">"Pour la retraite de mon père, j'ai commandé une chanson jazz avec ses souvenirs de bureau. Il en parle encore à tout le monde six mois après. Incroyable."</p>
+            <div class="avis-card__author">François B.</div>
+            <div class="avis-card__occasion">Retraite de son père • Jazz intime</div>
+          </div>
+        </div>
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★☆</div>
+            <p class="avis-card__text">"Très belle chanson folk, livraison rapide du CD. La pochette est magnifique avec la photo de famille. Je recommande vraiment."</p>
+            <div class="avis-card__author">Isabelle V.</div>
+            <div class="avis-card__occasion">Anniversaire de mariage • Folk acoustique</div>
+          </div>
+        </div>
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★★</div>
+            <p class="avis-card__text">"Un cadeau hors du commun pour les 75 ans de ma belle-mère. Elle qui ne pleure jamais a eu les yeux brillants. Merci du fond du cœur !"</p>
+            <div class="avis-card__author">Jean-Pierre M.</div>
+            <div class="avis-card__occasion">75e anniversaire • Bossa Nova</div>
+          </div>
+        </div>
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★★</div>
+            <p class="avis-card__text">"Le CD est magnifique, pochette imprimée avec la photo de famille. Et la chanson ? Mon grand-père a dit que c'était la plus belle chose reçue en 82 ans."</p>
+            <div class="avis-card__author">Sophie L.</div>
+            <div class="avis-card__occasion">82e anniversaire • Comptine & Douceur</div>
+          </div>
+        </div>
+        <div class="carousel__slide">
+          <div class="avis-card">
+            <div class="avis-card__stars">★★★★★</div>
+            <p class="avis-card__text">"Service réactif, résultat bluffant. La chanson rock pour mon oncle fan de Johnny était parfaite — il y avait même une référence à son quartier bruxellois. Chapeau !"</p>
+            <div class="avis-card__author">Patrick D.</div>
+            <div class="avis-card__occasion">Anniversaire surprise • Rock nostalgique</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Précédent">‹</button>
+      <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Suivant">›</button>
+
+      <div class="carousel__dots" id="carouselDots"></div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem">
+      <a href="avis.html" class="btn btn--outline-or">Voir tous les avis</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const track  = document.querySelector('#avisCarousel .carousel__track');
+  const slides = track.querySelectorAll('.carousel__slide');
+  const dots   = document.getElementById('carouselDots');
+  let current  = 0;
+  let timer;
+
+  // Créer les points
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel__dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Avis ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dots.appendChild(d);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.querySelectorAll('.carousel__dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  document.getElementById('carouselPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('carouselNext').addEventListener('click', () => goTo(current + 1));
+
+  // Swipe mobile
+  let startX = 0;
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  resetTimer();
+})();
+</script>
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-band">
+  <div class="cta-band__vinyl-bg">
+    <svg viewBox="0 0 400 400" width="600" height="600" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="200" cy="200" r="195" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="191" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="187" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="183" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="179" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="175" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="171" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="167" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="163" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="159" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="155" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="151" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="147" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="143" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="139" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="135" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="131" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="127" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="123" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="119" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="115" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="111" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="107" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="103" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="99" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="95" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="91" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="87" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="83" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="79" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="75" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="71" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="67" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="63" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+          </svg>
+  </div>
+  <div class="container" style="position:relative;z-index:1;text-align:center">
+    <span class="section-label">Commencez maintenant</span>
+    <h2>Chaque vie mérite<br>sa chanson</h2>
+    <p>Offrez un cadeau que personne ne jettera jamais.<br>Livraison en Belgique et en France.</p>
+    <a href="commander.html" class="btn btn--or" style="font-size:1rem;padding:1rem 2.5rem">
+      Créer ma chanson — dès 20 €
+    </a>
+    <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--gris)">
+      ✓ Paiement sécurisé &nbsp;·&nbsp; ✓ 1 révision offerte &nbsp;·&nbsp; ✓ Satisfaction garantie
+    </p>
+  </div>
+</section>
+
+﻿
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="footer__logo">Chanson de Vie</a>
+        <p class="footer__tagline">
+          Transformez vos souvenirs en mélodie éternelle.<br>
+          Gravée sur CD ou vinyle, livrée avec amour.
+        </p>
+        <div class="groove-divider" style="margin-top:1.5rem;max-width:200px">
+          <div class="groove-divider-dot"></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="styles.html">Les styles musicaux</a></li>
+          <li><a href="commander.html">Commander</a></li>
+          <li><a href="avis.html">Avis clients</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@lachansondetavie.be">contact@lachansondetavie.be</a></li>
+          <li style="color:var(--gris);font-size:.85rem;margin-top:.5rem">Belgique<br>Commande 7j/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Chanson de Vie — Tous droits réservés</p>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/static-patch.js"></script>
+</body>
+</html>
+
+<script src="assets/js/scroll.js"></script>
+

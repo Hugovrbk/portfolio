@@ -1,0 +1,106 @@
+/* ==========================================================================
+   STUDENT MAP — carte (Leaflet, grappes, panneaux)
+   La carte est désaturée pour que les marqueurs ressortent comme des
+   tampons posés sur le papier.
+   ========================================================================== */
+.map-container {
+    position: relative; min-height: 520px; overflow: hidden;
+    background: #E2E0D6; border: 2px solid var(--rule); border-radius: var(--r-m); box-shadow: var(--hard);
+}
+.leaflet-map { width: 100%; height: min(68vh, 680px); min-height: 520px; z-index: 1; font-family: var(--font-ui); background: #E2E0D6; }
+.leaflet-container { font-family: var(--font-ui); }
+.leaflet-tile-pane { filter: saturate(.45) contrast(.96); }
+@media (prefers-color-scheme: dark) {
+    .leaflet-tile-pane { filter: invert(1) hue-rotate(200deg) saturate(.35) brightness(.82) contrast(.95); }
+    .map-container, .leaflet-map { background: #1B2142; }
+}
+
+.map-container:fullscreen, .map-container.is-expanded { width: 100vw; height: 100vh; min-height: 100vh; border: 0; border-radius: 0; box-shadow: none; }
+.map-container:fullscreen .leaflet-map, .map-container.is-expanded .leaflet-map { width: 100%; height: 100%; min-height: 100%; }
+.map-container.is-expanded { position: fixed; z-index: 1400; inset: 0; }
+
+.map-globe { position: absolute; z-index: 2; inset: 0; background: #0B1030; }
+.map-globe[hidden] { display: none; }
+.map-globe canvas { display: block; width: 100%; height: 100%; }
+.map-globe.is-active { display: block; }
+.map-container.is-globe #map { visibility: hidden; }
+.map-container.is-globe .leaflet-control-container { display: none; }
+
+/* Marqueurs : un chiffre = le nombre d'actions dans la ville */
+.student-map-marker {
+    display: flex !important; align-items: center; justify-content: center;
+    border: 2px solid #121A3F; border-radius: 50%; color: #fff;
+    font: 800 .9rem/1 var(--font-ui); font-stretch: 100%;
+    box-shadow: 2px 2px 0 #121A3F; transition: transform .12s;
+}
+.student-map-marker:hover { transform: translate(-1px, -1px) scale(1.08); }
+.student-map-marker-single { background: #2B4BFF; }
+.student-map-marker-multiple { background: #121A3F; color: #FFE84D; border-color: #FFFFFF; box-shadow: 2px 2px 0 #2B4BFF; }
+
+/* Grappes (leaflet.markercluster) */
+.marker-cluster.marker-cluster-small, .marker-cluster.marker-cluster-medium, .marker-cluster.marker-cluster-large { background: rgba(43, 75, 255, .28); }
+.marker-cluster.marker-cluster-small div, .marker-cluster.marker-cluster-medium div, .marker-cluster.marker-cluster-large div {
+    background: #2B4BFF; color: #fff; border: 2px solid #121A3F; font: 800 .9rem/26px var(--font-ui);
+}
+
+/* Commandes de la carte */
+.map-controls { position: absolute; z-index: 500; top: 16px; right: 16px; display: grid; gap: 8px; }
+.map-controls .map-control-btn {
+    display: grid; width: 44px; height: 44px; place-items: center;
+    border: 2px solid var(--rule); border-radius: var(--r-s); background: var(--sheet); color: var(--ink); box-shadow: var(--hard-s);
+}
+.map-controls .map-control-btn:hover { background: var(--paper); }
+.map-controls .map-control-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+.leaflet-bar { border: 2px solid var(--rule) !important; border-radius: var(--r-s) !important; box-shadow: var(--hard-s) !important; }
+.leaflet-bar a, .leaflet-bar a:hover { background-color: var(--sheet); color: var(--ink); border-bottom-color: var(--rule); }
+.leaflet-bar a:hover { background-color: var(--paper); }
+.leaflet-bottom.leaflet-right { z-index: 450; }
+.leaflet-control-attribution { font-size: 10px !important; background: color-mix(in srgb, var(--sheet) 88%, transparent) !important; color: var(--ink-2); }
+.leaflet-control-attribution a { color: var(--blue); }
+
+/* Panneaux d'information */
+.map-info-panel, .marker-detail-panel {
+    position: absolute; z-index: 500; top: 16px; left: 16px; width: min(310px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow: auto;
+    background: var(--sheet); color: var(--ink); border: 2px solid var(--rule); border-radius: var(--r-m); box-shadow: var(--hard);
+}
+.map-info-panel.collapsed { width: auto; }
+.map-info-panel.collapsed .map-info-content { display: none; }
+.map-info-panel.collapsed .map-info-header { border-bottom: 0; }
+.map-info-header, .marker-detail-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-bottom: 2px solid var(--rule); }
+.map-info-title, .marker-detail-title { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.35rem; line-height: 1; }
+.map-info-close, .marker-detail-close { display: grid; width: 32px; height: 32px; place-items: center; border: 2px solid var(--rule); border-radius: var(--r-s); background: var(--sheet); color: var(--ink); }
+.map-info-close:hover, .marker-detail-close:hover { background: var(--paper); }
+.map-info-content, .marker-detail-content { padding: 12px 14px; }
+.map-info-content p, .marker-detail-content p { margin: 0 0 10px; font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+.map-info-content strong { color: var(--ink); }
+.map-legend { margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--line); }
+.map-legend h4 { margin: 0 0 8px; font-size: 1rem; }
+.legend-items { display: grid; gap: 7px; }
+.legend-item { display: flex; align-items: center; gap: 9px; font-size: .85rem; font-weight: 600; }
+.legend-marker { width: 14px; height: 14px; flex: none; border: 2px solid #121A3F; border-radius: 50%; background: #2B4BFF; }
+.legend-marker.multiple { background: #121A3F; border-color: var(--rule); }
+.legend-marker.featured { background: var(--hl); }
+.marker-detail-panel { top: auto; bottom: 16px; display: none; }
+.marker-detail-panel.active { display: block; }
+.marker-detail-loading { display: grid; justify-items: center; gap: 8px; padding: 12px; }
+.map-event-list { display: grid; gap: 4px; margin: 6px 0 0; padding: 0; list-style: none; }
+.map-event-list a { display: block; padding: 7px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 700; text-decoration: none; }
+.map-event-list a:hover { color: var(--blue); }
+.marker-detail-footer { padding: 0 14px 14px; }
+.map-error-message { position: absolute; z-index: 600; right: 16px; bottom: 16px; left: 16px; padding: 12px 16px; background: var(--sheet); color: var(--signal); border: 2px solid var(--signal); border-radius: var(--r-s); font-weight: 600; }
+
+/* Bulles Leaflet */
+.leaflet-popup-content-wrapper { background: var(--sheet); color: var(--ink); border: 2px solid var(--rule); border-radius: var(--r-s); box-shadow: var(--hard-s); }
+.leaflet-popup-tip { background: var(--sheet); border: 2px solid var(--rule); box-shadow: none; }
+.leaflet-popup-content { margin: 12px 14px; font-size: .9rem; line-height: 1.55; }
+.leaflet-popup-content strong { font-size: 1.05rem; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--ink-2); }
+
+@media (max-width: 700px) {
+    .map-container { min-height: 560px; }
+    .leaflet-map { height: 560px; min-height: 560px; }
+    .map-info-panel { top: 10px; left: 10px; width: min(260px, calc(100% - 74px)); }
+    .marker-detail-panel { bottom: 10px; left: 10px; width: calc(100% - 20px); }
+    .map-controls { top: 10px; right: 10px; }
+    .map-controls .map-control-btn { width: 40px; height: 40px; }
+}

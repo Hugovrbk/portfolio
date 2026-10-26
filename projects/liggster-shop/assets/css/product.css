@@ -1,0 +1,10 @@
+/* LIGGSTER SHOP - product.css */
+.product-layout { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: var(--sp-7); align-items: start; margin-block: var(--sp-5) var(--sp-8); }
+.product-card .pcard__art { aspect-ratio: 5 / 6; }
+.product-card .pcard__glyph { font-size: 8rem; }
+.specs { width: 100%; border-collapse: collapse; margin: var(--sp-5) 0; }
+.specs th, .specs td { text-align: left; padding: .7rem 0; border-bottom: 1px solid var(--c-line); }
+.specs th { color: var(--c-text-dim); font-weight: 500; width: 45%; }
+.crumbs { font-size: var(--fs-sm); color: var(--c-text-dim); margin-bottom: var(--sp-4); }
+.crumbs a:hover { color: var(--c-gold); }
+@media (max-width: 860px) { .product-layout { grid-template-columns: 1fr; } .product-card { max-width: 380px; } }

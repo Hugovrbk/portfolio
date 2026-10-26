@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Plateforme mondiale des actions étudiantes">
+    <meta name="keywords" content="étudiants, actions, manifestations, carte mondiale, vidéos, clips, mobilisations">
+    <meta name="author" content="Student Map Team">
+
+    <!-- Open Graph / Meta Tags pour les réseaux sociaux -->
+    <meta property="og:site_name" content="Student Map">
+    <meta property="og:title" content="Student Map">
+    <meta property="og:description" content="Plateforme mondiale des actions étudiantes">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Map">
+    <meta name="twitter:description" content="Plateforme mondiale des actions étudiantes">
+
+    <title>Politique des cookies - Student Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/map.css">
+    <link rel="stylesheet" href="../assets/css/media.css">
+
+    <!-- Leaflet Marker Cluster -->
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.Default.css">
+
+    <!-- Google Fonts -->
+    <link rel="preload" href="../assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/source-serif-4-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#ECEEF4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B0F26" media="(prefers-color-scheme: dark)">
+
+    <!-- JavaScript -->
+    <script src="../assets/vendor/leaflet/leaflet.js"></script>
+    <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
+
+    <!-- Configuration globale JavaScript -->
+    <script>
+        window.STUDENT_MAP_CONFIG = {
+            baseUrl: '', assetBase: '../',
+            csrfToken: '',
+            language: 'fr',
+            isLoggedIn: false,
+            userRole: 'guest',
+            map: {
+                defaultZoom: 3,
+                minZoom: 2,
+                maxZoom: 18,
+                center: [48.8566, 2.3522]
+            }
+        };
+    </script>
+<script src="../assets/js/static-data.js"></script><script src="../assets/js/static-patch.js" defer></script></head>
+<body class="main-page">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="../index.html" class="navbar-brand">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">
+                        <span class="logo-title">STUDENT</span>
+                        <span class="logo-subtitle">MAP</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu principal -->
+            <div class="navbar-menu">
+                <ul class="nav-list">
+                    <li class="nav-item ">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../explorer.html" class="nav-link">
+                            <i class="fas fa-compass"></i>
+                            <span>Explorer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../actions.html" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Actions à venir</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../media.html" class="nav-link">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Médiathèque</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="../clips.html" class="nav-link">
+                            <i class="fas fa-video"></i>
+                            <span>Clips</span>
+                        </a>
+                    </li>
+
+                    <!-- Menu déroulant Catégories -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-tags"></i>
+                            <span>Catégories</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-manifestation.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #e74c3c">
+                                        <span class="category-dot" style="background-color: #e74c3c"></span>
+                                        Manifestation                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__category-blocus.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #f39c12">
+                                        <span class="category-dot" style="background-color: #f39c12"></span>
+                                        Blocus                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-list"></i>
+                                    Toutes les catégories                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Menu déroulant Pays -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span>Pays</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-countries">
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-BE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇧🇪</span>
+                                        Belgique                                        <span class="country-count">
+                                            5                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-US.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇺🇸</span>
+                                        États-Unis                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-FR.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇫🇷</span>
+                                        France                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="../explorer__country-DE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇩🇪</span>
+                                        Allemagne                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="../explorer.html" class="dropdown-link">
+                                    <i class="fas fa-globe-americas"></i>
+                                    Tous les pays                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="../about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>À propos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu utilisateur -->
+            <div class="navbar-user">
+                                    <div class="auth-buttons">
+                    </div>
+                
+                <div class="language-switch" aria-label="Site language">
+                    <a href="cookies.html" lang="fr" aria-current="page">FR</a>
+                    <a href="../en/legal/cookies.html" lang="en" >EN</a>
+                </div>
+
+                <!-- Bouton mobile -->
+                <button class="navbar-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">
+                    <span class="logo-title">STUDENT</span>
+                    <span class="logo-subtitle">MAP</span>
+                </span>
+            </div>
+            <div class="language-switch mobile-language-switch" aria-label="Site language">
+                <a href="cookies.html" lang="fr" aria-current="page">Français</a>
+                <a href="../en/legal/cookies.html" lang="en" >English</a>
+            </div>
+            <button class="mobile-menu-close" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="../index.html" class="mobile-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../explorer.html" class="mobile-nav-link">
+                        <i class="fas fa-compass"></i>
+                        <span>Explorer</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../actions.html" class="mobile-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Actions à venir</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../media.html" class="mobile-nav-link">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Médiathèque</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../clips.html" class="mobile-nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Clips</span>
+                    </a>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-tags"></i>
+                        <span>Catégories</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>Pays</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-BE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇧🇪</span>
+                                    Belgique                                    <span class="country-count">5</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-US.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇺🇸</span>
+                                    États-Unis                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-FR.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇫🇷</span>
+                                    France                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="../explorer__country-DE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇩🇪</span>
+                                    Allemagne                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item">
+                    <a href="../about.html" class="mobile-nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>À propos</span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Messages flash -->
+    <div class="flash-messages">
+            </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="mobile-menu-overlay"></div>
+<!-- Section héro -->
+<section class="legal-hero">
+    <div class="legal-hero-container">
+        <div class="legal-hero-content">
+            <h1 class="legal-hero-title">
+                <i class="fas fa-cookie-bite"></i>
+                Politique des cookies
+            </h1>
+            <p class="legal-hero-description">
+                Comment Student Map utilise les cookies et technologies similaires
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contenu principal -->
+<section class="legal-content">
+    <div class="legal-container">
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-info-circle"></i>
+                Qu'est-ce qu'un cookie ?
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Un cookie est un petit fichier texte que les sites web que vous visitez peuvent stocker sur votre ordinateur ou appareil mobile.
+                    Les cookies permettent aux sites web de se souvenir de vos actions et préférences (comme la connexion, la langue, la taille de police
+                    et d'autres préférences d'affichage) pendant une certaine période, afin que vous n'ayez pas à les réindiquer à chaque fois que
+                    vous revenez sur le site ou naviguez d'une page à l'autre.
+                </p>
+                <p>
+                    Les cookies peuvent également être utilisés pour analyser le trafic sur un site web, pour personnaliser le contenu et les publicités,
+                    et pour fournir des fonctionnalités de médias sociaux.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-question-circle"></i>
+                Pourquoi utilisons-nous des cookies ?
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Student Map utilise des cookies et des technologies similaires pour :
+                </p>
+                <ul>
+                    <li><strong>Maintenir votre session connectée :</strong> Les cookies nous permettent de vous reconnaître lorsque vous revenez sur notre site, afin que vous n'ayez pas à vous reconnecter à chaque visite.</li>
+                    <li><strong>Mémoriser vos préférences :</strong> Nous utilisons des cookies pour mémoriser vos préférences, comme votre langue ou vos paramètres régionaux.</li>
+                    <li><strong>Améliorer la sécurité :</strong> Les cookies nous aident à protéger votre compte contre les accès non autorisés.</li>
+                    <li><strong>Analyser l'utilisation de notre site :</strong> Nous utilisons des cookies pour comprendre comment vous utilisez notre site, afin de l'améliorer.</li>
+                    <li><strong>Personnaliser votre expérience :</strong> Les cookies nous permettent de personnaliser le contenu et les fonctionnalités que vous voyez sur notre site.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-tags"></i>
+                Types de cookies que nous utilisons
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous utilisons les types de cookies suivants sur Student Map :
+                </p>
+
+                <h3>Cookies essentiels</h3>
+                <p>
+                    Ces cookies sont nécessaires pour que notre site fonctionne correctement. Ils vous permettent de naviguer sur notre site et d'utiliser ses fonctionnalités.
+                    Sans ces cookies, nous ne pouvons pas fournir les services que vous demandez.
+                </p>
+                <p>
+                    <strong>Exemples :</strong>
+                </p>
+                <ul>
+                    <li>Cookies de session pour maintenir votre connexion</li>
+                    <li>Cookies de sécurité pour protéger votre compte</li>
+                    <li>Cookies de préférences pour mémoriser vos choix (comme la langue)</li>
+                </ul>
+
+                <h3>Cookies de performance et d'analyse</h3>
+                <p>
+                    Ces cookies nous aident à comprendre comment vous utilisez notre site, afin que nous puissions l'améliorer.
+                    Ils nous permettent de voir quelles pages sont les plus populaires, combien de visiteurs nous avons, etc.
+                </p>
+                <p>
+                    <strong>Exemples :</strong>
+                </p>
+                <ul>
+                    <li>Cookies Google Analytics (si activés)</li>
+                    <li>Cookies de suivi des performances</li>
+                </ul>
+
+                <h3>Cookies fonctionnels</h3>
+                <p>
+                    Ces cookies nous permettent de vous offrir une expérience plus personnalisée. Ils mémorisent les choix que vous faites
+                    (comme votre nom d'utilisateur, votre langue ou votre région) et fournissent des fonctionnalités améliorées.
+                </p>
+                <p>
+                    <strong>Exemples :</strong>
+                </p>
+                <ul>
+                    <li>Cookies pour mémoriser vos préférences de notification</li>
+                    <li>Cookies pour personnaliser l'apparence de notre site</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-cookie"></i>
+                Cookies utilisés par Student Map
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Voici une liste des cookies que nous utilisons actuellement sur Student Map :
+                </p>
+
+                <table class="cookies-table">
+                    <thead>
+                        <tr>
+                            <th>Nom du cookie</th>
+                            <th>Type</th>
+                            <th>Durée</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PHPSESSID</td>
+                            <td>Essentiel</td>
+                            <td>Session</td>
+                            <td>Maintenir votre session connectée</td>
+                        </tr>
+                        <tr>
+                            <td>remember_me</td>
+                            <td>Essentiel</td>
+                            <td>30 jours</td>
+                            <td>Mémoriser votre connexion (si vous cochez "Se souvenir de moi")</td>
+                        </tr>
+                        <tr>
+                            <td>csrf_token</td>
+                            <td>Essentiel</td>
+                            <td>Session</td>
+                            <td>Protéger contre les attaques CSRF</td>
+                        </tr>
+                        <tr>
+                            <td>user_prefs</td>
+                            <td>Fonctionnel</td>
+                            <td>1 an</td>
+                            <td>Mémoriser vos préférences (langue, thème, etc.)</td>
+                        </tr>
+                        <tr>
+                            <td>sidebar_collapsed</td>
+                            <td>Fonctionnel</td>
+                            <td>30 jours</td>
+                            <td>Mémoriser l'état de la barre latérale dans l'administration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-cog"></i>
+                Comment gérer les cookies
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Vous pouvez contrôler et gérer les cookies de plusieurs manières. Veuillez noter que la suppression ou le blocage de certains cookies
+                    peut avoir un impact sur votre expérience utilisateur et que certaines parties de notre site peuvent ne pas fonctionner correctement.
+                </p>
+
+                <h3>Gestion des cookies via votre navigateur</h3>
+                <p>
+                    La plupart des navigateurs vous permettent de :
+                </p>
+                <ul>
+                    <li>Voir quels cookies sont stockés sur votre appareil ;</li>
+                    <li>Supprimer les cookies de votre appareil ;</li>
+                    <li>Bloquer les cookies de sites spécifiques ;</li>
+                    <li>Bloquer tous les cookies ;</li>
+                    <li>Recevoir une alerte avant qu'un cookie ne soit stocké.</li>
+                </ul>
+                <p>
+                    Voici comment gérer les cookies dans les principaux navigateurs :
+                </p>
+                <ul>
+                    <li><strong>Chrome :</strong> Paramètres > Confidentialité et sécurité > Cookies et autres données de site</li>
+                    <li><strong>Firefox :</strong> Options > Vie privée et sécurité > Cookies et données de site</li>
+                    <li><strong>Safari :</strong> Préférences > Vie privée > Gérer les données du site web</li>
+                    <li><strong>Edge :</strong> Paramètres > Confidentialité, recherche et services > Cookies et autorisations de site</li>
+                </ul>
+
+                <h3>Suppression des cookies</h3>
+                <p>
+                    Vous pouvez supprimer tous les cookies déjà stockés sur votre appareil en utilisant les outils de votre navigateur.
+                    Cependant, cela supprimera également les cookies bénéfiques, comme ceux qui mémorisent vos préférences de connexion.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-shield-alt"></i>
+                Cookies tiers
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Notre site peut utiliser des services tiers qui placent leurs propres cookies sur votre appareil. Par exemple :
+                </p>
+                <ul>
+                    <li><strong>YouTube :</strong> Lorsque vous regardez des vidéos YouTube intégrées sur notre site, YouTube peut placer des cookies sur votre appareil.</li>
+                    <li><strong>Font Awesome :</strong> Nous utilisons Font Awesome pour les icônes, qui peut placer des cookies.</li>
+                    <li><strong>Google Fonts :</strong> Nous utilisons Google Fonts pour les polices, qui peut collecter des informations sur l'utilisation des polices.</li>
+                    <li><strong>Leaflet/OpenStreetMap :</strong> Notre carte interactive peut utiliser des cookies pour améliorer l'expérience cartographique.</li>
+                </ul>
+                <p>
+                    Ces cookies tiers ne sont pas contrôlés par Student Map. Pour plus d'informations sur ces cookies,
+                    veuillez consulter les politiques de confidentialité de ces tiers.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-globe"></i>
+                Consentement aux cookies
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    En utilisant Student Map, vous acceptez notre utilisation de cookies conformément à cette politique des cookies.
+                    Si vous ne souhaitez pas accepter nos cookies, nous vous conseillons de ne pas utiliser notre site ou de désactiver les cookies
+                    dans les paramètres de votre navigateur.
+                </p>
+                <p>
+                    Veuillez noter que la désactivation des cookies essentiels peut rendre notre site inutilisable.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-edit"></i>
+                Mises à jour de cette politique
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Nous pouvons mettre à jour cette politique des cookies de temps à autre pour refléter, par exemple, les changements dans nos pratiques
+                    ou pour d'autres raisons opérationnelles, légales ou réglementaires.
+                </p>
+                <p>
+                    Nous vous informerons de tout changement en publiant la nouvelle politique des cookies sur cette page.
+                    Nous vous conseillons de consulter cette page régulièrement pour rester informé de nos pratiques en matière de cookies.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2 class="legal-section-title">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </h2>
+            <div class="legal-section-content">
+                <p>
+                    Si vous avez des questions concernant cette politique des cookies ou notre utilisation des cookies,
+                    n'hésitez pas à nous contacter :
+                </p>
+                <ul>
+                    <li>Par email : <a href="mailto:privacy@studentmap.local">privacy@studentmap.local</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles spécifiques pour le tableau des cookies -->
+<style>
+.cookies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+}
+
+.cookies-table th,
+.cookies-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cookies-table th {
+    background: var(--bg-color-light);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-color-dark);
+}
+
+.cookies-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+</style>
+
+
+    </div>
+    <!-- Fin du contenu principal -->
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <!-- Section statistiques -->
+        <div class="footer-stats">
+            <div class="footer-stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Événements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Clips vidéo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Villes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Pays</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal du pied de page -->
+        <div class="footer-main">
+            <div class="footer-container">
+                <!-- Section À propos -->
+                <div class="footer-section about-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="footer-logo-text">
+                            <span class="footer-logo-title">STUDENT</span>
+                            <span class="footer-logo-subtitle">MAP</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        Plateforme mondiale des actions étudiantes est une plateforme internationale dédiée à la découverte
+                        et au suivi des actions, manifestations et mobilisations étudiantes à travers le monde.
+                    </p>
+                    <div class="footer-cta">
+                        <a href="../explorer.html" class="btn btn-outline-light">
+                            <i class="fas fa-compass"></i>
+                            Explorer la carte
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section Liens rapides -->
+                <div class="footer-section links-section">
+                    <h3 class="footer-section-title">Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="../index.html" class="footer-link">
+                                <i class="fas fa-home"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer.html" class="footer-link">
+                                <i class="fas fa-compass"></i>
+                                Explorer
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../actions.html" class="footer-link">
+                                <i class="fas fa-calendar-check"></i>
+                                Actions à venir
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../media.html" class="footer-link">
+                                <i class="fas fa-photo-video"></i>
+                                Médiathèque
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../clips.html" class="footer-link">
+                                <i class="fas fa-video"></i>
+                                Clips vidéo
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-date-desc.html" class="footer-link">
+                                <i class="fas fa-clock"></i>
+                                Récents
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="../explorer__sort-views-desc.html" class="footer-link">
+                                <i class="fas fa-eye"></i>
+                                Populaires
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section Catégories -->
+                <div class="footer-section categories-section">
+                    <h3 class="footer-section-title">Catégories</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-manifestation.html"
+                                   class="footer-link"
+                                   style="--category-color: #e74c3c">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Manifestation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="../explorer__category-blocus.html"
+                                   class="footer-link"
+                                   style="--category-color: #f39c12">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blocus                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Pages légales -->
+                <div class="footer-section legal-section">
+                    <h3 class="footer-section-title">Informations légales</h3>
+                    <ul class="footer-links">
+                                                    <li class="footer-link-item">
+                                <a href="../about.html" class="footer-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    À propos                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="privacy.html" class="footer-link">
+                                    <i class="fas fa-lock"></i>
+                                    Politique de confidentialité                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="terms.html" class="footer-link">
+                                    <i class="fas fa-file-contract"></i>
+                                    Conditions d&#039;utilisation                                </a>
+                            </li>
+                                                    <li class="footer-link-item">
+                                <a href="cookies.html" class="footer-link">
+                                    <i class="fas fa-cookie-bite"></i>
+                                    Gestion des cookies                                </a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <!-- Section Réseaux sociaux -->
+                <div class="footer-section social-section">
+                    <h3 class="footer-section-title">Suivez-nous</h3>
+                    <div class="social-links">
+                                                    <a href="#"
+                               class="social-link"
+                               title="Twitter"
+                               style="--social-color: #1DA1F2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Facebook"
+                               style="--social-color: #3B5998">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="Instagram"
+                               style="--social-color: #E1306C">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="YouTube"
+                               style="--social-color: #FF0000">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                                                    <a href="#"
+                               class="social-link"
+                               title="LinkedIn"
+                               style="--social-color: #0077B5">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                                            </div>
+                    <div class="social-text">
+                        <p>Rejoignez notre communauté pour rester informé des dernières actions étudiantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre de copyright -->
+        <div class="footer-copyright">
+            <div class="footer-copyright-container">
+                <div class="copyright-text">
+                    &copy; 2026 <strong>Student Map</strong>.
+                    Tous droits réservés.
+                </div>
+                <div class="copyright-links">
+                    <span class="version">Version 1.0.0</span>
+                                            <span class="debug-badge">Mode développement</span>
+                                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts JavaScript -->
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/map.js"></script>
+    <script src="../assets/js/media.js"></script>
+
+    <!-- Scripts spécifiques à la page -->
+    <!-- Scripts de l'administration -->
+    
+    <!-- Google Analytics (optionnel - à configurer) -->
+    
+</body>
+</html>

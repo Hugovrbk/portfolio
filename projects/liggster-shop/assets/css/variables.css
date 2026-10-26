@@ -1,0 +1,82 @@
+/* =====================================================
+   LIGGSTER SHOP - variables.css
+   Design tokens : couleurs, typographie, espacements
+   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+:root {
+  /* Couleurs de base */
+  --c-night:      #0b0714;   /* fond principal */
+  --c-night-2:    #130d22;   /* surfaces */
+  --c-night-3:    #1c1432;   /* surfaces relevées */
+  --c-line:       #2e2350;   /* bordures */
+  --c-violet:     #7c4dff;
+  --c-violet-2:   #a98bff;
+  --c-gold:       #ffc94d;
+  --c-gold-2:     #ff9f1c;
+  --c-cyan:       #35e6ff;
+  --c-red:        #ff4d6a;
+  --c-green:      #3ddc97;
+
+  /* Texte */
+  --c-text:       #f1ecff;
+  --c-text-dim:   #a79fc4;
+  --c-text-faint: #6f6794;
+
+  /* Dégradés */
+  --grad-gold:    linear-gradient(135deg, var(--c-gold), var(--c-gold-2));
+  --grad-violet:  linear-gradient(135deg, var(--c-violet), var(--c-cyan));
+
+  /* Typographie */
+  --font-title: 'Orbitron', 'Segoe UI', sans-serif;
+  --font-body:  'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --fs-xs:  0.8rem;
+  --fs-sm:  0.9rem;
+  --fs-md:  1rem;
+  --fs-lg:  1.25rem;
+  --fs-xl:  clamp(1.6rem, 3vw, 2.2rem);
+  --fs-2xl: clamp(2.2rem, 5vw, 3.6rem);
+  --fs-hero: clamp(2.8rem, 9vw, 7rem);
+
+  /* Espacements */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 5rem;
+  --sp-9: 8rem;
+
+  /* Rayons */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* Ombres */
+  --shadow-md:   0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg:   0 20px 60px rgba(0, 0, 0, 0.55);
+  --glow-violet: 0 0 30px rgba(124, 77, 255, 0.45);
+  --glow-gold:   0 0 30px rgba(255, 201, 77, 0.4);
+
+  /* Mouvement */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.18s;
+  --t-med:  0.35s;
+
+  /* Layout */
+  --container: 1240px;
+  --nav-h: 72px;
+
+  /* Z-index */
+  --z-canvas: 0;
+  --z-content: 1;
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+  --z-loader: 400;
+  --z-cursor: 500;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartes gradées et boosters · Liggster Shop</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/account.css">
+    <link rel="stylesheet" href="assets/css/product.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="theme-color" content="#08080a">
+  <link rel="stylesheet" href="assets/css/theme.css">
+<link rel="icon" href="assets/img/favicon.png"><script src="assets/js/static-data.js"></script></head>
+<body class="page-home">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<header class="navbar" id="navbar"><div class="container navbar__inner">
+  <a class="navbar__logo" href="index.html"><img class="navbar__logo-mark" src="assets/img/logo.png" alt="" width="26" height="26">Liggster Shop</a>
+  <nav class="navbar__links" id="nav-links" aria-label="Navigation principale">
+    <a class="navbar__link is-active" href="index.html">Accueil</a>
+    <a class="navbar__link" href="boutique.html">Boutique</a>
+    <a class="navbar__link" href="boutique.html?cat=gradees">Cartes gradées</a>
+    <a class="navbar__link" href="boutique.html?cat=non-gradees">Non gradées</a>
+    <a class="navbar__link" href="boutique.html?cat=boosters">Boosters</a>
+      </nav>
+  <div class="navbar__actions">
+    <a class="icon-btn" href="boutique.html?cat=fav" aria-label="Mes favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg><span class="icon-btn__count" id="count-fav" data-count="0">0</span></a>
+    <a class="icon-btn" href="connexion.html" aria-label="Se connecter" title="Connexion"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></a>
+    <a class="icon-btn" href="panier.html" aria-label="Panier"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="icon-btn__count" id="count-cart" data-count="0">0</span></a>
+    <button class="icon-btn navbar__burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<main>
+  <section class="hero">
+      <div class="container"><div class="hero__content">
+        <p class="eyebrow" data-intro>Cartes gradées · Boosters scellés</p>
+        <h1 class="hero__title" data-intro><span>Collectionne</span><span class="accent">l'exceptionnel.</span></h1>
+        <p class="hero__sub" data-intro>Dracaufeu, Lucario, Mélofée et bien d'autres : des cartes gradées et des produits scellés, choisis avec soin pour les collectionneurs.</p>
+        <div class="hero__cta" data-intro><a class="btn btn--primary" href="boutique.html">Voir la boutique</a><a class="btn btn--ghost" href="boutique.html?cat=gradees">Cartes gradées</a></div>
+      </div>
+      <div class="hero__stage" data-intro>
+        <div class="hero__blob"></div>
+        <img class="hero__pkm hero__pkm--a" src="assets/img/hero-flame.png" alt="Illustration d’une flamme">
+        <img class="hero__pkm hero__pkm--b" src="assets/img/hero-bolt.png" alt="Illustration d’un éclair">
+        <img class="hero__pkm hero__pkm--c" src="assets/img/hero-flower.png" alt="Illustration d’une fleur">
+      </div>
+      </div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee__track"><span>PSA 10</span><span>Cartes gradées</span><span>Boosters scellés</span><span>Displays</span><span>Coffrets dresseur d'élite</span><span>Livraison offerte dès 100 €</span><span>PSA 10</span><span>Cartes gradées</span><span>Boosters scellés</span><span>Displays</span><span>Coffrets dresseur d'élite</span><span>Livraison offerte dès 100 €</span></div></div>
+  <section class="section"><div class="container">
+    <div class="section-head" data-reveal><span class="kicker">01 — À la une</span><h2>Les pièces du moment</h2><p>Survole une carte : elle s'incline et le reflet holographique suit ta souris.</p></div>
+    <div class="grid grid--cards" id="featured-grid"><article class="pcard" data-id="1" data-name="Dracaufeu" data-price="1250.0" data-stock="1" data-types="all cartes gradees" data-bloc="Démo" data-serie="Set de base" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#3b7cff"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--gold">PSA 10</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">PSA 10</span><span class="pcard__slot-frame">Photo de la carte</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-1.html">Dracaufeu</a></h3><p class="pcard__meta">Set de base · 4/102</p><span class="badge badge--red">Plus que 1</span><div class="pcard__foot"><span class="pcard__price">1 250,00 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article><article class="pcard" data-id="2" data-name="Lucario" data-price="89.9" data-stock="1" data-types="all cartes gradees" data-bloc="Démo" data-serie="Extension démo" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#ff7ac8"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--gold">CGC 9.5</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">CGC 9.5</span><span class="pcard__slot-frame">Photo de la carte</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-2.html">Lucario</a></h3><p class="pcard__meta">Extension démo · 010/100</p><span class="badge badge--red">Plus que 1</span><div class="pcard__foot"><span class="pcard__price">89,90 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article><article class="pcard" data-id="3" data-name="Mélofée" data-price="49.9" data-stock="1" data-types="all cartes gradees" data-bloc="Démo" data-serie="Extension démo" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#35e6ff"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--gold">PCA 9</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--gradee"><span class="pcard__slot-label">PCA 9</span><span class="pcard__slot-frame">Photo de la carte</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-3.html">Mélofée</a></h3><p class="pcard__meta">Extension démo · 020/100</p><span class="badge badge--red">Plus que 1</span><div class="pcard__foot"><span class="pcard__price">49,90 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article><article class="pcard" data-id="6" data-name="Display 36 boosters" data-price="149.9" data-stock="6" data-types="all displays" data-bloc="Démo" data-serie="Extension démo" data-lang="FR" data-feat="1" data-created="1792097735" style="--accent:#e2452b"><div class="pcard__inner"><div class="pcard__art"><span class="pcard__label"><span class="badge badge--cyan">Display</span></span><button class="pcard__fav" data-act="fav" aria-pressed="false" aria-label="Ajouter aux favoris"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.3 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button><div class="pcard__slot pcard__slot--sealed"><span class="pcard__slot-label">Display</span><span class="pcard__slot-frame">Photo du produit</span></div><div class="pcard__holo"></div><div class="pcard__glare"></div></div><div class="pcard__body"><h3 class="pcard__title"><a href="produit__id-6.html">Display 36 boosters</a></h3><p class="pcard__meta">Extension démo</p><span class="badge badge--green">En stock</span><div class="pcard__foot"><span class="pcard__price">149,90 €</span><button class="btn btn--primary btn--sm" data-act="add">Ajouter</button></div></div></div></article></div>
+  </div></section>
+  <section class="section"><div class="container split">
+    <a class="panel panel--grade" href="boutique.html?cat=gradees" data-reveal="left"><h2>Cartes gradées</h2><p>Cartes uniques évaluées PSA, CGC ou PCA.</p></a>
+    <a class="panel panel--raw" href="boutique.html?cat=non-gradees" data-reveal><h2>Cartes non gradées</h2><p>Cartes à l'unité, avec leur état précisé.</p></a>
+    <a class="panel panel--sealed" href="boutique.html?cat=boosters" data-reveal="right"><h2>Boosters et displays</h2><p>Produits scellés : boosters, displays, coffrets.</p></a>
+  </div></section>
+</main>
+<footer class="footer"><div class="container">
+  <div class="footer__grid">
+    <div><a class="navbar__logo" href="index.html"><img class="navbar__logo-mark" src="assets/img/logo.png" alt="" width="26" height="26">Liggster Shop</a><p style="margin-top:1rem">Cartes gradées et produits scellés pour collectionneurs.</p></div>
+    <div><h4>Boutique</h4><ul><li><a href="boutique.html?cat=gradees">Cartes gradées</a></li><li><a href="boutique.html?cat=non-gradees">Cartes non gradées</a></li><li><a href="boutique.html?cat=boosters">Boosters / Display</a></li></ul></div>
+    <div><h4>Mon espace</h4><ul><li><a href="compte.html">Mon compte</a></li><li><a href="connexion.html">Connexion</a></li><li><a href="inscription.html">Inscription</a></li><li><a href="boutique.html?cat=fav">Mes favoris</a></li></ul></div>
+  </div>
+  <div class="footer__legal"><p>Site de démonstration. Pokémon est une marque de Nintendo, Creatures Inc. et GAME FREAK inc.</p></div>
+</div></footer>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/card-tilt.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/animations.js"></script><script src="assets/js/polish.js"></script>
+<script src="assets/js/static-patch.js"></script></body>
+</html>

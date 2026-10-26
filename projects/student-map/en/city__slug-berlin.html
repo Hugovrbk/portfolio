@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Plateforme mondiale des actions étudiantes">
+    <meta name="keywords" content="étudiants, actions, manifestations, carte mondiale, vidéos, clips, mobilisations">
+    <meta name="author" content="Student Map Team">
+
+    <!-- Open Graph / Meta Tags pour les réseaux sociaux -->
+    <meta property="og:site_name" content="Student Map">
+    <meta property="og:title" content="Student Map">
+    <meta property="og:description" content="Plateforme mondiale des actions étudiantes">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Map">
+    <meta name="twitter:description" content="Plateforme mondiale des actions étudiantes">
+
+    <title>Berlin - Allemagne - Student Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/map.css">
+    <link rel="stylesheet" href="../assets/css/media.css">
+
+    <!-- Leaflet Marker Cluster -->
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.Default.css">
+
+    <!-- Google Fonts -->
+    <link rel="preload" href="../assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/source-serif-4-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#ECEEF4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B0F26" media="(prefers-color-scheme: dark)">
+
+    <!-- JavaScript -->
+    <script src="../assets/vendor/leaflet/leaflet.js"></script>
+    <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
+
+    <!-- Configuration globale JavaScript -->
+    <script>
+        window.STUDENT_MAP_CONFIG = {
+            baseUrl: '', assetBase: '../',
+            csrfToken: '',
+            language: 'en',
+            isLoggedIn: false,
+            userRole: 'guest',
+            map: {
+                defaultZoom: 3,
+                minZoom: 2,
+                maxZoom: 18,
+                center: [48.8566, 2.3522]
+            }
+        };
+    </script>
+<script src="../assets/js/static-data.js"></script><script src="../assets/js/static-patch.js" defer></script></head>
+<body class="main-page">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="index.html" class="navbar-brand">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">
+                        <span class="logo-title">STUDENT</span>
+                        <span class="logo-subtitle">MAP</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu principal -->
+            <div class="navbar-menu">
+                <ul class="nav-list">
+                    <li class="nav-item ">
+                        <a href="index.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="explorer.html" class="nav-link">
+                            <i class="fas fa-compass"></i>
+                            <span>Explore</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="actions.html" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Upcoming actions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="media.html" class="nav-link">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Media library</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="clips.html" class="nav-link">
+                            <i class="fas fa-video"></i>
+                            <span>Videos</span>
+                        </a>
+                    </li>
+
+                    <!-- Menu déroulant Catégories -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-tags"></i>
+                            <span>Categories</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__category-manifestation.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #e74c3c">
+                                        <span class="category-dot" style="background-color: #e74c3c"></span>
+                                        Demonstration                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__category-blocus.html"
+                                       class="dropdown-link"
+                                       style="--category-color: #f39c12">
+                                        <span class="category-dot" style="background-color: #f39c12"></span>
+                                        Blockade                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="explorer.html" class="dropdown-link">
+                                    <i class="fas fa-list"></i>
+                                    All categories                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Menu déroulant Pays -->
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span>Countries</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-countries">
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-BE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇧🇪</span>
+                                        Belgium                                        <span class="country-count">
+                                            5                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-US.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇺🇸</span>
+                                        United States                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-FR.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇫🇷</span>
+                                        France                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                            <li class="dropdown-item">
+                                    <a href="explorer__country-DE.html"
+                                       class="dropdown-link">
+                                        <span class="country-flag">🇩🇪</span>
+                                        Germany                                        <span class="country-count">
+                                            2                                        </span>
+                                    </a>
+                                </li>
+                                                        <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <a href="explorer.html" class="dropdown-link">
+                                    <i class="fas fa-globe-americas"></i>
+                                    All countries                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu utilisateur -->
+            <div class="navbar-user">
+                                    <div class="auth-buttons">
+                    </div>
+                
+                <div class="language-switch" aria-label="Site language">
+                    <a href="../city__slug-berlin.html" lang="fr" >FR</a>
+                    <a href="city__slug-berlin.html" lang="en" aria-current="page">EN</a>
+                </div>
+
+                <!-- Bouton mobile -->
+                <button class="navbar-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">
+                    <span class="logo-title">STUDENT</span>
+                    <span class="logo-subtitle">MAP</span>
+                </span>
+            </div>
+            <div class="language-switch mobile-language-switch" aria-label="Site language">
+                <a href="../city__slug-berlin.html" lang="fr" >Français</a>
+                <a href="city__slug-berlin.html" lang="en" aria-current="page">English</a>
+            </div>
+            <button class="mobile-menu-close" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="index.html" class="mobile-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="explorer.html" class="mobile-nav-link">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="actions.html" class="mobile-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Upcoming actions</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="media.html" class="mobile-nav-link">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Media library</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="clips.html" class="mobile-nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-tags"></i>
+                        <span>Categories</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__category-manifestation.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #e74c3c"></span>
+                                    Demonstration                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__category-blocus.html"
+                                   class="mobile-submenu-link">
+                                    <span class="category-dot" style="background-color: #f39c12"></span>
+                                    Blockade                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item has-submenu">
+                    <a href="#" class="mobile-nav-link submenu-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>Countries</span>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    </a>
+                    <ul class="mobile-submenu">
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-BE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇧🇪</span>
+                                    Belgium                                    <span class="country-count">5</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-US.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇺🇸</span>
+                                    United States                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-FR.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇫🇷</span>
+                                    France                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                                    <li class="mobile-submenu-item">
+                                <a href="explorer__country-DE.html"
+                                   class="mobile-submenu-link">
+                                    <span class="country-flag">🇩🇪</span>
+                                    Germany                                    <span class="country-count">2</span>
+                                </a>
+                            </li>
+                                            </ul>
+                </li>
+
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Messages flash -->
+    <div class="flash-messages">
+            </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="mobile-menu-overlay"></div>
+<!-- Section héro de la ville -->
+<section class="city-hero">
+    <div class="city-hero-container">
+        <!-- Carte de localisation -->
+        <div class="city-hero-map">
+            <div id="cityMap" class="city-map" 
+                 data-latitude="52.52001000"
+                 data-longitude="13.40495000"
+                 data-zoom="12"></div>
+        </div>
+        
+        <div class="city-hero-content">
+            <!-- Drapeau et nom -->
+            <div class="city-flag-name">
+                <span class="city-flag">🇩🇪</span>
+                <h1 class="city-hero-title">
+                    Berlin                </h1>
+            </div>
+            
+            <!-- Pays -->
+            <div class="city-country">
+                <i class="fas fa-globe"></i>
+                <span>Allemagne</span>
+            </div>
+            
+            <!-- Statistiques -->
+            <div class="city-stats">
+                <div class="city-stat">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>1 événement</span>
+                </div>
+                <div class="city-stat">
+                    <i class="fas fa-video"></i>
+                    <span>1 clip</span>
+                </div>
+                <div class="city-stat">
+                    <i class="fas fa-eye"></i>
+                    <span>84 vues</span>
+                </div>
+            </div>
+            
+            <!-- Description -->
+                            <div class="city-description">
+                    <p>Capitale de l’Allemagne</p>
+                </div>
+                        
+            <!-- Actions -->
+            <div class="city-actions">
+                <a href="explorer__country-DE.html" class="btn btn-outline-light">
+                    <i class="fas fa-globe"></i>
+                    Voir le pays
+                </a>
+                <a href="explorer__city-berlin.html" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    Explorer les événements
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section événements -->
+    <section class="city-events-section">
+        <div class="city-events-container">
+            <div class="city-events-header">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar"></i>
+                    Événements (1)
+                </h2>
+                <a href="explorer__city-berlin.html" class="see-all-link">
+                    Voir tous <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="city-events-grid">
+                                    <article class="city-event-card" data-kind="event" data-date="2027-05-07" data-views="10" data-city="berlin" data-country="DE" data-cats="manifestation">
+                        <div class="city-event-content">
+                                                            <div class="city-event-categories">
+                                                                            <span class="category-tag" style="--category-color: #e74c3c">
+                                            Manifestation                                        </span>
+                                                                    </div>
+                                                        
+                            <h3 class="city-event-title">
+                                <a href="event__slug-demo-marche-berlin.html">
+                                    Marche étudiante à Berlin                                </a>
+                            </h3>
+                            
+                            <div class="city-event-description">
+                                Exemple de démonstration.                            </div>
+                            
+                            <div class="city-event-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    07 May 2027                                </span>
+                                                            </div>
+                            
+                            <div class="city-event-stats">
+                                <span class="stat-item">
+                                    <i class="fas fa-eye"></i>
+                                    10 vues
+                                </span>
+                                <span class="stat-item">
+                                    <i class="fas fa-video"></i>
+                                    0 clips
+                                </span>
+                            </div>
+                            
+                            <div class="city-event-actions">
+                                <a href="event__slug-demo-marche-berlin.html" class="btn btn-sm btn-outline-light">
+                                    <i class="fas fa-info-circle"></i>
+                                    Détails
+                                </a>
+                                                            </div>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
